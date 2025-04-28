@@ -13,13 +13,10 @@
   <ul class="navbar">
     <li onclick="showSection('find-job')">Find Job</li>
     <li onclick="showSection('look-client')">Look for Client</li>
-    <li onclick="showSection('marketplace')">Marketplace</li>
     <li onclick="showSection('chat')">Chat</li>
     <li onclick="showSection('profile')">View Profile</li>
   </ul>
 </nav>
-
-<!-- Sections -->
 
 <!-- Find Job Section -->
 <section id="find-job" class="content-section">
@@ -60,28 +57,13 @@
     <div class="filter">
       <label>Filter by College:</label>
       <select onchange="filterByCollege(this)">
-        <!-- Same options -->
+        <option value="">All Colleges</option>
+        <!-- (same options as above) -->
       </select>
     </div>
   </div>
   <button onclick="openAddPostModal('look-client')">Add Post</button>
   <div class="posts" id="look-client-posts"></div>
-</section>
-
-<!-- Marketplace Section -->
-<section id="marketplace" class="content-section" style="display:none">
-  <h1>Marketplace</h1>
-  <div class="controls">
-    <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
-    <div class="filter">
-      <label>Filter by College:</label>
-      <select onchange="filterByCollege(this)">
-        <!-- Same options -->
-      </select>
-    </div>
-  </div>
-  <button onclick="openAddPostModal('marketplace')">Add Post</button>
-  <div class="posts" id="marketplace-posts"></div>
 </section>
 
 <!-- Chat Section -->
@@ -138,7 +120,6 @@
       <img src="photo3.jpg" alt="">
       <img src="photo4.jpg" alt="">
       <img src="photo5.jpg" alt="">
-      <!-- Add more if you want -->
     </div>
     <div class="logoutButtonContainer">
       <button onclick="logout()">Logout</button>
@@ -171,7 +152,6 @@
   </div>
 </div>
 
-<!-- Scripts -->
 <script src="script.js"></script>
 
 </body>

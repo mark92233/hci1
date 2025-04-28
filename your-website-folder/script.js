@@ -11,8 +11,8 @@ const reportModal = document.getElementById('reportModal');
 const reportForm = document.getElementById('reportForm');
 
 let currentChatUser = null;
-let chatsData = {};
-let newMessages = {};
+let chatsData = {}; 
+let newMessages = {}; 
 let chatDoneUsers = [];
 
 const currentUser = {
@@ -27,7 +27,7 @@ const sampleUsers = [
     { name: "Charlie Brown", profilePic: "photo3.jpg", college: "engineering" }
 ];
 
-// Section Navigation
+// Navigation between Sections
 function showSection(id) {
     sections.forEach(section => section.style.display = 'none');
     document.getElementById(id).style.display = 'block';
@@ -48,14 +48,6 @@ function openAddPostModal(section) {
             <input type="text" id="jobTitle" placeholder="Job Title" required><br>
             <input type="file" id="jobImage"><br>
             <textarea id="jobDesc" placeholder="Description" required></textarea>
-        `;
-    } else if (section === 'marketplace') {
-        dynamicFields.innerHTML = `
-            <input type="text" id="productName" placeholder="Product Name" required><br>
-            <input type="file" id="productImage"><br>
-            <input type="number" id="productQuantity" placeholder="Quantity" required><br>
-            <input type="text" id="productColor" placeholder="Color" required><br>
-            <textarea id="productDesc" placeholder="Product Details" required></textarea>
         `;
     }
 
@@ -97,12 +89,6 @@ function addPost(section, user, sampleData = null) {
         const title = sampleData?.title || document.getElementById('jobTitle')?.value || "Sample Service";
         const desc = sampleData?.desc || document.getElementById('jobDesc')?.value || "Sample Service Description";
         postContent += `<h3>${title}</h3><p>${desc}</p>`;
-    } else if (section === 'marketplace') {
-        const productName = sampleData?.productName || document.getElementById('productName')?.value || "Sample Product";
-        const quantity = sampleData?.quantity || document.getElementById('productQuantity')?.value || "5";
-        const color = sampleData?.color || document.getElementById('productColor')?.value || "Various";
-        const desc = sampleData?.desc || document.getElementById('productDesc')?.value || "Sample Product Description";
-        postContent += `<h3>${productName}</h3><p>Qty: ${quantity}</p><p>Color: ${color}</p><p>${desc}</p>`;
     }
 
     if (user.name !== currentUser.name) {
@@ -113,7 +99,7 @@ function addPost(section, user, sampleData = null) {
     postsContainer.appendChild(newPost);
 }
 
-// --- Chat System
+// Chat Functions
 
 function openChat(userName) {
     showSection('chat');
@@ -125,7 +111,6 @@ function openChat(userName) {
     } else {
         chatInputArea.style.display = 'flex';
     }
-
     if (newMessages[userName]) {
         delete newMessages[userName];
         updateChatList();
@@ -211,22 +196,7 @@ function deleteChat(name) {
     chatBox.innerHTML = "<p>Select a conversation</p>";
 }
 
-// --- New Messages Simulation
-function simulateIncomingMessage() {
-    setTimeout(() => {
-        const randomUser = sampleUsers[Math.floor(Math.random() * sampleUsers.length)].name;
-        if (!chatsData[randomUser]) chatsData[randomUser] = [];
-        chatsData[randomUser].push({ from: randomUser, text: "Hey! Just checking in." });
-        newMessages[randomUser] = true;
-        updateChatList();
-    }, 5000); // after 5 seconds
-}
-
-function updateChatList() {
-    loadChatDirectory();
-}
-
-// --- Search and Filter
+// Search and Filter Functions
 function searchPosts(input) {
     const keyword = input.value.toLowerCase();
     const container = input.closest('.content-section').querySelector('.posts') || input.closest('.content-section').querySelector('.chat-list');
@@ -253,22 +223,36 @@ function filterByCollege(select) {
 }
 
 function logout() {
-    alert("Logged out!");
+    alert("Logged out successfully.");
     window.location.href = "index.html"; 
 }
 
-// Load Initial Posts
+// Load Default Posts
 function loadDefaultPosts() {
     sampleUsers.forEach(user => {
         addPost('find-job', user, { title: "Job Example", desc: "Job Description" });
-        addPost('look-client', user, { title: "Client Example", desc: "Looking for client" });
-        addPost('marketplace', user, { productName: "Product Example", quantity: "10", color: "Red", desc: "Product Details" });
+        addPost('look-client', user, { title: "Client Example", desc: "Looking for a client" });
     });
 }
 
-// --- Initialize Page
+// Initialize Page
 window.onload = function() {
     loadChatDirectory();
     loadDefaultPosts();
     simulateIncomingMessage();
 };
+
+// Simulate New Incoming Messages (Demo only)
+function simulateIncomingMessage() {
+    setTimeout(() => {
+        const randomUser = sampleUsers[Math.floor(Math.random() * sampleUsers.length)].name;
+        if (!chatsData[randomUser]) chatsData[randomUser] = [];
+        chatsData[randomUser].push({ from: randomUser, text: "Hi! Are you available?" });
+        newMessages[randomUser] = true;
+        updateChatList();
+    }, 5000); // After 5 seconds
+}
+
+function updateChatList() {
+    loadChatDirectory();
+}
