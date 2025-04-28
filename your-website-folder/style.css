@@ -6,7 +6,6 @@ body {
     background: #f5f5f5;
 }
 
-/* Navbar */
 nav {
     background-color: #1877f2;
     padding: 10px;
@@ -31,12 +30,12 @@ nav {
     text-decoration: underline;
 }
 
-/* Sections */
+/* Section */
 .content-section {
     padding: 20px;
 }
 
-/* Controls (Search and Filter) */
+/* Controls (Search & Filter) */
 .controls {
     display: flex;
     justify-content: space-between;
@@ -110,11 +109,9 @@ nav {
 .modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
     justify-content: center;
     align-items: center;
     z-index: 1000;
@@ -137,10 +134,10 @@ nav {
 .chat-container {
     display: flex;
     height: 80vh;
-    border: 1px solid #ccc;
+    background: white;
     border-radius: 8px;
     overflow: hidden;
-    background: white;
+    border: 1px solid #ccc;
 }
 
 .chat-list {
@@ -148,14 +145,12 @@ nav {
     background: #f0f0f0;
     border-right: 1px solid #ccc;
     overflow-y: auto;
-    position: relative;
 }
 
 .chat-box-wrapper {
     display: flex;
     flex-direction: column;
     width: 70%;
-    position: relative;
 }
 
 .chat-box {
@@ -166,23 +161,23 @@ nav {
 
 .chat-input {
     display: flex;
-    border-top: 1px solid #ccc;
     padding: 10px;
+    border-top: 1px solid #ccc;
 }
 
 .chat-input input {
     flex: 1;
     padding: 10px;
-    border: 1px solid #ccc;
     border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 .chat-input button {
-    padding: 10px 20px;
     margin-left: 10px;
-    border: none;
-    background-color: #1877f2;
+    padding: 10px 20px;
+    background: #1877f2;
     color: white;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -202,13 +197,13 @@ nav {
 }
 
 .options-dropdown {
+    display: none;
     position: absolute;
     top: 30px;
     right: 5px;
     background: white;
     border: 1px solid #ccc;
     width: 150px;
-    display: none;
     z-index: 10;
 }
 
@@ -218,7 +213,7 @@ nav {
 }
 
 .options-dropdown div:hover {
-    background-color: #eee;
+    background: #eee;
 }
 
 .new-message {
@@ -239,4 +234,115 @@ nav {
 .message.received {
     text-align: left;
     color: green;
+}
+
+/* Profile Section */
+.profileContainer {
+    padding: 20px;
+}
+
+.profilePicSection {
+    background: #e5e5e5;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.profile {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.profileCov {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profileDetails {
+    display: flex;
+    align-items: center;
+    background: white;
+    padding: 15px;
+}
+
+.profilePicDetails {
+    margin-right: 15px;
+}
+
+.profilePic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid white;
+}
+
+.profileDetailsSection {
+    flex-grow: 1;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.college, .id {
+    font-size: 14px;
+    color: gray;
+}
+
+/* Work Stats */
+.statsSection {
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 10px;
+}
+
+.workStat {
+    text-align: center;
+}
+
+.workCount {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.workLabel {
+    font-size: 14px;
+    color: gray;
+}
+
+/* Photo Grid */
+.photoGrid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    margin-bottom: 20px;
+}
+
+.photoGrid img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+/* Logout Button */
+.logoutButtonContainer {
+    text-align: center;
+}
+
+.logoutButtonContainer button {
+    padding: 10px 30px;
+    background: #1877f2;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
 }

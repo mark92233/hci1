@@ -1,4 +1,4 @@
-// Section and Modal References
+// --- Section and Modal References
 const sections = document.querySelectorAll('.content-section');
 const chatList = document.getElementById('chat-list');
 const chatBox = document.getElementById('chat-box');
@@ -11,32 +11,32 @@ const reportModal = document.getElementById('reportModal');
 const reportForm = document.getElementById('reportForm');
 
 let currentChatUser = null;
-let chatsData = {};  // Store all conversations
-let newMessages = {}; // Track new message notifications
-let chatDoneUsers = []; // Track users with "Set as Done"
+let chatsData = {}; 
+let newMessages = {}; 
+let chatDoneUsers = [];
 
-// Dummy current user
+// --- Dummy Current User
 const currentUser = {
     name: "You",
-    profilePic: "https://via.placeholder.com/50",
+    profilePic: "yourpfp.jpg",
     college: "computing studies"
 };
 
-// Dummy sample users
+// --- Sample Users
 const sampleUsers = [
-    { name: "Alice Johnson", profilePic: "https://via.placeholder.com/50/FF5733", college: "computing studies" },
-    { name: "Bob Smith", profilePic: "https://via.placeholder.com/50/33C1FF", college: "liberal arts" },
-    { name: "Charlie Brown", profilePic: "https://via.placeholder.com/50/75FF33", college: "engineering" },
-    { name: "Daisy Lee", profilePic: "https://via.placeholder.com/50/FF33A6", college: "architecture" },
-    { name: "Edward King", profilePic: "https://via.placeholder.com/50/FFC733", college: "public administration" },
-    { name: "Fiona Green", profilePic: "https://via.placeholder.com/50/7A33FF", college: "nursing" },
-    { name: "George Hill", profilePic: "https://via.placeholder.com/50/33FFF9", college: "medicine" },
-    { name: "Hannah White", profilePic: "https://via.placeholder.com/50/F933FF", college: "law" },
-    { name: "Ian Black", profilePic: "https://via.placeholder.com/50/FF5733", college: "engineering" },
-    { name: "Jenny Gold", profilePic: "https://via.placeholder.com/50/33FF57", college: "science and mathematics" }
+    { name: "Alice Johnson", profilePic: "photo1.jpg", college: "computing studies" },
+    { name: "Bob Smith", profilePic: "photo2.jpg", college: "liberal arts" },
+    { name: "Charlie Brown", profilePic: "photo3.jpg", college: "engineering" },
+    { name: "Daisy Lee", profilePic: "photo4.jpg", college: "architecture" },
+    { name: "Edward King", profilePic: "photo5.jpg", college: "public administration" },
+    { name: "Fiona Green", profilePic: "photo1.jpg", college: "nursing" },
+    { name: "George Hill", profilePic: "photo2.jpg", college: "medicine" },
+    { name: "Hannah White", profilePic: "photo3.jpg", college: "law" },
+    { name: "Ian Black", profilePic: "photo4.jpg", college: "engineering" },
+    { name: "Jenny Gold", profilePic: "photo5.jpg", college: "science and mathematics" }
 ];
 
-// --- Main Functions ---
+// --- Functions
 
 // Section Navigation
 function showSection(id) {
@@ -44,7 +44,7 @@ function showSection(id) {
     document.getElementById(id).style.display = 'block';
 }
 
-// Post Modal
+// Open Post Modal
 function openAddPostModal(section) {
     postModal.style.display = 'flex';
     dynamicFields.innerHTML = '';
@@ -77,6 +77,7 @@ function openAddPostModal(section) {
     };
 }
 
+// Close Modals
 function closeModal() {
     postModal.style.display = 'none';
 }
@@ -85,7 +86,7 @@ function closeReportModal() {
     reportModal.style.display = 'none';
 }
 
-// Adding Posts
+// Add Post
 function addPost(section, user, sampleData = null) {
     const postsContainer = document.getElementById(`${section}-posts`);
     let newPost = document.createElement('div');
@@ -125,6 +126,7 @@ function addPost(section, user, sampleData = null) {
 }
 
 // Chat System
+
 function openChat(userName) {
     showSection('chat');
     currentChatUser = userName;
@@ -241,16 +243,22 @@ function filterByCollege(select) {
     }
 }
 
-// Load Default Posts
+// Logout
+function logout() {
+    alert("You have logged out.");
+    window.location.href = "index.html"; // Or change to login.html if you have login page
+}
+
+// Default Posts
 function loadDefaultPosts() {
     sampleUsers.forEach(user => {
         addPost('find-job', user, { title: "Job Example", desc: "Job Description" });
         addPost('look-client', user, { title: "Service Example", desc: "Service Description" });
-        addPost('marketplace', user, { productName: "Product Name", quantity: "10", color: "Red", desc: "Product Description" });
+        addPost('marketplace', user, { productName: "Product", quantity: "10", color: "Red", desc: "Product Description" });
     });
 }
 
-// Initialize
+// Initialize Everything
 window.onload = function() {
     loadChatDirectory();
     loadDefaultPosts();
