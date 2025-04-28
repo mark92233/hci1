@@ -19,29 +19,111 @@
     </nav>
 
     <!-- Sections -->
+
+    <!-- Find Job Section -->
     <section id="find-job" class="content-section">
         <h1>Find Job</h1>
+        <div class="controls">
+            <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
+            <div class="filter">
+                <label for="collegeFilter">Filter by College:</label>
+                <select onchange="filterByCollege(this)">
+                    <option value="">All Colleges</option>
+                    <option value="computing studies">College of Computing Studies</option>
+                    <option value="liberal arts">College of Liberal Arts</option>
+                    <option value="engineering">College of Engineering</option>
+                    <option value="architecture">College of Architecture</option>
+                    <option value="public administration">College of Public Administration</option>
+                    <option value="teacher education">College of Teacher Education</option>
+                    <option value="home economics">College of Home Economics</option>
+                    <option value="nursing">College of Nursing</option>
+                    <option value="law">College of Law</option>
+                    <option value="criminal justice">College of Criminal Justice Education</option>
+                    <option value="medicine">College of Medicine</option>
+                    <option value="asian islamic studies">College of Asian Islamic Studies</option>
+                    <option value="social work">College of Social Work and Development</option>
+                    <option value="sports science">College of Sports Science and Physical Education</option>
+                    <option value="science and mathematics">College of Science and Mathematics</option>
+                </select>
+            </div>
+        </div>
         <button onclick="openAddPostModal('find-job')">Add Post</button>
         <div class="posts" id="find-job-posts"></div>
     </section>
 
+    <!-- Look for Client Section -->
     <section id="look-client" class="content-section" style="display:none">
         <h1>Look for Client</h1>
+        <div class="controls">
+            <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
+            <div class="filter">
+                <label for="collegeFilter">Filter by College:</label>
+                <select onchange="filterByCollege(this)">
+                    <option value="">All Colleges</option>
+                    <!-- Same options as above -->
+                    <option value="computing studies">College of Computing Studies</option>
+                    <option value="liberal arts">College of Liberal Arts</option>
+                    <option value="engineering">College of Engineering</option>
+                    <option value="architecture">College of Architecture</option>
+                    <option value="public administration">College of Public Administration</option>
+                    <option value="teacher education">College of Teacher Education</option>
+                    <option value="home economics">College of Home Economics</option>
+                    <option value="nursing">College of Nursing</option>
+                    <option value="law">College of Law</option>
+                    <option value="criminal justice">College of Criminal Justice Education</option>
+                    <option value="medicine">College of Medicine</option>
+                    <option value="asian islamic studies">College of Asian Islamic Studies</option>
+                    <option value="social work">College of Social Work and Development</option>
+                    <option value="sports science">College of Sports Science and Physical Education</option>
+                    <option value="science and mathematics">College of Science and Mathematics</option>
+                </select>
+            </div>
+        </div>
         <button onclick="openAddPostModal('look-client')">Add Post</button>
         <div class="posts" id="look-client-posts"></div>
     </section>
 
+    <!-- Marketplace Section -->
     <section id="marketplace" class="content-section" style="display:none">
         <h1>Marketplace</h1>
+        <div class="controls">
+            <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
+            <div class="filter">
+                <label for="collegeFilter">Filter by College:</label>
+                <select onchange="filterByCollege(this)">
+                    <option value="">All Colleges</option>
+                    <!-- Same options as above -->
+                    <option value="computing studies">College of Computing Studies</option>
+                    <option value="liberal arts">College of Liberal Arts</option>
+                    <option value="engineering">College of Engineering</option>
+                    <option value="architecture">College of Architecture</option>
+                    <option value="public administration">College of Public Administration</option>
+                    <option value="teacher education">College of Teacher Education</option>
+                    <option value="home economics">College of Home Economics</option>
+                    <option value="nursing">College of Nursing</option>
+                    <option value="law">College of Law</option>
+                    <option value="criminal justice">College of Criminal Justice Education</option>
+                    <option value="medicine">College of Medicine</option>
+                    <option value="asian islamic studies">College of Asian Islamic Studies</option>
+                    <option value="social work">College of Social Work and Development</option>
+                    <option value="sports science">College of Sports Science and Physical Education</option>
+                    <option value="science and mathematics">College of Science and Mathematics</option>
+                </select>
+            </div>
+        </div>
         <button onclick="openAddPostModal('marketplace')">Add Post</button>
         <div class="posts" id="marketplace-posts"></div>
     </section>
 
+    <!-- Chat Section -->
     <section id="chat" class="content-section" style="display:none">
         <h1>Chat System</h1>
+        <div class="controls">
+            <input type="text" class="search-bar" placeholder="Search Chats..." onkeyup="searchPosts(this)">
+        </div>
         <div class="chat-container">
             <div class="chat-list" id="chat-list">
-                <!-- Chat users here -->
+                <!-- Chat users -->
             </div>
             <div class="chat-box" id="chat-box">
                 <p>Select a conversation</p>

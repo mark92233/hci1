@@ -6,7 +6,7 @@ body {
     background: #f5f5f5;
 }
 
-/* Navbar Styles */
+/* Navbar */
 nav {
     background-color: #1877f2;
     padding: 10px;
@@ -36,7 +36,36 @@ nav {
     padding: 20px;
 }
 
-/* Post Cards */
+/* Controls (Search and Filter) */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.search-bar {
+    padding: 8px;
+    width: 40%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+}
+
+.filter label {
+    margin-right: 10px;
+}
+
+.filter select {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Posts */
 .posts {
     display: flex;
     flex-wrap: wrap;
@@ -52,13 +81,32 @@ nav {
     width: 250px;
 }
 
-.post-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-/* Modal Styles */
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.college {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 8px;
+}
+
+/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -85,7 +133,7 @@ nav {
     cursor: pointer;
 }
 
-/* Chat System Styles */
+/* Chat System */
 .chat-container {
     display: flex;
     height: 80vh;
@@ -131,25 +179,3 @@ nav {
     text-align: left;
     color: green;
 }
-
-/* Add this at the end of style.css */
-
-.post-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.profile-pic {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 10px;
-}
-
-.username {
-    font-weight: bold;
-    font-size: 16px;
-}
-
