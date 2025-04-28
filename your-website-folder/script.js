@@ -1,4 +1,4 @@
-// --- Section and Modal References
+// Section and Modal References
 const sections = document.querySelectorAll('.content-section');
 const chatList = document.getElementById('chat-list');
 const chatBox = document.getElementById('chat-box');
@@ -11,32 +11,21 @@ const reportModal = document.getElementById('reportModal');
 const reportForm = document.getElementById('reportForm');
 
 let currentChatUser = null;
-let chatsData = {}; 
-let newMessages = {}; 
+let chatsData = {};
+let newMessages = {};
 let chatDoneUsers = [];
 
-// --- Dummy Current User
 const currentUser = {
     name: "You",
     profilePic: "yourpfp.jpg",
     college: "computing studies"
 };
 
-// --- Sample Users
 const sampleUsers = [
     { name: "Alice Johnson", profilePic: "photo1.jpg", college: "computing studies" },
     { name: "Bob Smith", profilePic: "photo2.jpg", college: "liberal arts" },
-    { name: "Charlie Brown", profilePic: "photo3.jpg", college: "engineering" },
-    { name: "Daisy Lee", profilePic: "photo4.jpg", college: "architecture" },
-    { name: "Edward King", profilePic: "photo5.jpg", college: "public administration" },
-    { name: "Fiona Green", profilePic: "photo1.jpg", college: "nursing" },
-    { name: "George Hill", profilePic: "photo2.jpg", college: "medicine" },
-    { name: "Hannah White", profilePic: "photo3.jpg", college: "law" },
-    { name: "Ian Black", profilePic: "photo4.jpg", college: "engineering" },
-    { name: "Jenny Gold", profilePic: "photo5.jpg", college: "science and mathematics" }
+    { name: "Charlie Brown", profilePic: "photo3.jpg", college: "engineering" }
 ];
-
-// --- Functions
 
 // Section Navigation
 function showSection(id) {
@@ -44,7 +33,7 @@ function showSection(id) {
     document.getElementById(id).style.display = 'block';
 }
 
-// Open Post Modal
+// Open Add Post Modal
 function openAddPostModal(section) {
     postModal.style.display = 'flex';
     dynamicFields.innerHTML = '';
@@ -77,7 +66,6 @@ function openAddPostModal(section) {
     };
 }
 
-// Close Modals
 function closeModal() {
     postModal.style.display = 'none';
 }
@@ -86,7 +74,7 @@ function closeReportModal() {
     reportModal.style.display = 'none';
 }
 
-// Add Post
+// Add Posts
 function addPost(section, user, sampleData = null) {
     const postsContainer = document.getElementById(`${section}-posts`);
     let newPost = document.createElement('div');
@@ -125,13 +113,19 @@ function addPost(section, user, sampleData = null) {
     postsContainer.appendChild(newPost);
 }
 
-// Chat System
+// --- Chat System
 
 function openChat(userName) {
     showSection('chat');
     currentChatUser = userName;
     renderChat();
-    chatInputArea.style.display = chatDoneUsers.includes(userName) ? 'none' : 'flex';
+    if (chatDoneUsers.includes(userName)) {
+        chatInputArea.style.display = 'none';
+        chatBox.innerHTML += `<div style="text-align:center; color: gray; font-size:14px; margin-top:10px;">This chat has been marked as completed. No more messages allowed.</div>`;
+    } else {
+        chatInputArea.style.display = 'flex';
+    }
+
     if (newMessages[userName]) {
         delete newMessages[userName];
         updateChatList();
@@ -149,7 +143,7 @@ function renderChat() {
 
 function sendMessage() {
     const text = messageInput.value.trim();
-    if (text && currentChatUser) {
+    if (text && currentChatUser && !chatDoneUsers.includes(currentChatUser)) {
         if (!chatsData[currentChatUser]) chatsData[currentChatUser] = [];
         chatsData[currentChatUser].push({ from: currentUser.name, text });
         messageInput.value = "";
@@ -196,7 +190,7 @@ reportForm.onsubmit = function(e) {
     if (currentChatUser) {
         delete chatsData[currentChatUser];
         delete newMessages[currentChatUser];
-        chatBox.innerHTML = "<p>Chat Terminated due to report.</p>";
+        chatBox.innerHTML = "<p>Chat terminated due to report.</p>";
         loadChatDirectory();
         reportModal.style.display = 'none';
     }
@@ -206,6 +200,7 @@ function setAsDone(name) {
     chatDoneUsers.push(name);
     if (currentChatUser === name) {
         chatInputArea.style.display = 'none';
+        chatBox.innerHTML += `<div style="text-align:center; color: gray; font-size:14px; margin-top:10px;">This chat has been marked as completed. No more messages allowed.</div>`;
     }
 }
 
@@ -216,7 +211,22 @@ function deleteChat(name) {
     chatBox.innerHTML = "<p>Select a conversation</p>";
 }
 
-// Search and Filter
+// --- New Messages Simulation
+function simulateIncomingMessage() {
+    setTimeout(() => {
+        const randomUser = sampleUsers[Math.floor(Math.random() * sampleUsers.length)].name;
+        if (!chatsData[randomUser]) chatsData[randomUser] = [];
+        chatsData[randomUser].push({ from: randomUser, text: "Hey! Just checking in." });
+        newMessages[randomUser] = true;
+        updateChatList();
+    }, 5000); // after 5 seconds
+}
+
+function updateChatList() {
+    loadChatDirectory();
+}
+
+// --- Search and Filter
 function searchPosts(input) {
     const keyword = input.value.toLowerCase();
     const container = input.closest('.content-section').querySelector('.posts') || input.closest('.content-section').querySelector('.chat-list');
@@ -231,7 +241,6 @@ function searchPosts(input) {
 function filterByCollege(select) {
     const college = select.value;
     const posts = select.closest('.content-section').querySelector('.posts')?.querySelectorAll('.post-card');
-
     if (posts) {
         posts.forEach(post => {
             if (college === "" || post.getAttribute('data-college') === college) {
@@ -243,23 +252,23 @@ function filterByCollege(select) {
     }
 }
 
-// Logout
 function logout() {
-    alert("You have logged out.");
-    window.location.href = "index.html"; // Or change to login.html if you have login page
+    alert("Logged out!");
+    window.location.href = "index.html"; 
 }
 
-// Default Posts
+// Load Initial Posts
 function loadDefaultPosts() {
     sampleUsers.forEach(user => {
         addPost('find-job', user, { title: "Job Example", desc: "Job Description" });
-        addPost('look-client', user, { title: "Service Example", desc: "Service Description" });
-        addPost('marketplace', user, { productName: "Product", quantity: "10", color: "Red", desc: "Product Description" });
+        addPost('look-client', user, { title: "Client Example", desc: "Looking for client" });
+        addPost('marketplace', user, { productName: "Product Example", quantity: "10", color: "Red", desc: "Product Details" });
     });
 }
 
-// Initialize Everything
+// --- Initialize Page
 window.onload = function() {
     loadChatDirectory();
     loadDefaultPosts();
+    simulateIncomingMessage();
 };
