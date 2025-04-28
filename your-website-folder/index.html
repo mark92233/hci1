@@ -3,143 +3,160 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HCI Website</title>
+  <title>HCI Modern Website</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- Navbar -->
-<nav>
-  <ul class="navbar">
-    <li onclick="showSection('find-job')">Find Job</li>
-    <li onclick="showSection('look-client')">Look for Client</li>
-    <li onclick="showSection('chat')">Chat</li>
-    <li onclick="showSection('profile')">View Profile</li>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="logo">HCI</div>
+  <ul>
+    <li onclick="showSection('find-job')">
+      🛠️ <span>Find Job</span>
+    </li>
+    <li onclick="showSection('look-client')">
+      🤝 <span>Look for Client</span>
+    </li>
+    <li onclick="showSection('chat')">
+      💬 <span>Chat</span>
+    </li>
+    <li onclick="showSection('profile')">
+      👤 <span>Profile</span>
+    </li>
   </ul>
-</nav>
+</div>
 
-<!-- Find Job Section -->
-<section id="find-job" class="content-section">
-  <h1>Find Job</h1>
-  <div class="controls">
-    <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
-    <div class="filter">
-      <label>Filter by College:</label>
-      <select onchange="filterByCollege(this)">
-        <option value="">All Colleges</option>
-        <option value="computing studies">College of Computing Studies</option>
-        <option value="liberal arts">College of Liberal Arts</option>
-        <option value="engineering">College of Engineering</option>
-        <option value="architecture">College of Architecture</option>
-        <option value="public administration">College of Public Administration</option>
-        <option value="teacher education">College of Teacher Education</option>
-        <option value="home economics">College of Home Economics</option>
-        <option value="nursing">College of Nursing</option>
-        <option value="law">College of Law</option>
-        <option value="criminal justice">College of Criminal Justice Education</option>
-        <option value="medicine">College of Medicine</option>
-        <option value="asian islamic studies">College of Asian Islamic Studies</option>
-        <option value="social work">College of Social Work and Development</option>
-        <option value="sports science">College of Sports Science and Physical Education</option>
-        <option value="science and mathematics">College of Science and Mathematics</option>
-      </select>
-    </div>
-  </div>
-  <button onclick="openAddPostModal('find-job')">Add Post</button>
-  <div class="posts" id="find-job-posts"></div>
-</section>
+<!-- Burger Button -->
+<div class="burger" id="burger" onclick="toggleSidebar()">☰</div>
 
-<!-- Look for Client Section -->
-<section id="look-client" class="content-section" style="display:none">
-  <h1>Look for Client</h1>
-  <div class="controls">
-    <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
-    <div class="filter">
-      <label>Filter by College:</label>
-      <select onchange="filterByCollege(this)">
-        <option value="">All Colleges</option>
-        <option value="computing studies">College of Computing Studies</option>
-        <option value="liberal arts">College of Liberal Arts</option>
-        <option value="engineering">College of Engineering</option>
-        <option value="architecture">College of Architecture</option>
-        <option value="public administration">College of Public Administration</option>
-        <option value="teacher education">College of Teacher Education</option>
-        <option value="home economics">College of Home Economics</option>
-        <option value="nursing">College of Nursing</option>
-        <option value="law">College of Law</option>
-        <option value="criminal justice">College of Criminal Justice Education</option>
-        <option value="medicine">College of Medicine</option>
-        <option value="asian islamic studies">College of Asian Islamic Studies</option>
-        <option value="social work">College of Social Work and Development</option>
-        <option value="sports science">College of Sports Science and Physical Education</option>
-        <option value="science and mathematics">College of Science and Mathematics</option>
-      </select>
-    </div>
-  </div>
-  <button onclick="openAddPostModal('look-client')">Add Post</button>
-  <div class="posts" id="look-client-posts"></div>
-</section>
+<!-- Main Content -->
+<div class="main-content">
 
-<!-- Chat Section -->
-<section id="chat" class="content-section" style="display:none">
-  <h1>Chat System</h1>
-  <div class="controls">
-    <input type="text" class="search-bar" placeholder="Search Chats..." onkeyup="searchPosts(this)">
-  </div>
-  <div class="chat-container">
-    <div class="chat-list" id="chat-list"></div>
-    <div class="chat-box-wrapper">
-      <div class="chat-box" id="chat-box">
-        <p>Select a conversation</p>
-      </div>
-      <div class="chat-input" id="chat-input-area">
-        <input type="text" id="messageInput" placeholder="Type a message...">
-        <button onclick="sendMessage()">Send</button>
+  <!-- Find Job Section -->
+  <section id="find-job" class="content-section">
+    <h1>Find Job</h1>
+    <div class="controls">
+      <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
+      <div class="filter">
+        <label>Filter by College:</label>
+        <select onchange="filterByCollege(this)">
+          <option value="">All Colleges</option>
+          <option value="computing studies">College of Computing Studies</option>
+          <option value="liberal arts">College of Liberal Arts</option>
+          <option value="engineering">College of Engineering</option>
+          <option value="architecture">College of Architecture</option>
+          <option value="public administration">College of Public Administration</option>
+          <option value="teacher education">College of Teacher Education</option>
+          <option value="home economics">College of Home Economics</option>
+          <option value="nursing">College of Nursing</option>
+          <option value="law">College of Law</option>
+          <option value="criminal justice">College of Criminal Justice Education</option>
+          <option value="medicine">College of Medicine</option>
+          <option value="asian islamic studies">College of Asian Islamic Studies</option>
+          <option value="social work">College of Social Work and Development</option>
+          <option value="sports science">College of Sports Science and Physical Education</option>
+          <option value="science and mathematics">College of Science and Mathematics</option>
+        </select>
       </div>
     </div>
-  </div>
-</section>
+    <button onclick="openAddPostModal('find-job')">Add Post</button>
+    <div class="posts" id="find-job-posts"></div>
+  </section>
 
-<!-- Profile Section -->
-<section id="profile" class="content-section" style="display:none">
-  <div class="profileContainer">
-    <div class="profilePicSection">
-      <div class="profile">
-        <img src="yourcoverimage.jpg" alt="Cover" class="profileCov">
+  <!-- Look for Client Section -->
+  <section id="look-client" class="content-section" style="display:none">
+    <h1>Look for Client</h1>
+    <div class="controls">
+      <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
+      <div class="filter">
+        <label>Filter by College:</label>
+        <select onchange="filterByCollege(this)">
+          <option value="">All Colleges</option>
+          <option value="computing studies">College of Computing Studies</option>
+          <option value="liberal arts">College of Liberal Arts</option>
+          <option value="engineering">College of Engineering</option>
+          <option value="architecture">College of Architecture</option>
+          <option value="public administration">College of Public Administration</option>
+          <option value="teacher education">College of Teacher Education</option>
+          <option value="home economics">College of Home Economics</option>
+          <option value="nursing">College of Nursing</option>
+          <option value="law">College of Law</option>
+          <option value="criminal justice">College of Criminal Justice Education</option>
+          <option value="medicine">College of Medicine</option>
+          <option value="asian islamic studies">College of Asian Islamic Studies</option>
+          <option value="social work">College of Social Work and Development</option>
+          <option value="sports science">College of Sports Science and Physical Education</option>
+          <option value="science and mathematics">College of Science and Mathematics</option>
+        </select>
       </div>
-      <div class="profileDetails">
-        <div class="profilePicDetails">
-          <img src="yourpfp.jpg" alt="Profile Picture" class="profilePic">
+    </div>
+    <button onclick="openAddPostModal('look-client')">Add Post</button>
+    <div class="posts" id="look-client-posts"></div>
+  </section>
+
+  <!-- Chat Section -->
+  <section id="chat" class="content-section" style="display:none">
+    <h1>Chat System</h1>
+    <div class="controls">
+      <input type="text" class="search-bar" placeholder="Search Chats..." onkeyup="searchPosts(this)">
+    </div>
+    <div class="chat-container">
+      <div class="chat-list" id="chat-list"></div>
+      <div class="chat-box-wrapper">
+        <div class="chat-box" id="chat-box">
+          <p>Select a conversation</p>
         </div>
-        <div class="profileDetailsSection">
-          <p class="name">Mark John Salas Ando</p>
-          <p class="college">College of Computing Studies</p>
-          <p class="id">2024-03655</p>
+        <div class="chat-input" id="chat-input-area">
+          <input type="text" id="messageInput" placeholder="Type a message...">
+          <button onclick="sendMessage()">Send</button>
         </div>
       </div>
     </div>
-    <div class="statsSection">
-      <div class="workStat">
-        <p class="workCount">5</p>
-        <p class="workLabel">Work Finished</p>
+  </section>
+
+  <!-- Profile Section -->
+  <section id="profile" class="content-section" style="display:none">
+    <div class="profileContainer">
+      <div class="profilePicSection">
+        <div class="profile">
+          <img src="yourcoverimage.jpg" alt="Cover" class="profileCov">
+        </div>
+        <div class="profileDetails">
+          <div class="profilePicDetails">
+            <img src="yourpfp.jpg" alt="Profile Picture" class="profilePic">
+          </div>
+          <div class="profileDetailsSection">
+            <p class="name">Mark John Salas Ando</p>
+            <p class="college">College of Computing Studies</p>
+            <p class="id">2024-03655</p>
+          </div>
+        </div>
       </div>
-      <div class="workStat">
-        <p class="workCount">2</p>
-        <p class="workLabel">Work Pending</p>
+      <div class="statsSection">
+        <div class="workStat">
+          <p class="workCount">5</p>
+          <p class="workLabel">Work Finished</p>
+        </div>
+        <div class="workStat">
+          <p class="workCount">2</p>
+          <p class="workLabel">Work Pending</p>
+        </div>
+      </div>
+      <div class="photoGrid">
+        <img src="photo1.jpg" alt="">
+        <img src="photo2.jpg" alt="">
+        <img src="photo3.jpg" alt="">
+        <img src="photo4.jpg" alt="">
+        <img src="photo5.jpg" alt="">
+      </div>
+      <div class="logoutButtonContainer">
+        <button onclick="logout()">Logout</button>
       </div>
     </div>
-    <div class="photoGrid">
-      <img src="photo1.jpg" alt="">
-      <img src="photo2.jpg" alt="">
-      <img src="photo3.jpg" alt="">
-      <img src="photo4.jpg" alt="">
-      <img src="photo5.jpg" alt="">
-    </div>
-    <div class="logoutButtonContainer">
-      <button onclick="logout()">Logout</button>
-    </div>
-  </div>
-</section>
+  </section>
+
+</div> <!-- End of Main Content -->
 
 <!-- Modals -->
 <div id="postModal" class="modal">
@@ -167,6 +184,11 @@
 </div>
 
 <script src="script.js"></script>
+<script>
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('hide');
+  }
+</script>
 
 </body>
 </html>
