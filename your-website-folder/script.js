@@ -77,7 +77,7 @@ function closeModal() {
 }
 
 // Add New Post
-function addPost(section, user) {
+function addPost(section, user, sampleData = null) {
     const postsContainer = document.getElementById(`${section}-posts`);
     let newPost = document.createElement('div');
     newPost.className = 'post-card';
@@ -90,18 +90,18 @@ function addPost(section, user) {
     `;
 
     if (section === 'find-job') {
-        const title = document.getElementById('jobTitle') ? document.getElementById('jobTitle').value : "Sample Job";
-        const desc = document.getElementById('jobDesc') ? document.getElementById('jobDesc').value : "This is a sample job post.";
+        const title = sampleData?.title || (document.getElementById('jobTitle') ? document.getElementById('jobTitle').value : "Sample Job");
+        const desc = sampleData?.desc || (document.getElementById('jobDesc') ? document.getElementById('jobDesc').value : "This is a sample job post.");
         postContent += `<h3>${title}</h3><p>${desc}</p>`;
     } else if (section === 'look-client') {
-        const title = document.getElementById('jobTitle') ? document.getElementById('jobTitle').value : "Client Needed";
-        const desc = document.getElementById('jobDesc') ? document.getElementById('jobDesc').value : "Looking for clients for services.";
+        const title = sampleData?.title || (document.getElementById('jobTitle') ? document.getElementById('jobTitle').value : "Sample Client Need");
+        const desc = sampleData?.desc || (document.getElementById('jobDesc') ? document.getElementById('jobDesc').value : "Looking for clients for services.");
         postContent += `<h3>${title}</h3><p>${desc}</p>`;
     } else if (section === 'marketplace') {
-        const productName = document.getElementById('productName') ? document.getElementById('productName').value : "Sample Product";
-        const quantity = document.getElementById('productQuantity') ? document.getElementById('productQuantity').value : "10";
-        const color = document.getElementById('productColor') ? document.getElementById('productColor').value : "Various";
-        const desc = document.getElementById('productDesc') ? document.getElementById('productDesc').value : "Product description.";
+        const productName = sampleData?.productName || (document.getElementById('productName') ? document.getElementById('productName').value : "Sample Product");
+        const quantity = sampleData?.quantity || (document.getElementById('productQuantity') ? document.getElementById('productQuantity').value : "10");
+        const color = sampleData?.color || (document.getElementById('productColor') ? document.getElementById('productColor').value : "Various");
+        const desc = sampleData?.desc || (document.getElementById('productDesc') ? document.getElementById('productDesc').value : "Product description.");
         postContent += `<h3>${productName}</h3><p>Qty: ${quantity}</p><p>Color: ${color}</p><p>${desc}</p>`;
     }
 
@@ -131,10 +131,12 @@ function loadChatDirectory() {
     });
 }
 
-// Load 10 Default Posts (Sample Users)
+// Load 10 Default Posts per Section
 function loadDefaultPosts() {
     sampleUsers.forEach(user => {
-        addPost('find-job', user);
+        addPost('find-job', user, { title: "Job Title Example", desc: "Job description sample." });
+        addPost('look-client', user, { title: "Looking for Clients", desc: "I offer services." });
+        addPost('marketplace', user, { productName: "Sample Product", quantity: "5", color: "Red", desc: "Affordable product description." });
     });
 }
 
