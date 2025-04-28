@@ -31,7 +31,7 @@ nav {
     text-decoration: underline;
 }
 
-/* Section Styles */
+/* Sections */
 .content-section {
     padding: 20px;
 }
@@ -148,22 +148,83 @@ nav {
     background: #f0f0f0;
     border-right: 1px solid #ccc;
     overflow-y: auto;
+    position: relative;
+}
+
+.chat-box-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    position: relative;
 }
 
 .chat-box {
-    width: 70%;
+    flex-grow: 1;
     padding: 20px;
     overflow-y: auto;
+}
+
+.chat-input {
+    display: flex;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.chat-input button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    background-color: #1877f2;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .chat-user {
     padding: 15px;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
+    position: relative;
 }
 
-.chat-user:hover {
-    background-color: #ddd;
+.options-menu {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    cursor: pointer;
+}
+
+.options-dropdown {
+    position: absolute;
+    top: 30px;
+    right: 5px;
+    background: white;
+    border: 1px solid #ccc;
+    width: 150px;
+    display: none;
+    z-index: 10;
+}
+
+.options-dropdown div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.options-dropdown div:hover {
+    background-color: #eee;
+}
+
+.new-message {
+    font-size: 10px;
+    color: red;
+    margin-left: 5px;
 }
 
 .message {
