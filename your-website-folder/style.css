@@ -1,0 +1,192 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navbar */
+  .navbar {
+    background-color: #0d3b66;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .nav-links li a:hover {
+    text-decoration: underline;
+  }
+  
+  .chat-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Home */
+  .home-section {
+    text-align: center;
+    padding: 100px 20px;
+    background: #f9f9f9;
+  }
+  
+  .home-buttons {
+    margin-top: 30px;
+  }
+  
+  .home-btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 25px;
+    background-color: #ff7f50;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  .home-btn:hover {
+    background-color: #ff5722;
+  }
+  
+  /* Sections */
+  .services-section,
+  .freelancers-section,
+  .marketplace-section {
+    padding: 80px 20px;
+  }
+  
+  .services-header,
+  .freelancers-header,
+  .marketplace-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  
+  .post-job-btn {
+    padding: 10px 20px;
+    background-color: #0d3b66;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .services-grid,
+  .freelancers-grid,
+  .marketplace-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  
+  .service-card,
+  .freelancer-card,
+  .marketplace-card {
+    background: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  
+  .tags {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .freelancer-photo,
+  .marketplace-photo {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .contact-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #ff7f50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .contact-btn:hover {
+    background-color: #ff5722;
+  }
+  
+  /* Chat */
+  .chat-popup {
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+    width: 300px;
+    background: #fff;
+    border: 2px solid #0d3b66;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
+  
+  .chat-header {
+    background: #0d3b66;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .chat-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    background: #f9f9f9;
+    font-size: 14px;
+  }
+  
+  .chat-input-area {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+  
+  .chat-input-area input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    border-right: 1px solid #ccc;
+  }
+  
+  .chat-input-area button {
+    background: #ff7f50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
