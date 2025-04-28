@@ -1,151 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudentHub</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCI Website</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar">
-  <div class="container">
-    <h1 class="logo">StudentHub</h1>
-    <ul class="nav-links">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#freelancers">Freelancers</a></li>
-      <li><a href="#marketplace">Marketplace</a></li>
-      <li><a href="#chat"><img src="images/chat-icon.png" alt="Chat" class="chat-icon" /></a></li>
-    </ul>
-  </div>
-</nav>
+    <!-- Navbar -->
+    <nav>
+        <ul class="navbar">
+            <li onclick="showSection('find-job')">Find Job</li>
+            <li onclick="showSection('look-client')">Look for Client</li>
+            <li onclick="showSection('marketplace')">Marketplace</li>
+            <li onclick="showSection('chat')">Chat</li>
+        </ul>
+    </nav>
 
-<!-- HOME SECTION -->
-<section id="home" class="home-section">
-  <div class="home-container">
-    <h2>Welcome to StudentHub</h2>
-    <p>Connecting Students with Opportunities</p>
-    <div class="home-buttons">
-      <a href="#services" class="home-btn">Find Services</a>
-      <a href="#freelancers" class="home-btn">Browse Freelancers</a>
-      <a href="#marketplace" class="home-btn">Visit Marketplace</a>
-    </div>
-  </div>
-</section>
+    <!-- Sections -->
+    <section id="find-job" class="content-section">
+        <h1>Find Job</h1>
+        <button onclick="openAddPostModal('find-job')">Add Post</button>
+        <div class="posts" id="find-job-posts"></div>
+    </section>
 
-<!-- SERVICES SECTION -->
-<section id="services" class="services-section">
-  <div class="container">
-    <div class="services-header">
-      <h2>Services</h2>
-      <button class="post-job-btn" onclick="openPostJob()">Post a Job</button>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <h3>Web Development</h3>
-        <p>Build responsive and modern websites for businesses and projects.</p>
-        <span class="tags">HTML, CSS, JavaScript</span>
-        <button class="contact-btn" onclick="openChat('Web Developer')">Contact</button>
-      </div>
-      <div class="service-card">
-        <h3>Graphic Design</h3>
-        <p>Design logos, posters, flyers, and marketing materials.</p>
-        <span class="tags">Photoshop, Illustrator, Figma</span>
-        <button class="contact-btn" onclick="openChat('Graphic Designer')">Contact</button>
-      </div>
-      <div class="service-card">
-        <h3>Content Writing</h3>
-        <p>Write SEO-friendly articles, blogs, and copywriting content.</p>
-        <span class="tags">SEO, Blog Writing, Content Strategy</span>
-        <button class="contact-btn" onclick="openChat('Content Writer')">Contact</button>
-      </div>
-    </div>
-  </div>
-</section>
+    <section id="look-client" class="content-section" style="display:none">
+        <h1>Look for Client</h1>
+        <button onclick="openAddPostModal('look-client')">Add Post</button>
+        <div class="posts" id="look-client-posts"></div>
+    </section>
 
-<!-- FREELANCERS SECTION -->
-<section id="freelancers" class="freelancers-section">
-  <div class="container">
-    <div class="freelancers-header">
-      <h2>Freelancers</h2>
-      <button class="post-job-btn" onclick="openPostJob()">Post a Job</button>
-    </div>
-    <div class="freelancers-grid">
-      <div class="freelancer-card">
-        <img src="images/profile1.jpg" alt="Freelancer Photo" class="freelancer-photo">
-        <h3>Jane Doe</h3>
-        <p>Web Developer</p>
-        <span class="tags">HTML, CSS, React</span>
-        <button class="contact-btn" onclick="openChat('Jane Doe')">Contact</button>
-      </div>
-      <div class="freelancer-card">
-        <img src="images/profile2.jpg" alt="Freelancer Photo" class="freelancer-photo">
-        <h3>Mark Smith</h3>
-        <p>Graphic Designer</p>
-        <span class="tags">Photoshop, Illustrator</span>
-        <button class="contact-btn" onclick="openChat('Mark Smith')">Contact</button>
-      </div>
-      <div class="freelancer-card">
-        <img src="images/profile3.jpg" alt="Freelancer Photo" class="freelancer-photo">
-        <h3>Sarah Lee</h3>
-        <p>Content Writer</p>
-        <span class="tags">SEO, Copywriting</span>
-        <button class="contact-btn" onclick="openChat('Sarah Lee')">Contact</button>
-      </div>
-    </div>
-  </div>
-</section>
+    <section id="marketplace" class="content-section" style="display:none">
+        <h1>Marketplace</h1>
+        <button onclick="openAddPostModal('marketplace')">Add Post</button>
+        <div class="posts" id="marketplace-posts"></div>
+    </section>
 
-<!-- MARKETPLACE SECTION -->
-<section id="marketplace" class="marketplace-section">
-  <div class="container">
-    <div class="marketplace-header">
-      <h2>Marketplace</h2>
-    </div>
-    <div class="marketplace-grid">
-      <div class="marketplace-card">
-        <img src="images/item1.jpg" alt="Item Photo" class="marketplace-photo">
-        <h3>Portfolio Website Template</h3>
-        <p>Fully responsive HTML/CSS template perfect for students and freelancers.</p>
-        <p class="price">₱499</p>
-        <button class="contact-btn" onclick="openChat('Seller of Portfolio Template')">Contact Seller</button>
-      </div>
-      <div class="marketplace-card">
-        <img src="images/item2.jpg" alt="Item Photo" class="marketplace-photo">
-        <h3>Logo Pack for Startups</h3>
-        <p>A collection of 50 ready-to-use logo designs for business and school projects.</p>
-        <p class="price">₱299</p>
-        <button class="contact-btn" onclick="openChat('Seller of Logo Pack')">Contact Seller</button>
-      </div>
-      <div class="marketplace-card">
-        <img src="images/item3.jpg" alt="Item Photo" class="marketplace-photo">
-        <h3>Blog Article Templates</h3>
-        <p>Pre-written SEO blog outlines to help you speed up content creation.</p>
-        <p class="price">₱199</p>
-        <button class="contact-btn" onclick="openChat('Seller of Blog Templates')">Contact Seller</button>
-      </div>
-    </div>
-  </div>
-</section>
+    <section id="chat" class="content-section" style="display:none">
+        <h1>Chat System</h1>
+        <div class="chat-container">
+            <div class="chat-list" id="chat-list">
+                <!-- Chat users here -->
+            </div>
+            <div class="chat-box" id="chat-box">
+                <p>Select a conversation</p>
+            </div>
+        </div>
+    </section>
 
-<!-- CHAT SYSTEM -->
-<div id="chat-popup" class="chat-popup">
-  <div class="chat-header">
-    <h3>Messages</h3>
-    <button class="close-chat" onclick="closeChat()">×</button>
-  </div>
-  <div id="chat-messages" class="chat-messages">
-    <!-- Chat messages go here -->
-  </div>
-  <div class="chat-input-area">
-    <input type="text" id="chat-input" placeholder="Type a message...">
-    <button onclick="sendMessage()">Send</button>
-  </div>
-</div>
+    <!-- Modal for Adding Post -->
+    <div id="postModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <form id="postForm">
+                <div id="dynamicFields"></div>
+                <button type="submit">Submit Post</button>
+            </form>
+        </div>
+    </div>
 
-<!-- JavaScript -->
-<script src="script.js"></script>
+    <script src="script.js"></script>
+
 </body>
 </html>
