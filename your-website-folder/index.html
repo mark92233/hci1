@@ -12,18 +12,10 @@
 <div class="sidebar" id="sidebar">
   <div class="logo">HCI</div>
   <ul>
-    <li onclick="showSection('find-job')">
-      🛠️ <span>Find Job</span>
-    </li>
-    <li onclick="showSection('look-client')">
-      🤝 <span>Look for Client</span>
-    </li>
-    <li onclick="showSection('chat')">
-      💬 <span>Chat</span>
-    </li>
-    <li onclick="showSection('profile')">
-      👤 <span>Profile</span>
-    </li>
+    <li onclick="showSection('find-job')">🛠️ <span>Find Job</span></li>
+    <li onclick="showSection('look-client')">🤝 <span>Look for Client</span></li>
+    <li onclick="showSection('chat')">💬 <span>Chat</span></li>
+    <li onclick="showSection('profile')">👤 <span>Profile</span></li>
   </ul>
 </div>
 
@@ -73,6 +65,7 @@
         <label>Filter by College:</label>
         <select onchange="filterByCollege(this)">
           <option value="">All Colleges</option>
+          <!-- same options again here -->
           <option value="computing studies">College of Computing Studies</option>
           <option value="liberal arts">College of Liberal Arts</option>
           <option value="engineering">College of Engineering</option>
@@ -158,7 +151,7 @@
 
 </div> <!-- End of Main Content -->
 
-<!-- Modals -->
+<!-- Post Modal -->
 <div id="postModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -169,6 +162,7 @@
   </div>
 </div>
 
+<!-- Report Modal -->
 <div id="reportModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeReportModal()">&times;</span>

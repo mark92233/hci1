@@ -11,8 +11,8 @@ const reportModal = document.getElementById('reportModal');
 const reportForm = document.getElementById('reportForm');
 
 let currentChatUser = null;
-let chatsData = {}; 
-let newMessages = {}; 
+let chatsData = {};
+let newMessages = {};
 let chatDoneUsers = [];
 
 const currentUser = {
@@ -27,13 +27,18 @@ const sampleUsers = [
     { name: "Charlie Brown", profilePic: "photo3.jpg", college: "engineering" }
 ];
 
-// Navigation between Sections
+// Toggle Sidebar
+function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('hide');
+}
+
+// Navigation
 function showSection(id) {
     sections.forEach(section => section.style.display = 'none');
     document.getElementById(id).style.display = 'block';
 }
 
-// Open Add Post Modal
+// Add Post Modal
 function openAddPostModal(section) {
     postModal.style.display = 'flex';
     dynamicFields.innerHTML = '';
@@ -100,7 +105,6 @@ function addPost(section, user, sampleData = null) {
 }
 
 // Chat Functions
-
 function openChat(userName) {
     showSection('chat');
     currentChatUser = userName;
@@ -136,6 +140,7 @@ function sendMessage() {
     }
 }
 
+// Load Chat Directory
 function loadChatDirectory() {
     chatList.innerHTML = '';
     sampleUsers.forEach(user => {
@@ -148,55 +153,11 @@ function createChatUser(name) {
     userDiv.className = 'chat-user';
     userDiv.innerHTML = `
         <span onclick="openChat('${name}')">${name} ${newMessages[name] ? '<span class="new-message">(new)</span>' : ''}</span>
-        <div class="options-menu" onclick="toggleOptions('${name}', event)">&#8942;
-            <div class="options-dropdown" id="options-${name}">
-                <div onclick="reportChat('${name}')">Report</div>
-                <div onclick="setAsDone('${name}')">Set as Done</div>
-                <div onclick="deleteChat('${name}')">Delete</div>
-            </div>
-        </div>
     `;
     chatList.appendChild(userDiv);
 }
 
-function toggleOptions(name, e) {
-    e.stopPropagation();
-    const dropdown = document.getElementById(`options-${name}`);
-    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
-}
-
-function reportChat(name) {
-    currentChatUser = name;
-    reportModal.style.display = 'flex';
-}
-
-reportForm.onsubmit = function(e) {
-    e.preventDefault();
-    if (currentChatUser) {
-        delete chatsData[currentChatUser];
-        delete newMessages[currentChatUser];
-        chatBox.innerHTML = "<p>Chat terminated due to report.</p>";
-        loadChatDirectory();
-        reportModal.style.display = 'none';
-    }
-};
-
-function setAsDone(name) {
-    chatDoneUsers.push(name);
-    if (currentChatUser === name) {
-        chatInputArea.style.display = 'none';
-        chatBox.innerHTML += `<div style="text-align:center; color: gray; font-size:14px; margin-top:10px;">This chat has been marked as completed. No more messages allowed.</div>`;
-    }
-}
-
-function deleteChat(name) {
-    delete chatsData[name];
-    delete newMessages[name];
-    loadChatDirectory();
-    chatBox.innerHTML = "<p>Select a conversation</p>";
-}
-
-// Search and Filter Functions
+// Search and Filter
 function searchPosts(input) {
     const keyword = input.value.toLowerCase();
     const container = input.closest('.content-section').querySelector('.posts') || input.closest('.content-section').querySelector('.chat-list');
@@ -222,9 +183,10 @@ function filterByCollege(select) {
     }
 }
 
+// Logout (Profile Page)
 function logout() {
-    alert("Logged out successfully.");
-    window.location.href = "index.html"; 
+    alert("Logged out successfully!");
+    window.location.href = "index.html";
 }
 
 // Load Default Posts
@@ -235,14 +197,7 @@ function loadDefaultPosts() {
     });
 }
 
-// Initialize Page
-window.onload = function() {
-    loadChatDirectory();
-    loadDefaultPosts();
-    simulateIncomingMessage();
-};
-
-// Simulate New Incoming Messages (Demo only)
+// Simulate New Incoming Messages (Demo)
 function simulateIncomingMessage() {
     setTimeout(() => {
         const randomUser = sampleUsers[Math.floor(Math.random() * sampleUsers.length)].name;
@@ -250,9 +205,16 @@ function simulateIncomingMessage() {
         chatsData[randomUser].push({ from: randomUser, text: "Hi! Are you available?" });
         newMessages[randomUser] = true;
         updateChatList();
-    }, 5000); // After 5 seconds
+    }, 5000);
 }
 
 function updateChatList() {
     loadChatDirectory();
 }
+
+// Initialize Page
+window.onload = function() {
+    loadChatDirectory();
+    loadDefaultPosts();
+    simulateIncomingMessage();
+};
