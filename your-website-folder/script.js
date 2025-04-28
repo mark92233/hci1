@@ -131,10 +131,7 @@ const sampleUsers = [
 ];
 
 // Chat Sample
-const chats = [
-    { name: 'John Doe', messages: ['Hello!', 'How are you?'] },
-    { name: 'Jane Smith', messages: ['Hi there!', 'Need help?'] },
-];
+// Removed duplicate declaration of chats
 
 // Show specific section
 function showSection(id) {
