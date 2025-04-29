@@ -943,6 +943,11 @@ button:hover {
   transition: background 0.3s ease;
 }
 
+
+.burger.inside:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 .burger.inside:hover {
   background: rgba(255, 255, 255, 0.15);
 }
