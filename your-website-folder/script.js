@@ -104,22 +104,25 @@ function addPost(section, user, sampleData = null) {
     postsContainer.appendChild(newPost);
 }
 
-// Chat Functions
 function openChat(userName) {
     showSection('chat');
     currentChatUser = userName;
     renderChat();
+    highlightSelectedUser(userName);
+  
     if (chatDoneUsers.includes(userName)) {
-        chatInputArea.style.display = 'none';
-        chatBox.innerHTML += `<div style="text-align:center; color: gray; font-size:14px; margin-top:10px;">This chat has been marked as completed. No more messages allowed.</div>`;
+      chatInputArea.style.display = 'none';
+      chatBox.innerHTML += `<div style="text-align:center; color: gray; font-size:14px; margin-top:10px;">This chat has been marked as completed. No more messages allowed.</div>`;
     } else {
-        chatInputArea.style.display = 'flex';
+      chatInputArea.style.display = 'flex';
     }
+  
     if (newMessages[userName]) {
-        delete newMessages[userName];
-        updateChatList();
+      delete newMessages[userName];
+      updateChatList();
     }
-}
+  }
+  
 
 function renderChat() {
     chatBox.innerHTML = `<h2>Chat with ${currentChatUser}</h2>`;
@@ -149,13 +152,19 @@ function loadChatDirectory() {
 }
 
 function createChatUser(name) {
+    const user = sampleUsers.find(u => u.name === name);
     const userDiv = document.createElement('div');
     userDiv.className = 'chat-user';
+    userDiv.onclick = () => openChat(name);
+  
     userDiv.innerHTML = `
-        <span onclick="openChat('${name}')">${name} ${newMessages[name] ? '<span class="new-message">(new)</span>' : ''}</span>
+      <img src="${user?.profilePic || 'default-avatar.jpg'}" alt="${name}">
+      <span>${name} ${newMessages[name] ? '<span class="new-message">(new)</span>' : ''}</span>
     `;
+  
     chatList.appendChild(userDiv);
-}
+  }
+  
 
 // Search and Filter
 function searchPosts(input) {
@@ -273,4 +282,12 @@ document.querySelector('.gear-btn')?.addEventListener('click', () => {
     document.getElementById(`profile-${tab}`).style.display = "block";
   }
   
+  function highlightSelectedUser(userName) {
+    document.querySelectorAll(".chat-user").forEach(user => {
+      user.classList.remove("active");
+      if (user.textContent.includes(userName)) {
+        user.classList.add("active");
+      }
+    });
+  }
   
