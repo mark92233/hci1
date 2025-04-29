@@ -358,6 +358,52 @@ button:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   animation: fadeIn 0.5s ease;
 }
+.profile-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profile-username {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--dark-red);
+}
+
+.profile-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.action-btn {
+  padding: 8px 14px;
+  background: #222;
+  color: #fff;
+  font-size: 13px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.action-btn:hover {
+  background: #444;
+}
+
+.gear-btn {
+  padding: 8px 12px;
+  font-size: 18px;
+  background: #222;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.gear-btn:hover {
+  background: #444;
+}
 
 /* Animations */
 @keyframes fadeIn {

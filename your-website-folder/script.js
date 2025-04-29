@@ -218,3 +218,50 @@ window.onload = function() {
     loadDefaultPosts();
     simulateIncomingMessage();
 };
+
+// Profile Tabs: Posts, Saved, Tagged
+const tabs = document.querySelectorAll(".tab");
+const postGrid = document.querySelector(".post-grid");
+
+// Simulated content for demo purposes
+const savedPosts = [
+  "photo6.jpg", "photo7.jpg"
+];
+const taggedPosts = [
+  "photo8.jpg", "photo9.jpg"
+];
+
+// Tab Switch Handler
+tabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    // Remove active from all
+    tabs.forEach(t => t.classList.remove("active"));
+    tab.classList.add("active");
+
+    // Clear current grid
+    postGrid.innerHTML = "";
+
+    // Load tab content
+    if (tab.textContent === "Posts") {
+      loadImages(["photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg"]);
+    } else if (tab.textContent === "Saved") {
+      loadImages(savedPosts);
+    } else if (tab.textContent === "Tagged") {
+      loadImages(taggedPosts);
+    }
+  });
+});
+
+// Helper: Load Images
+function loadImages(images) {
+  images.forEach(img => {
+    const el = document.createElement("img");
+    el.src = img;
+    el.alt = "Post";
+    postGrid.appendChild(el);
+  });
+}
+document.querySelector('.gear-btn')?.addEventListener('click', () => {
+    alert("Settings modal not implemented yet.");
+  });
+  

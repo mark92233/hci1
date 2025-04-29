@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HCI Modern Website</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
@@ -19,7 +19,7 @@
   </ul>
 </div>
 
-<!-- Burger Button -->
+<!-- Burger -->
 <div class="burger" id="burger" onclick="toggleSidebar()">☰</div>
 
 <!-- Main Content -->
@@ -38,17 +38,6 @@
           <option value="liberal arts">College of Liberal Arts</option>
           <option value="engineering">College of Engineering</option>
           <option value="architecture">College of Architecture</option>
-          <option value="public administration">College of Public Administration</option>
-          <option value="teacher education">College of Teacher Education</option>
-          <option value="home economics">College of Home Economics</option>
-          <option value="nursing">College of Nursing</option>
-          <option value="law">College of Law</option>
-          <option value="criminal justice">College of Criminal Justice Education</option>
-          <option value="medicine">College of Medicine</option>
-          <option value="asian islamic studies">College of Asian Islamic Studies</option>
-          <option value="social work">College of Social Work and Development</option>
-          <option value="sports science">College of Sports Science and Physical Education</option>
-          <option value="science and mathematics">College of Science and Mathematics</option>
         </select>
       </div>
     </div>
@@ -57,7 +46,7 @@
   </section>
 
   <!-- Look for Client Section -->
-  <section id="look-client" class="content-section" style="display:none">
+  <section id="look-client" class="content-section" style="display: none;">
     <h1>Look for Client</h1>
     <div class="controls">
       <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
@@ -65,22 +54,10 @@
         <label>Filter by College:</label>
         <select onchange="filterByCollege(this)">
           <option value="">All Colleges</option>
-          <!-- same options again here -->
           <option value="computing studies">College of Computing Studies</option>
           <option value="liberal arts">College of Liberal Arts</option>
           <option value="engineering">College of Engineering</option>
           <option value="architecture">College of Architecture</option>
-          <option value="public administration">College of Public Administration</option>
-          <option value="teacher education">College of Teacher Education</option>
-          <option value="home economics">College of Home Economics</option>
-          <option value="nursing">College of Nursing</option>
-          <option value="law">College of Law</option>
-          <option value="criminal justice">College of Criminal Justice Education</option>
-          <option value="medicine">College of Medicine</option>
-          <option value="asian islamic studies">College of Asian Islamic Studies</option>
-          <option value="social work">College of Social Work and Development</option>
-          <option value="sports science">College of Sports Science and Physical Education</option>
-          <option value="science and mathematics">College of Science and Mathematics</option>
         </select>
       </div>
     </div>
@@ -89,7 +66,7 @@
   </section>
 
   <!-- Chat Section -->
-  <section id="chat" class="content-section" style="display:none">
+  <section id="chat" class="content-section" style="display: none;">
     <h1>Chat System</h1>
     <div class="controls">
       <input type="text" class="search-bar" placeholder="Search Chats..." onkeyup="searchPosts(this)">
@@ -109,49 +86,65 @@
   </section>
 
   <!-- Profile Section -->
-  <section id="profile" class="content-section" style="display:none">
+  <section id="profile" class="content-section" style="display: none;">
     <div class="profileContainer">
-      <div class="profilePicSection">
-        <div class="profile">
-          <img src="yourcoverimage.jpg" alt="Cover" class="profileCov">
+      <div class="profile-top-bar">
+        <div class="profile-username">@_oreopeanut_</div>
+        <div class="profile-actions">
+          <button class="action-btn">Edit profile</button>
+          <button class="action-btn">View archive</button>
+          <button class="gear-btn">⚙️</button>
         </div>
-        <div class="profileDetails">
-          <div class="profilePicDetails">
-            <img src="yourpfp.jpg" alt="Profile Picture" class="profilePic">
-          </div>
-          <div class="profileDetailsSection">
-            <p class="name">Mark John Salas Ando</p>
-            <p class="college">College of Computing Studies</p>
-            <p class="id">2024-03655</p>
+      </div>
+
+      <div class="profile-header">
+        <img src="yourpfp.jpg" alt="Profile Picture" class="profile-pic-large">
+        <div class="profile-info">
+          <h2 class="profile-name">Mark John Salas Ando</h2>
+          <p class="username">@_oreopeanut_</p>
+          <p class="bio">Bio_degradable</p>
+          <div class="stats">
+            <span><strong>5</strong> posts</span>
+            <span><strong>53</strong> followers</span>
+            <span><strong>177</strong> following</span>
           </div>
         </div>
       </div>
-      <div class="statsSection">
-        <div class="workStat">
-          <p class="workCount">5</p>
-          <p class="workLabel">Work Finished</p>
+
+      <div class="highlights">
+        <div class="highlight">
+          <img src="photo1.jpg" alt="Highlight">
+          <p>WELL</p>
         </div>
-        <div class="workStat">
-          <p class="workCount">2</p>
-          <p class="workLabel">Work Pending</p>
+        <div class="highlight">
+          <div class="new-highlight">+</div>
+          <p>New</p>
         </div>
       </div>
-      <div class="photoGrid">
+
+      <div class="post-tabs">
+        <button class="tab active">Posts</button>
+        <button class="tab">Saved</button>
+        <button class="tab">Tagged</button>
+      </div>
+
+      <div class="post-grid">
         <img src="photo1.jpg" alt="">
         <img src="photo2.jpg" alt="">
         <img src="photo3.jpg" alt="">
         <img src="photo4.jpg" alt="">
         <img src="photo5.jpg" alt="">
       </div>
+
       <div class="logoutButtonContainer">
         <button onclick="logout()">Logout</button>
       </div>
     </div>
   </section>
 
-</div> <!-- End of Main Content -->
+</div>
 
-<!-- Post Modal -->
+<!-- Modals -->
 <div id="postModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeModal()">&times;</span>
@@ -162,7 +155,6 @@
   </div>
 </div>
 
-<!-- Report Modal -->
 <div id="reportModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeReportModal()">&times;</span>
@@ -178,11 +170,5 @@
 </div>
 
 <script src="script.js"></script>
-<script>
-  function toggleSidebar() {
-    document.getElementById('sidebar').classList.toggle('hide');
-  }
-</script>
-
 </body>
 </html>
