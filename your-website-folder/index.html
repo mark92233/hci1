@@ -25,7 +25,7 @@
 <!-- Main Content -->
 <div class="main-content">
 
-  <!-- Find Job Section -->
+  <!-- Find Job -->
   <section id="find-job" class="content-section">
     <h1>Find Job</h1>
     <div class="controls">
@@ -45,7 +45,7 @@
     <div class="posts" id="find-job-posts"></div>
   </section>
 
-  <!-- Look for Client Section -->
+  <!-- Look for Client -->
   <section id="look-client" class="content-section" style="display: none;">
     <h1>Look for Client</h1>
     <div class="controls">
@@ -65,7 +65,7 @@
     <div class="posts" id="look-client-posts"></div>
   </section>
 
-  <!-- Chat Section -->
+  <!-- Chat -->
   <section id="chat" class="content-section" style="display: none;">
     <h1>Chat System</h1>
     <div class="controls">
@@ -85,55 +85,37 @@
     </div>
   </section>
 
-  <!-- Profile Section -->
+  <!-- Profile -->
   <section id="profile" class="content-section" style="display: none;">
-    <div class="profileContainer">
-      <div class="profile-top-bar">
-        <div class="profile-username">@_oreopeanut_</div>
-        <div class="profile-actions">
-          <button class="action-btn">Edit profile</button>
-          <button class="action-btn">View archive</button>
-          <button class="gear-btn">⚙️</button>
-        </div>
-      </div>
-
-      <div class="profile-header">
-        <img src="yourpfp.jpg" alt="Profile Picture" class="profile-pic-large">
-        <div class="profile-info">
-          <h2 class="profile-name">Mark John Salas Ando</h2>
-          <p class="username">@_oreopeanut_</p>
-          <p class="bio">Bio_degradable</p>
-          <div class="stats">
-            <span><strong>5</strong> posts</span>
-            <span><strong>53</strong> followers</span>
-            <span><strong>177</strong> following</span>
+    <div class="profileContainer profile-modern">
+      <div class="profileCard">
+        <img src="avatar.png" alt="Profile" class="profileAvatar">
+        <div class="profileDetails">
+          <p class="profileHandle">@ae202404556</p>
+          <div class="profileStats">
+            <span><strong>3</strong> Posts</span>
+            <span><strong>85</strong> Credit Score</span>
           </div>
+          <p class="profileName">User One Name</p>
+          <p class="profileCollege">College Of Computing Studies</p>
         </div>
       </div>
 
-      <div class="highlights">
-        <div class="highlight">
-          <img src="photo1.jpg" alt="Highlight">
-          <p>WELL</p>
-        </div>
-        <div class="highlight">
-          <div class="new-highlight">+</div>
-          <p>New</p>
+      <div class="tabBar">
+        <button class="tabModern active" onclick="switchModernTab('posts')">🖼️ POSTS</button>
+        <button class="tabModern" onclick="switchModernTab('schedules')">📅 Schedules</button>
+      </div>
+
+      <div class="tabContent" id="profile-posts">
+        <div class="gridPhotos">
+          <img src="img1.jpg" alt="">
+          <img src="img2.jpg" alt="">
+          <img src="img3.jpg" alt="">
         </div>
       </div>
 
-      <div class="post-tabs">
-        <button class="tab active">Posts</button>
-        <button class="tab">Saved</button>
-        <button class="tab">Tagged</button>
-      </div>
-
-      <div class="post-grid">
-        <img src="photo1.jpg" alt="">
-        <img src="photo2.jpg" alt="">
-        <img src="photo3.jpg" alt="">
-        <img src="photo4.jpg" alt="">
-        <img src="photo5.jpg" alt="">
+      <div class="tabContent" id="profile-schedules" style="display: none;">
+        <p style="text-align:center;">No schedules yet.</p>
       </div>
 
       <div class="logoutButtonContainer">

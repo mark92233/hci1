@@ -264,4 +264,13 @@ function loadImages(images) {
 document.querySelector('.gear-btn')?.addEventListener('click', () => {
     alert("Settings modal not implemented yet.");
   });
+
+  function switchModernTab(tab) {
+    document.querySelectorAll(".tabModern").forEach(btn => btn.classList.remove("active"));
+    document.querySelectorAll(".tabContent").forEach(div => div.style.display = "none");
+  
+    document.querySelector(`[onclick*="${tab}"]`).classList.add("active");
+    document.getElementById(`profile-${tab}`).style.display = "block";
+  }
+  
   
