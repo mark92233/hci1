@@ -74,35 +74,36 @@ function closeReportModal() {
 // Add Posts
 function addPost(section, user, sampleData = null) {
     const postsContainer = document.getElementById(`${section}-posts`);
-    let newPost = document.createElement('div');
+    const newPost = document.createElement('div');
     newPost.className = 'post-card';
     newPost.setAttribute('data-college', user.college.toLowerCase());
-
-    let postContent = `
-        <div class="post-header">
-            <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic">
-            <span class="username">${user.name}</span>
+  
+    const title = sampleData?.title || document.getElementById('jobTitle')?.value || "Sample Title";
+    const desc = sampleData?.desc || document.getElementById('jobDesc')?.value || "No description provided.";
+    const image = sampleData?.image || "preview.jpg";
+    const timestamp = "Posted just now";
+  
+    newPost.innerHTML = `
+      <div class="post-header">
+        <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic">
+        <div>
+          <span class="username">${user.name}</span><br>
+          <span class="college">College: ${user.college}</span><br>
+          <small class="timestamp">${timestamp}</small>
         </div>
-        <p class="college">College: ${user.college}</p>
+      </div>
+      <img src="${image}" class="post-preview" alt="Preview Image">
+      <h3>${title}</h3>
+      <p class="short-desc">${desc.substring(0, 100)}...</p>
+      <div class="post-actions">
+        <button onclick="openViewModal('${title}', \`${desc}\`, '${image}')">View More</button>
+        ${user.name !== currentUser.name ? `<button onclick="openChat('${user.name}')">Contact</button>` : ""}
+      </div>
     `;
-
-    if (section === 'find-job') {
-        const title = sampleData?.title || document.getElementById('jobTitle')?.value || "Sample Job";
-        const desc = sampleData?.desc || document.getElementById('jobDesc')?.value || "Sample Job Description";
-        postContent += `<h3>${title}</h3><p>${desc}</p>`;
-    } else if (section === 'look-client') {
-        const title = sampleData?.title || document.getElementById('jobTitle')?.value || "Sample Service";
-        const desc = sampleData?.desc || document.getElementById('jobDesc')?.value || "Sample Service Description";
-        postContent += `<h3>${title}</h3><p>${desc}</p>`;
-    }
-
-    if (user.name !== currentUser.name) {
-        postContent += `<button onclick="openChat('${user.name}')">Contact</button>`;
-    }
-
-    newPost.innerHTML = postContent;
+  
     postsContainer.appendChild(newPost);
-}
+  }
+  
 
 function openChat(userName) {
     showSection('chat');
@@ -290,4 +291,16 @@ document.querySelector('.gear-btn')?.addEventListener('click', () => {
       }
     });
   }
+
+  function openViewModal(title, desc, image) {
+    document.getElementById("modalTitle").innerText = title;
+    document.getElementById("modalDesc").innerText = desc;
+    document.getElementById("modalImage").src = image;
+    document.getElementById("viewModal").style.display = "flex";
+  }
+  
+  function closeViewModal() {
+    document.getElementById("viewModal").style.display = "none";
+  }
+  
   
