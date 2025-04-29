@@ -8,20 +8,31 @@
 </head>
 <body>
 
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-  <div class="logo">HCI</div>
-  <ul>
-    <li onclick="showSection('find-job')">🛠️ <span>Find Job</span></li>
-    <li onclick="showSection('look-client')">🤝 <span>Look for Client</span></li>
-    <li onclick="showSection('chat')">💬 <span>Chat</span></li>
-    <li onclick="showSection('profile')">👤 <span>Profile</span></li>
-  </ul>
-</div>
-
-<!-- Burger -->
-<div class="burger" id="burger" onclick="toggleSidebar()">☰</div>
-
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="logo.png" alt="Logo" class="logo-img">
+      <div class="burger inside" id="burger" onclick="toggleSidebar()">☰</div>
+    </div>
+    <ul>
+      <li onclick="showSection('find-job')">
+        <img src="icons/job.png" alt="Find Job">
+        <span>Find Job</span>
+      </li>
+      <li onclick="showSection('look-client')">
+        <img src="icons/client.png" alt="Look for Client">
+        <span>Look for Client</span>
+      </li>
+      <li onclick="showSection('chat')">
+        <img src="icons/chat.png" alt="Chat">
+        <span>Chat</span>
+      </li>
+      <li onclick="showSection('profile')">
+        <img src="icons/profile.png" alt="Profile">
+        <span>Profile</span>
+      </li>
+    </ul>
+  </div>
+  
 <!-- Main Content -->
 <div class="main-content">
 
