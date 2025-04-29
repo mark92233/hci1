@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="logo.png" alt="Logo" class="logo-img">
+      <div class="burger inside" id="burger" onclick="toggleSidebar()">☰</div>
+    </div>
+    <ul>
+      <li onclick="showSection('report-handling')">
+        <img src="icons/report.png" alt="Report Handling">
+        <span>Report Handling</span>
+      </li>
+      <li onclick="showSection('accept-accounts')">
+        <img src="icons/accept.png" alt="Accept Accounts">
+        <span>Accept Accounts</span>
+      </li>
+      <li onclick="showSection('chat')">
+        <img src="icons/chat.png" alt="Chat">
+        <span>Chat</span>
+      </li>
+      <li onclick="showSection('profile')">
+        <img src="icons/profile.png" alt="Profile">
+        <span>Profile</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <!-- Report Handling -->
+    <section id="report-handling" class="content-section">
+      <h1>Report Handling</h1>
+      <div id="report-list"><p>Loading reports...</p></div>
+    </section>
+
+    <!-- Accept Accounts -->
+    <section id="accept-accounts" class="content-section" style="display: none;">
+      <h1>Accept Accounts</h1>
+      <div id="account-requests"><p>Loading account requests...</p></div>
+    </section>
+
+    <!-- Chat -->
+    <section id="chat" class="content-section" style="display: none;">
+      <h1>Chat System</h1>
+      <div class="chat-container">
+        <div class="chat-list" id="chat-list"></div>
+        <div class="chat-box-wrapper">
+          <div class="chat-box" id="chat-box"><p>Select a conversation</p></div>
+          <div class="chat-input" id="chat-input-area">
+            <input type="text" id="messageInput" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profile -->
+    <section id="profile" class="content-section" style="display: none;">
+      <div class="profileContainer profile-modern">
+        <div class="profileCard">
+          <img src="avatar.png" alt="Profile" class="profileAvatar">
+          <div class="profileDetails">
+            <p class="profileHandle">@admin</p>
+            <div class="profileStats">
+              <span><strong>Admin</strong> Panel</span>
+              <span><strong>Secure</strong> Access</span>
+            </div>
+            <p class="profileName">Administrator</p>
+            <p class="profileCollege">WMSU System</p>
+          </div>
+        </div>
+        <div class="logoutButtonContainer">
+          <button onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

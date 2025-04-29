@@ -303,4 +303,38 @@ document.querySelector('.gear-btn')?.addEventListener('click', () => {
     document.getElementById("viewModal").style.display = "none";
   }
   
+  function loadAdminMockData() {
+    const reportList = document.getElementById("report-list");
+    reportList.innerHTML = `
+      <div class="post-card">
+        <h3>Report #1</h3>
+        <p><strong>Offense:</strong> Harassment</p>
+        <p><strong>Reported User:</strong> Bob Smith</p>
+        <button onclick="alert('Report marked as reviewed')">Mark as Reviewed</button>
+      </div>
+      <div class="post-card">
+        <h3>Report #2</h3>
+        <p><strong>Offense:</strong> Spam</p>
+        <p><strong>Reported User:</strong> Charlie Brown</p>
+        <button onclick="alert('Report marked as reviewed')">Mark as Reviewed</button>
+      </div>
+    `;
+  
+    const accountRequests = document.getElementById("account-requests");
+    accountRequests.innerHTML = `
+      <div class="post-card">
+        <h3>Request from Jane Doe</h3>
+        <p>Email: jane@example.com</p>
+        <button onclick="alert('Account accepted')">Accept</button>
+        <button onclick="alert('Account rejected')">Reject</button>
+      </div>
+    `;
+  }
+  
+  window.onload = function () {
+    loadChatDirectory();
+    loadDefaultPosts();
+    simulateIncomingMessage();
+    loadAdminMockData(); // Load admin data
+  };
   
