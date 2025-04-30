@@ -73,10 +73,9 @@ function addPost(section, user, sampleData = {}) {
   newPost.className = 'post-card';
   newPost.setAttribute('data-college', user.college.toLowerCase());
 
-  // Use sampleData only, fallback to form values or placeholders
   const title = sampleData.title || document.getElementById('jobTitle')?.value || "Untitled Job";
   const desc = sampleData.desc || document.getElementById('jobDesc')?.value || "No description provided.";
-  const image = sampleData.image || "images/default.jpg";
+  const image = sampleData.image || "images/edit.jpg";
   const timestamp = "Posted just now";
 
   newPost.innerHTML = `
@@ -100,8 +99,6 @@ function addPost(section, user, sampleData = {}) {
   postsContainer.appendChild(newPost);
 }
 
-  
-
 function openChat(userName) {
     showSection('chat');
     currentChatUser = userName;
@@ -119,8 +116,7 @@ function openChat(userName) {
       delete newMessages[userName];
       updateChatList();
     }
-  }
-  
+}
 
 function renderChat() {
     chatBox.innerHTML = `<h2>Chat with ${currentChatUser}</h2>`;
@@ -161,8 +157,7 @@ function createChatUser(name) {
     `;
   
     chatList.appendChild(userDiv);
-  }
-  
+}
 
 // Search and Filter
 function searchPosts(input) {
@@ -196,56 +191,42 @@ function logout() {
     window.location.href = "index.html";
 }
 
-// Load Default Posts
 function loadDefaultPosts() {
-    sampleUsers.forEach(user => {
-        addPost('find-job', user, { title: "Job Example", desc: "Job Description" });
-        addPost('look-client', user, { title: "Client Example", desc: "Looking for a client" });
-    });
-}
-
-window.onload = function() {
-  loadChatDirectory();
-  loadDefaultPosts();
-  simulateIncomingMessage();
-  loadAdminMockData(); // for admin
-
-  // 🔽 Add this block for user sample cards
   const samplePosts = [
     {
       user: {
-        name: "Alice Johnson",
+        name: "Neil Angeles",
         profilePic: "images/pro.png",
         college: "Computing Studies"
       },
       sampleData: {
         title: "Web Developer Needed",
         desc: "Looking for a skilled web developer to build a responsive student portal for course registration and announcements.",
-        image: "images/job1.jpg"
+        image: "images/webdev.jpg"
       }
     },
     {
       user: {
-        name: "Bob Smith",
+        name: "Justin Agot",
         profilePic: "images/pro.png",
         college: "Liberal Arts"
       },
       sampleData: {
-        title: "Content Writer Wanted",
+        title: "Photo editor",
         desc: "We need a writer to create engaging blog articles about campus life, events, and student tips.",
-        image: "images/job2.jpg"
+        image: "images/edit.jpg"
       }
     },
     {
       user: {
-        name: "Charlie Brown",
+        name: "Xyrille Nunez",
         profilePic: "images/pro.png",
         college: "Engineering"
       },
       sampleData: {
-        title: "CAD Design Assistance",
+        title: "Math Tutor",
         desc: "Hiring someone proficient in AutoCAD to help design a model for an academic infrastructure project.",
-        image: "images/job3.jpg"
+        image: "images/math.jpg"
       }
     }
   ];
@@ -253,8 +234,7 @@ window.onload = function() {
   samplePosts.forEach(entry => {
     addPost('find-job', entry.user, entry.sampleData);
   });
-};
-
+}
 
 // Simulate New Incoming Messages (Demo)
 function simulateIncomingMessage() {
@@ -276,14 +256,13 @@ window.onload = function() {
     loadChatDirectory();
     loadDefaultPosts();
     simulateIncomingMessage();
-    loadAdminMockData(); // Load admin data
+    loadAdminMockData();
 };
 
 // Profile Tabs: Posts, Saved, Tagged
 const tabs = document.querySelectorAll(".tab");
 const postGrid = document.querySelector(".post-grid");
 
-// Simulated content for demo purposes
 const savedPosts = [
   "photo6.jpg", "photo7.jpg"
 ];
@@ -294,14 +273,11 @@ const taggedPosts = [
 // Tab Switch Handler
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
-    // Remove active from all
     tabs.forEach(t => t.classList.remove("active"));
     tab.classList.add("active");
 
-    // Clear current grid
     postGrid.innerHTML = "";
 
-    // Load tab content
     if (tab.textContent === "Posts") {
       loadImages(["photo1.jpg", "photo2.jpg", "photo3.jpg", "photo4.jpg", "photo5.jpg"]);
     } else if (tab.textContent === "Saved") {
@@ -321,39 +297,40 @@ function loadImages(images) {
     postGrid.appendChild(el);
   });
 }
+
 document.querySelector('.gear-btn')?.addEventListener('click', () => {
     alert("Settings modal not implemented yet.");
-  });
+});
 
-  function switchModernTab(tab) {
+function switchModernTab(tab) {
     document.querySelectorAll(".tabModern").forEach(btn => btn.classList.remove("active"));
     document.querySelectorAll(".tabContent").forEach(div => div.style.display = "none");
-  
+
     document.querySelector(`[onclick*="${tab}"]`).classList.add("active");
     document.getElementById(`profile-${tab}`).style.display = "block";
-  }
-  
-  function highlightSelectedUser(userName) {
+}
+
+function highlightSelectedUser(userName) {
     document.querySelectorAll(".chat-user").forEach(user => {
       user.classList.remove("active");
       if (user.textContent.includes(userName)) {
         user.classList.add("active");
       }
     });
-  }
+}
 
-  function openViewModal(title, desc, image) {
+function openViewModal(title, desc, image) {
     document.getElementById("modalTitle").innerText = title;
     document.getElementById("modalDesc").innerText = desc;
     document.getElementById("modalImage").src = image;
     document.getElementById("viewModal").style.display = "flex";
-  }
-  
-  function closeViewModal() {
+}
+
+function closeViewModal() {
     document.getElementById("viewModal").style.display = "none";
-  }
-  
-  function loadAdminMockData() {
+}
+
+function loadAdminMockData() {
     const reportList = document.getElementById("report-list");
     reportList.innerHTML = `
       <div class="post-card">
@@ -369,7 +346,7 @@ document.querySelector('.gear-btn')?.addEventListener('click', () => {
         <button onclick="alert('Report marked as reviewed')">Mark as Reviewed</button>
       </div>
     `;
-  
+
     const accountRequests = document.getElementById("account-requests");
     accountRequests.innerHTML = `
       <div class="post-card">
@@ -379,6 +356,4 @@ document.querySelector('.gear-btn')?.addEventListener('click', () => {
         <button onclick="alert('Account rejected')">Reject</button>
       </div>
     `;
-  }
-  // Removed duplicate window.onload function as it is already merged above.
-  
+}
