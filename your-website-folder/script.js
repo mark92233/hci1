@@ -27,11 +27,6 @@ const sampleUsers = [
     { name: "Charlie Brown", profilePic: "photo3.jpg", college: "engineering" }
 ];
 
-// Toggle Sidebar
-function toggleSidebar() {
-    document.getElementById('sidebar').classList.toggle('hide');
-}
-
 // Navigation
 function showSection(id) {
     sections.forEach(section => section.style.display = 'none');
@@ -227,6 +222,7 @@ window.onload = function() {
     loadChatDirectory();
     loadDefaultPosts();
     simulateIncomingMessage();
+    loadAdminMockData(); // Load admin data
 };
 
 // Profile Tabs: Posts, Saved, Tagged
@@ -330,11 +326,5 @@ document.querySelector('.gear-btn')?.addEventListener('click', () => {
       </div>
     `;
   }
-  
-  window.onload = function () {
-    loadChatDirectory();
-    loadDefaultPosts();
-    simulateIncomingMessage();
-    loadAdminMockData(); // Load admin data
-  };
+  // Removed duplicate window.onload function as it is already merged above.
   
