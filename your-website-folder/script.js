@@ -150,18 +150,22 @@ function loadChatDirectory() {
 }
 
 function createChatUser(name) {
-    const user = sampleUsers.find(u => u.name === name);
-    const userDiv = document.createElement('div');
-    userDiv.className = 'chat-user';
-    userDiv.onclick = () => openChat(name);
-  
-    userDiv.innerHTML = `
-      <img src="${user?.profilePic || 'default-avatar.jpg'}" alt="${name}">
-      <span>${name} ${newMessages[name] ? '<span class="new-message">(new)</span>' : ''}</span>
-    `;
-  
-    chatList.appendChild(userDiv);
-  }
+  const user = sampleUsers.find(u => u.name === name);
+  const userDiv = document.createElement('div');
+  userDiv.className = 'chat-user';
+  userDiv.onclick = () => openChat(name);
+
+  userDiv.innerHTML = `
+    <img src="${user?.profilePic || 'default-avatar.jpg'}" alt="${name}">
+    <span>${name} ${newMessages[name] ? '<span class="new-message">(new)</span>' : ''}</span>
+    <div class="chat-options" onclick="event.stopPropagation(); showChatOptions('${name}', this)">
+      &#x22EE;
+    </div>
+  `;
+
+  chatList.appendChild(userDiv);
+}
+
   
 
 // Search and Filter
@@ -381,4 +385,52 @@ document.querySelector('.gear-btn')?.addEventListener('click', () => {
     `;
   }
   // Removed duplicate window.onload function as it is already merged above.
+  
+  function showChatOptions(userName, el) {
+    const menu = document.createElement('div');
+    menu.className = 'chat-dropdown';
+    menu.innerHTML = `
+      <button onclick="openChatReport('${userName}')">Report</button>
+      <button onclick="markChatAsDone('${userName}')">Set as Done</button>
+      <button onclick="deleteChat('${userName}')">Delete</button>
+    `;
+    el.appendChild(menu);
+    setTimeout(() => document.addEventListener('click', () => menu.remove(), { once: true }), 100);
+  }
+  
+  function openChatReport(userName) {
+    currentChatUser = userName;
+    document.getElementById('chatReportModal').style.display = 'flex';
+  }
+  
+  function closeChatReportModal() {
+    document.getElementById('chatReportModal').style.display = 'none';
+  }
+  
+  document.getElementById('chatReportForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (currentChatUser) {
+      chatsData[currentChatUser] = [];
+      chatBox.innerHTML = '<p style=\"text-align:center; color:red;\">Chat reported and terminated.</p>';
+      chatInputArea.style.display = 'none';
+      document.getElementById('chat-disabled-msg').style.display = 'block';
+      closeChatReportModal();
+    }
+  });
+  
+  function markChatAsDone(userName) {
+    chatDoneUsers.push(userName);
+    if (currentChatUser === userName) {
+      chatInputArea.style.display = 'none';
+      document.getElementById('chat-disabled-msg').style.display = 'block';
+    }
+  }
+  
+  function deleteChat(userName) {
+    delete chatsData[userName];
+    if (currentChatUser === userName) {
+      chatBox.innerHTML = '<p style=\"text-align:center; color:#999;\">Chat deleted.</p>';
+    }
+    updateChatList();
+  }
   

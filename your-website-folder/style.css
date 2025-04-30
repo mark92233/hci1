@@ -946,3 +946,35 @@ button:hover {
 .main-content {
   margin-left: 240px;
 }
+
+.chat-options {
+  margin-left: auto;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 18px;
+}
+
+.chat-dropdown {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 6px;
+  z-index: 9999;
+}
+
+.chat-dropdown button {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 6px 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chat-dropdown button:hover {
+  background: #eee;
+}
+
