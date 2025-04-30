@@ -8,10 +8,6 @@
 </head>
 <body>
   <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <img src="logo.png" alt="Logo" class="logo-img">
-      <div class="burger inside" id="burger" onclick="toggleSidebar()">☰</div>
-    </div>
     <ul>
       <li onclick="showSection('report-handling')">
         <img src="icons/report.png" alt="Report Handling">
@@ -21,16 +17,24 @@
         <img src="icons/accept.png" alt="Accept Accounts">
         <span>Accept Accounts</span>
       </li>
+      <li onclick="showSection('find-job')">
+        <img src="images/job (1).png" alt="Find Job">
+        <span>Find Job</span>
+      </li>
+      <li onclick="showSection('look-client')">
+        <img src="images/find-client.png" alt="Look for Client">
+        <span>Look for Client</span>
+      </li>
       <li onclick="showSection('chat')">
-        <img src="icons/chat.png" alt="Chat">
+        <img src="images/chating.png" alt="Chat">
         <span>Chat</span>
       </li>
       <li onclick="showSection('profile')">
-        <img src="icons/profile.png" alt="Profile">
+        <img src="images/pro.png" alt="Profile">
         <span>Profile</span>
       </li>
     </ul>
-  </div>
+  </div>  
 
   <div class="main-content">
     <!-- Report Handling -->
@@ -43,6 +47,46 @@
     <section id="accept-accounts" class="content-section" style="display: none;">
       <h1>Accept Accounts</h1>
       <div id="account-requests"><p>Loading account requests...</p></div>
+    </section>
+
+    <!-- Find Job -->
+    <section id="find-job" class="content-section" style="display: none;">
+      <h1>Find Job</h1>
+      <div class="controls">
+        <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
+        <div class="filter">
+          <label>Filter by College:</label>
+          <select onchange="filterByCollege(this)">
+            <option value="">All Colleges</option>
+            <option value="computing studies">College of Computing Studies</option>
+            <option value="liberal arts">College of Liberal Arts</option>
+            <option value="engineering">College of Engineering</option>
+            <option value="architecture">College of Architecture</option>
+          </select>
+        </div>
+      </div>
+      <button onclick="openAddPostModal('find-job')">Add Post</button>
+      <div class="posts" id="find-job-posts"></div>
+    </section>
+
+    <!-- Look for Client -->
+    <section id="look-client" class="content-section" style="display: none;">
+      <h1>Look for Client</h1>
+      <div class="controls">
+        <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
+        <div class="filter">
+          <label>Filter by College:</label>
+          <select onchange="filterByCollege(this)">
+            <option value="">All Colleges</option>
+            <option value="computing studies">College of Computing Studies</option>
+            <option value="liberal arts">College of Liberal Arts</option>
+            <option value="engineering">College of Engineering</option>
+            <option value="architecture">College of Architecture</option>
+          </select>
+        </div>
+      </div>
+      <button onclick="openAddPostModal('look-client')">Add Post</button>
+      <div class="posts" id="look-client-posts"></div>
     </section>
 
     <!-- Chat -->
@@ -66,20 +110,72 @@
         <div class="profileCard">
           <img src="avatar.png" alt="Profile" class="profileAvatar">
           <div class="profileDetails">
-            <p class="profileHandle">@admin</p>
+            <p class="profileHandle">@ae202404556</p>
             <div class="profileStats">
-              <span><strong>Admin</strong> Panel</span>
-              <span><strong>Secure</strong> Access</span>
+              <span><strong>3</strong> Posts</span>
+              <span><strong>85</strong> Credit Score</span>
             </div>
-            <p class="profileName">Administrator</p>
-            <p class="profileCollege">WMSU System</p>
+            <p class="profileName">User One Name</p>
+            <p class="profileCollege">College Of Computing Studies</p>
           </div>
         </div>
+
+        <div class="tabBar">
+          <button class="tabModern active" onclick="switchModernTab('posts')">🖼️ POSTS</button>
+          <button class="tabModern" onclick="switchModernTab('schedules')">📅 Schedules</button>
+        </div>
+
+        <div class="tabContent" id="profile-posts">
+          <div class="gridPhotos">
+            <img src="img1.jpg" alt="">
+            <img src="img2.jpg" alt="">
+            <img src="img3.jpg" alt="">
+          </div>
+        </div>
+
+        <div class="tabContent" id="profile-schedules" style="display: none;">
+          <p style="text-align:center;">No schedules yet.</p>
+        </div>
+
         <div class="logoutButtonContainer">
           <button onclick="logout()">Logout</button>
         </div>
       </div>
     </section>
+  </div>
+
+  <!-- Modals for Posting and Viewing -->
+  <div id="postModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <form id="postForm">
+        <div id="dynamicFields"></div>
+        <button type="submit">Submit Post</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="reportModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeReportModal()">&times;</span>
+      <h3>Report User</h3>
+      <form id="reportForm">
+        <label>Select an offense:</label><br>
+        <input type="radio" name="offense" value="Harassment" required> Harassment<br>
+        <input type="radio" name="offense" value="Spam" required> Spam<br>
+        <input type="radio" name="offense" value="Other Misconduct" required> Other Misconduct<br><br>
+        <button type="submit">Submit Report</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="viewModal" class="modal">
+    <div class="modal-content" style="max-width: 500px;">
+      <span class="close" onclick="closeViewModal()">&times;</span>
+      <img id="modalImage" src="" alt="Preview" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+      <h3 id="modalTitle"></h3>
+      <p id="modalDesc"></p>
+    </div>
   </div>
 
   <script src="script.js"></script>
