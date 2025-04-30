@@ -75,25 +75,23 @@
     <div class="posts" id="look-client-posts"></div>
   </section>
 
-  <!-- Chat -->
-  <section id="chat" class="content-section" style="display: none;">
-    <h1>Chat System</h1>
-    <div class="controls">
-      <input type="text" class="search-bar" placeholder="Search Chats..." onkeyup="searchPosts(this)">
-    </div>
-    <div class="chat-container">
-      <div class="chat-list" id="chat-list"></div>
-      <div class="chat-box-wrapper">
-        <div class="chat-box" id="chat-box">
-          <p>Select a conversation</p>
+      <!-- Chat -->
+      <section id="chat" class="content-section" style="display: none;">
+        <h1>Chat System</h1>
+        <div class="chat-container">
+          <div class="chat-list" id="chat-list"></div>
+          <div class="chat-box-wrapper">
+            <div class="chat-box" id="chat-box"><p>Select a conversation</p></div>
+            <div class="chat-input" id="chat-input-area">
+              <input type="text" id="messageInput" placeholder="Type a message...">
+              <button onclick="sendMessage()">Send</button>
+              <div id="chat-disabled-msg" style="display: none; text-align: center; color: red; margin-top: 10px;">
+                🚫 This conversation has been marked as done. You can no longer send messages.
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="chat-input" id="chat-input-area">
-          <input type="text" id="messageInput" placeholder="Type a message...">
-          <button onclick="sendMessage()">Send</button>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
   <!-- Profile -->
   <section id="profile" class="content-section" style="display: none;">
@@ -167,6 +165,21 @@
     <img id="modalImage" src="" alt="Preview" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
     <h3 id="modalTitle"></h3>
     <p id="modalDesc"></p>
+  </div>
+</div>
+
+<!-- Chat Report Modal -->
+<div class="modal" id="chatReportModal" style="display: none;">
+  <div class="modal-content" style="width: 400px;">
+    <span class="close" onclick="closeChatReportModal()">&times;</span>
+    <h3>Report User</h3>
+    <form id="chatReportForm">
+      <label>Select an offense:</label><br>
+      <input type="radio" name="offense" value="Harassment" required> Harassment<br>
+      <input type="radio" name="offense" value="Spam" required> Spam<br>
+      <input type="radio" name="offense" value="Inappropriate Content" required> Inappropriate Content<br><br>
+      <button type="submit">Submit Report</button>
+    </form>
   </div>
 </div>
 

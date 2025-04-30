@@ -191,42 +191,43 @@ function logout() {
     window.location.href = "index.html";
 }
 
+// Load Default Posts (✅ Fixed version)
 function loadDefaultPosts() {
   const samplePosts = [
     {
       user: {
-        name: "Neil Angeles",
+        name: "Alice Johnson",
         profilePic: "images/pro.png",
         college: "Computing Studies"
       },
       sampleData: {
         title: "Web Developer Needed",
         desc: "Looking for a skilled web developer to build a responsive student portal for course registration and announcements.",
-        image: "images/webdev.jpg"
+        image: "images/job1.jpg"
       }
     },
     {
       user: {
-        name: "Justin Agot",
+        name: "Bob Smith",
         profilePic: "images/pro.png",
         college: "Liberal Arts"
       },
       sampleData: {
-        title: "Photo editor",
+        title: "Content Writer Wanted",
         desc: "We need a writer to create engaging blog articles about campus life, events, and student tips.",
-        image: "images/edit.jpg"
+        image: "images/job2.jpg"
       }
     },
     {
       user: {
-        name: "Xyrille Nunez",
+        name: "Charlie Brown",
         profilePic: "images/pro.png",
         college: "Engineering"
       },
       sampleData: {
-        title: "Math Tutor",
+        title: "CAD Design Assistance",
         desc: "Hiring someone proficient in AutoCAD to help design a model for an academic infrastructure project.",
-        image: "images/math.jpg"
+        image: "images/job3.jpg"
       }
     }
   ];
