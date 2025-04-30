@@ -938,30 +938,11 @@ button:hover {
   width: auto;
 }
 
-.burger.inside {
-  font-size: 24px;
-  color: var(--white);
-  cursor: pointer;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background: transparent;
-  transition: background 0.3s ease;
+.sidebar {
+  width: 240px;
+  left: 0 !important;
 }
 
-
-.burger.inside:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.burger.inside:hover {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-/* Optional: align center when sidebar is collapsed */
-.sidebar.hide .sidebar-header {
-  justify-content: center;
-}
-
-.sidebar.hide .burger.inside {
-  padding: 0;
+.main-content {
+  margin-left: 240px;
 }
