@@ -70,6 +70,11 @@ body {
   transition: all 0.3s ease;
 }
 
+.sidebar li > img{
+  width: 30%;
+  height: 30%;
+}
+
 .sidebar li:hover,
 .sidebar li.active {
   background: var(--light-red);

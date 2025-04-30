@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landing</title>
+  <link rel="stylesheet" href="landing.css" />
+</head>
+<body> 
+  <header>
+    <div class="logo" onclick="window.location.href='landingPage.html'">
+      <img src="images/wmsu.JPG" alt="" style="border-radius: 50%;">
+      <img src="images/ccs.jpg" alt="" style="border-radius: 50%;">
+      Trabahanap</div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+    <a href="#" class="sign-in" id="sign">Sign In</a>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="hero-text">
+      <h1>
+        Find your Crimson freelancer now
+        <span class="animated-words-loop">
+          <div class="word-group">
+            <span>EDITOR</span>
+            <span>TUTOR</span>
+            <span>PROGRAMMER</span>
+            <span>ARTIST</span>    
+            <span>ENCODER</span>
+            <span>PHOTOGRAPHER</span>
+            <span>EVERYTHING</span>
+          </div>
+        </span>
+      </h1>
+      <p>Discover the best in various project making and start connecting</p>
+      
+      <div class="search-bar">
+        <button id="signup">Get Started</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="images/anime1.png" alt="Student learning online" />
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-content">
+      <h1>About</h1>
+      <p>
+        This website serves as a dedicated platform for WMSU students, faculty, and alumni seeking freelance opportunities. It features a marketplace where freelancers can offer their services and connect with potential clients. The platform includes a booking system for easy scheduling and a chat system to facilitate seamless communication. Our mission is to empower the WMSU community by providing a space to showcase skills, find jobs, and build professional networks.
+      </p>
+    </div>
+
+    <div class="carContain">
+      <div class="emoji-carousel-section">
+        <div class="carousel">
+          <div class="carousel__item" id="college">
+            <div class="carousel__item-head">
+              <img src="images/wmsu.JPG" style="border-radius: 50%;" />
+            </div>
+            <div class="carousel__item-body">
+              <p class="title">Specialized per College</p>
+              <p>
+                Freelancers are categorized by their college at WMSU, helping clients easily find talents specialized in different fields.
+              </p>
+            </div>
+          </div>
+
+          <div class="carousel__item" id="hustle">
+            <div class="carousel__item-head">
+              <img src="images/market.png" />
+            </div>
+            <div class="carousel__item-body">
+              <p class="title">Freelance Marketplace</p>
+              <p>
+                This platform connects WMSU students, faculty, and alumni with freelance job opportunities, offering services across various industries.
+              </p>
+            </div>
+          </div>
+
+          <div class="carousel__item" id="booking">
+            <div class="carousel__item-head">
+              <img src="images/system.png" />
+            </div>
+            <div class="carousel__item-body">
+              <p class="title">Booking System</p>
+              <p>
+                Freelancers can set their availability, allowing clients to conveniently book services based on schedules that work best for both.
+              </p>
+            </div>
+          </div>
+
+          <div class="carousel__item" id="quiz">
+            <div class="carousel__item-head">
+              <img src="images/chating.png" />
+            </div>
+            <div class="carousel__item-body">
+              <p class="title">Real-Time Chat</p>
+              <p>
+                The platform features a built-in chat system, enabling direct and real-time communication between freelancers and clients.
+              </p>
+            </div>
+          </div>
+
+          <div class="carousel__item" id="lead">
+            <div class="carousel__item-head">
+              <img src="images/cyber-security.png" />
+            </div>
+            <div class="carousel__item-body">
+              <p class="title">Secure Transactions</p>
+              <p>
+                The website ensures a safe and reliable environment for managing bookings, communications, and transactions within the WMSU community.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-pic">
+        <img src="images/anime2.png" alt="image" />
+      </div>
+    </div>
+  </section>
+
+  <div class="signin-overlay" id="signin-overlay" style="display: none;">
+    <div class="signin-container" id="signin-box">
+      <p class="signin-close" onclick="signinCloseModal()">×</p>
+    </div>
+  </div>
+
+  <div id="signup-overlay" style="display: none;">
+    <div id="signup-box">
+      <button class="signin-close" onclick="signinCloseModal()">×</button>
+    </div>
+  </div>
+
+  <script src="landing.js"></script>
+</body>
+</html>

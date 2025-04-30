@@ -17,14 +17,14 @@ let chatDoneUsers = [];
 
 const currentUser = {
     name: "You",
-    profilePic: "yourpfp.jpg",
+    profilePic: "images/pro.png",
     college: "computing studies"
 };
 
 const sampleUsers = [
-    { name: "Alice Johnson", profilePic: "photo1.jpg", college: "computing studies" },
-    { name: "Bob Smith", profilePic: "photo2.jpg", college: "liberal arts" },
-    { name: "Charlie Brown", profilePic: "photo3.jpg", college: "engineering" }
+    { name: "Alice Johnson", profilePic: "images/pro.png", college: "computing studies" },
+    { name: "Bob Smith", profilePic: "images/pro.png", college: "liberal arts" },
+    { name: "Charlie Brown", profilePic: "images/pro.png", college: "engineering" }
 ];
 
 // Toggle Sidebar
@@ -80,7 +80,7 @@ function addPost(section, user, sampleData = null) {
   
     const title = sampleData?.title || document.getElementById('jobTitle')?.value || "Sample Title";
     const desc = sampleData?.desc || document.getElementById('jobDesc')?.value || "No description provided.";
-    const image = sampleData?.image || "preview.jpg";
+    const image = sampleData?.image || ".jpg";
     const timestamp = "Posted just now";
   
     newPost.innerHTML = `
