@@ -104,14 +104,14 @@ function openChat(userName) {
     currentChatUser = userName;
     renderChat();
     highlightSelectedUser(userName);
-  
+
     if (chatDoneUsers.includes(userName)) {
       chatInputArea.style.display = 'none';
       chatBox.innerHTML += `<div style="text-align:center; color: gray; font-size:14px; margin-top:10px;">This chat has been marked as completed. No more messages allowed.</div>`;
     } else {
       chatInputArea.style.display = 'flex';
     }
-  
+
     if (newMessages[userName]) {
       delete newMessages[userName];
       updateChatList();
@@ -137,7 +137,6 @@ function sendMessage() {
     }
 }
 
-// Load Chat Directory
 function loadChatDirectory() {
     chatList.innerHTML = '';
     sampleUsers.forEach(user => {
@@ -150,16 +149,15 @@ function createChatUser(name) {
     const userDiv = document.createElement('div');
     userDiv.className = 'chat-user';
     userDiv.onclick = () => openChat(name);
-  
+
     userDiv.innerHTML = `
       <img src="${user?.profilePic || 'default-avatar.jpg'}" alt="${name}">
       <span>${name} ${newMessages[name] ? '<span class="new-message">(new)</span>' : ''}</span>
     `;
-  
+
     chatList.appendChild(userDiv);
 }
 
-// Search and Filter
 function searchPosts(input) {
     const keyword = input.value.toLowerCase();
     const container = input.closest('.content-section').querySelector('.posts') || input.closest('.content-section').querySelector('.chat-list');
@@ -185,13 +183,11 @@ function filterByCollege(select) {
     }
 }
 
-// Logout (Profile Page)
 function logout() {
     alert("Logged out successfully!");
     window.location.href = "index.html";
 }
 
-// Load Default Posts (✅ Fixed version)
 function loadDefaultPosts() {
   const samplePosts = [
     {
@@ -235,9 +231,52 @@ function loadDefaultPosts() {
   samplePosts.forEach(entry => {
     addPost('find-job', entry.user, entry.sampleData);
   });
+
+  // Additional cards for look-client
+  const clientPosts = [
+    {
+      user: {
+        name: "Dana Cruz",
+        profilePic: "images/pro.png",
+        college: "Business"
+      },
+      sampleData: {
+        title: "Need Logo Design",
+        desc: "Looking for a graphic designer to create a modern logo for a startup café brand.",
+        image: "images/client1.jpg"
+      }
+    },
+    {
+      user: {
+        name: "Edward Lim",
+        profilePic: "images/pro.png",
+        college: "Computing Studies"
+      },
+      sampleData: {
+        title: "App Developer for Capstone",
+        desc: "Need assistance with building a mobile app prototype for a capstone project. Must know Flutter or React Native.",
+        image: "images/client2.jpg"
+      }
+    },
+    {
+      user: {
+        name: "Fiona Reyes",
+        profilePic: "images/pro.png",
+        college: "Education"
+      },
+      sampleData: {
+        title: "Online Tutor Needed",
+        desc: "Hiring a tutor to help with weekly review sessions in math for senior high school students.",
+        image: "images/client3.jpg"
+      }
+    }
+  ];
+
+  clientPosts.forEach(entry => {
+    addPost('look-client', entry.user, entry.sampleData);
+  });
 }
 
-// Simulate New Incoming Messages (Demo)
 function simulateIncomingMessage() {
     setTimeout(() => {
         const randomUser = sampleUsers[Math.floor(Math.random() * sampleUsers.length)].name;
@@ -252,7 +291,6 @@ function updateChatList() {
     loadChatDirectory();
 }
 
-// Initialize Page
 window.onload = function() {
     loadChatDirectory();
     loadDefaultPosts();
@@ -260,18 +298,12 @@ window.onload = function() {
     loadAdminMockData();
 };
 
-// Profile Tabs: Posts, Saved, Tagged
 const tabs = document.querySelectorAll(".tab");
 const postGrid = document.querySelector(".post-grid");
 
-const savedPosts = [
-  "photo6.jpg", "photo7.jpg"
-];
-const taggedPosts = [
-  "photo8.jpg", "photo9.jpg"
-];
+const savedPosts = [ "photo6.jpg", "photo7.jpg" ];
+const taggedPosts = [ "photo8.jpg", "photo9.jpg" ];
 
-// Tab Switch Handler
 tabs.forEach(tab => {
   tab.addEventListener("click", () => {
     tabs.forEach(t => t.classList.remove("active"));
@@ -289,7 +321,6 @@ tabs.forEach(tab => {
   });
 });
 
-// Helper: Load Images
 function loadImages(images) {
   images.forEach(img => {
     const el = document.createElement("img");
