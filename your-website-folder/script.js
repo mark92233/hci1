@@ -204,6 +204,58 @@ function loadDefaultPosts() {
     });
 }
 
+window.onload = function() {
+  loadChatDirectory();
+  loadDefaultPosts();
+  simulateIncomingMessage();
+  loadAdminMockData(); // for admin
+
+  // 🔽 Add this block for user sample cards
+  const samplePosts = [
+    {
+      user: {
+        name: "Alice Johnson",
+        profilePic: "images/pro.png",
+        college: "Computing Studies"
+      },
+      sampleData: {
+        title: "Web Developer Needed",
+        desc: "Looking for a skilled web developer to build a responsive student portal for course registration and announcements.",
+        image: "images/job1.jpg"
+      }
+    },
+    {
+      user: {
+        name: "Bob Smith",
+        profilePic: "images/pro.png",
+        college: "Liberal Arts"
+      },
+      sampleData: {
+        title: "Content Writer Wanted",
+        desc: "We need a writer to create engaging blog articles about campus life, events, and student tips.",
+        image: "images/job2.jpg"
+      }
+    },
+    {
+      user: {
+        name: "Charlie Brown",
+        profilePic: "images/pro.png",
+        college: "Engineering"
+      },
+      sampleData: {
+        title: "CAD Design Assistance",
+        desc: "Hiring someone proficient in AutoCAD to help design a model for an academic infrastructure project.",
+        image: "images/job3.jpg"
+      }
+    }
+  ];
+
+  samplePosts.forEach(entry => {
+    addPost('find-job', entry.user, entry.sampleData);
+  });
+};
+
+
 // Simulate New Incoming Messages (Demo)
 function simulateIncomingMessage() {
     setTimeout(() => {
