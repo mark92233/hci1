@@ -199,7 +199,7 @@ function loadDefaultPosts() {
       sampleData: {
         title: "Web Developer Needed",
         desc: "Looking for a skilled web developer to build a responsive student portal for course registration and announcements.",
-        image: "images/job1.jpg"
+        image: "images/webdev.jpg"
       }
     },
     {
@@ -211,7 +211,7 @@ function loadDefaultPosts() {
       sampleData: {
         title: "Content Writer Wanted",
         desc: "We need a writer to create engaging blog articles about campus life, events, and student tips.",
-        image: "images/job2.jpg"
+        image: "images/edit.jpg"
       }
     },
     {
@@ -223,7 +223,7 @@ function loadDefaultPosts() {
       sampleData: {
         title: "CAD Design Assistance",
         desc: "Hiring someone proficient in AutoCAD to help design a model for an academic infrastructure project.",
-        image: "images/job3.jpg"
+        image: "images/math.jpg"
       }
     }
   ];
@@ -389,3 +389,4 @@ function loadAdminMockData() {
       </div>
     `;
 }
+ 
