@@ -978,3 +978,89 @@ button:hover {
   background: #eee;
 }
 
+/* Chat Options Button (⋯) */
+.chat-options {
+  margin-left: auto;
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 20px;
+  color: var(--dark-red);
+  user-select: none;
+  position: relative;
+}
+
+/* Dropdown Menu */
+.chat-dropdown {
+  position: absolute;
+  right: 0;
+  top: 28px;
+  background-color: #fff;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  z-index: 999;
+  min-width: 160px;
+}
+
+.chat-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.chat-dropdown button:hover {
+  background-color: var(--light-bg);
+}
+
+/* Disabled Chat Message */
+#chat-disabled-msg {
+  background-color: #fff3f3;
+  color: #a94442;
+  padding: 10px;
+  border: 1px solid #ebccd1;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+/* Chat Report Modal Styling */
+#chatReportModal .modal-content {
+  background-color: #fff;
+  border-left: 6px solid var(--light-red);
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 400px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+#chatReportModal h3 {
+  color: var(--dark-red);
+  margin-bottom: 12px;
+}
+
+#chatReportModal input[type="radio"] {
+  margin: 8px 0;
+}
+
+#chatReportModal button[type="submit"] {
+  margin-top: 16px;
+  padding: 10px 20px;
+  background-color: var(--light-red);
+  color: var(--white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+#chatReportModal button[type="submit"]:hover {
+  background-color: var(--dark-red);
+}
