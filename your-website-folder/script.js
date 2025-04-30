@@ -67,37 +67,39 @@ function closeReportModal() {
 }
 
 // Add Posts
-function addPost(section, user, sampleData = null) {
-    const postsContainer = document.getElementById(`${section}-posts`);
-    const newPost = document.createElement('div');
-    newPost.className = 'post-card';
-    newPost.setAttribute('data-college', user.college.toLowerCase());
-  
-    const title = sampleData?.title || document.getElementById('jobTitle')?.value || "Sample Title";
-    const desc = sampleData?.desc || document.getElementById('jobDesc')?.value || "No description provided.";
-    const image = sampleData?.image || ".jpg";
-    const timestamp = "Posted just now";
-  
-    newPost.innerHTML = `
-      <div class="post-header">
-        <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic">
-        <div>
-          <span class="username">${user.name}</span><br>
-          <span class="college">College: ${user.college}</span><br>
-          <small class="timestamp">${timestamp}</small>
-        </div>
+function addPost(section, user, sampleData = {}) {
+  const postsContainer = document.getElementById(`${section}-posts`);
+  const newPost = document.createElement('div');
+  newPost.className = 'post-card';
+  newPost.setAttribute('data-college', user.college.toLowerCase());
+
+  // Use sampleData only, fallback to form values or placeholders
+  const title = sampleData.title || document.getElementById('jobTitle')?.value || "Untitled Job";
+  const desc = sampleData.desc || document.getElementById('jobDesc')?.value || "No description provided.";
+  const image = sampleData.image || "images/default.jpg";
+  const timestamp = "Posted just now";
+
+  newPost.innerHTML = `
+    <div class="post-header">
+      <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic">
+      <div>
+        <span class="username">${user.name}</span><br>
+        <span class="college">College: ${user.college}</span><br>
+        <small class="timestamp">${timestamp}</small>
       </div>
-      <img src="${image}" class="post-preview" alt="Preview Image">
-      <h3>${title}</h3>
-      <p class="short-desc">${desc.substring(0, 100)}...</p>
-      <div class="post-actions">
-        <button onclick="openViewModal('${title}', \`${desc}\`, '${image}')">View More</button>
-        ${user.name !== currentUser.name ? `<button onclick="openChat('${user.name}')">Contact</button>` : ""}
-      </div>
-    `;
-  
-    postsContainer.appendChild(newPost);
-  }
+    </div>
+    <img src="${image}" class="post-preview" alt="Preview Image">
+    <h3>${title}</h3>
+    <p class="short-desc">${desc.substring(0, 100)}...</p>
+    <div class="post-actions">
+      <button onclick="openViewModal('${title}', \`${desc}\`, '${image}')">View More</button>
+      ${user.name !== currentUser.name ? `<button onclick="openChat('${user.name}')">Contact</button>` : ""}
+    </div>
+  `;
+
+  postsContainer.appendChild(newPost);
+}
+
   
 
 function openChat(userName) {
