@@ -14,6 +14,8 @@ let currentChatUser = null;
 let chatsData = {};
 let newMessages = {};
 let chatDoneUsers = [];
+let postToDelete = null;
+let postToReport = null;
 
 const currentUser = {
     name: "You",
@@ -124,9 +126,11 @@ if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
     <h3>${title}</h3>
     <p class="short-desc">${desc.substring(0, 100)}...</p>
     <div class="post-actions">
-      <button onclick="openViewModal('${title}', \`${desc}\`, '${image}', '${section}')">View More</button>
-      ${user.name !== currentUser.name ? `<button onclick="openChat('${user.name}')">Contact</button>` : ""}
-    </div>
+  <button onclick="openViewModal('${title}', \`${desc}\`, '${image}', '${section}')">View More</button>
+  ${user.name !== currentUser.name
+    ? `<button onclick="openPostReportModal(this.closest('.post-card'))">Report</button>`
+    : `<button onclick="openDeleteModal(this.closest('.post-card'))">Delete</button>`}
+</div>
   `;
 
   newPost.innerHTML = postContent;
@@ -714,4 +718,50 @@ function loadAdminMockData() {
       </div>
     `;
 }
- 
+
+function openPostReportModal(postEl) {
+  postToReport = postEl;
+  document.getElementById("postReportModal").style.display = "flex";
+}
+
+function closePostReportModal() {
+  document.getElementById("postReportModal").style.display = "none";
+}
+
+document.getElementById("postReportForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  if (postToReport) {
+    postToReport.style.filter = "blur(2px)";
+    postToReport.innerHTML += `<div class="pending-report-msg">Post report pending, waiting for admin to take action.</div>`;
+    closePostReportModal();
+    setTimeout(() => {
+      postToReport.remove();
+      showToast("Post has been deleted");
+    }, 3000);
+  }
+});
+
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast-notification";
+  toast.innerHTML = `${message} <span class="close-toast" onclick="this.parentElement.remove()">✖</span>`;
+  document.getElementById("toastContainer").appendChild(toast);
+  setTimeout(() => toast.remove(), 6000);
+}
+
+function openDeleteModal(postEl) {
+  postToDelete = postEl;
+  document.getElementById("deleteConfirmModal").style.display = "flex";
+}
+
+function closeDeleteModal() {
+  document.getElementById("deleteConfirmModal").style.display = "none";
+}
+
+function confirmDeletePost() {
+  if (postToDelete) {
+    postToDelete.remove();
+    closeDeleteModal();
+    showToast("Your post has been deleted");
+  }
+}
