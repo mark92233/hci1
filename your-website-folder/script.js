@@ -35,28 +35,34 @@ function showSection(id) {
 
 // Add Post Modal
 function openAddPostModal(section) {
-    postModal.style.display = 'flex';
-    dynamicFields.innerHTML = '';
+  postModal.style.display = 'flex';
+  dynamicFields.innerHTML = '';
 
-    if (section === 'find-job') {
-        dynamicFields.innerHTML = `
-            <input type="text" id="jobTitle" placeholder="Job Title" required><br>
-             <input type="file" id="jobImage"><br>
-            <textarea id="jobDesc" placeholder="Description" required></textarea>
-        `;
-    } else if (section === 'look-client') {
-        dynamicFields.innerHTML = `
-            <input type="text" id="jobTitle" placeholder="Job Title" required><br>
-            <textarea id="jobDesc" placeholder="Description" required></textarea>
-        `;
-    }
+  const titleInput = `<input type="text" id="jobTitle" placeholder="Job Title" required><br>`;
+  const descInput = `<textarea id="jobDesc" placeholder="Description" required></textarea>`;
+  let imageInput = '';
+  let previewHTML = '';
 
-    postForm.onsubmit = (e) => {
-        e.preventDefault();
-        addPost(section, currentUser);
-        closeModal();
-    };
+  if (section === 'find-job') {
+      imageInput = `<input type="file" id="jobImage" accept="image/*" onchange="previewImage(event)"><br>`;
+      previewHTML = `<img id="imagePreview" style="display:none; width:100%; max-height:180px; object-fit:cover; border-radius:10px; margin-bottom:10px;" />`;
+  }
+
+  dynamicFields.innerHTML = `
+    <h3 style="color: var(--dark-red); text-align:center;">${section === 'find-job' ? 'Add Job Posting' : 'Add Client Request'}</h3>
+    ${titleInput}
+    ${imageInput}
+    ${previewHTML}
+    ${descInput}
+  `;
+
+  postForm.onsubmit = (e) => {
+      e.preventDefault();
+      addPost(section, currentUser);
+      closeModal();
+  };
 }
+
 
 function closeModal() {
     postModal.style.display = 'none';
@@ -64,6 +70,19 @@ function closeModal() {
 
 function closeReportModal() {
     reportModal.style.display = 'none';
+}
+
+function previewImage(event) {
+  const preview = document.getElementById("imagePreview");
+  const file = event.target.files[0];
+  if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+  }
 }
 
 // Add Posts
@@ -75,7 +94,12 @@ function addPost(section, user, sampleData = {}) {
 
   const title = sampleData.title || document.getElementById('jobTitle')?.value || "Untitled Job";
   const desc = sampleData.desc || document.getElementById('jobDesc')?.value || "No description provided.";
-  const image = sampleData.image || "images/edit.jpg";
+  let image = sampleData.image || "images/edit.jpg";
+const uploadedImage = document.getElementById("jobImage");
+if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
+    image = URL.createObjectURL(uploadedImage.files[0]);
+}
+
   const timestamp = "Posted just now";
 
   // Build post content based on section
@@ -611,7 +635,7 @@ function highlightSelectedUser(userName) {
       }
     });
 }
-
+//View Modal 
 function openViewModal(title, desc, image) {
   document.getElementById("modalTitle").innerText = title;
   document.getElementById("modalDesc").innerText = desc;

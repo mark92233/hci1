@@ -331,7 +331,11 @@ button:hover {
   display: flex;
   flex-direction: column;
 }
-
+#imagePreview {
+  max-height: 180px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
 .modal-content form input[type="text"],
 .modal-content form textarea {
   padding: 12px;
