@@ -104,15 +104,16 @@ if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
 
   // Build post content based on section
   let postContent = `
-    <div class="post-header">
-      <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic">
-      <div>
-        <span class="username">${user.name}</span><br>
-        <span class="college">College: ${user.college}</span><br>
-        <small class="timestamp">${timestamp}</small>
-      </div>
+  <div class="post-header">
+    <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>
+    <div>
+      <span class="username" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>${user.name}</span><br>
+      <span class="college">College: ${user.college}</span><br>
+      <small class="timestamp">${timestamp}</small>
     </div>
-  `;
+  </div>
+`;
+
 
   // Only include image if section is "find-job"
   if (section === "find-job") {
@@ -653,6 +654,31 @@ function openViewModal(title, desc, image) {
 
 function closeViewModal() {
   document.getElementById("viewModal").style.display = "none";
+}
+function openProfileModal(user) {
+  const modal = document.getElementById("viewProfileModal");
+  const content = document.getElementById("profileModalContent");
+
+  content.innerHTML = `
+    <div class="profileCard">
+      <img src="${user.profilePic}" alt="${user.name}" class="profileAvatar">
+      <div class="profileDetails">
+        <p class="profileHandle">@${user.name.toLowerCase().replace(/\s+/g, '')}</p>
+        <div class="profileStats">
+          <span><strong>??</strong> Posts</span>
+          <span><strong>85</strong> Credit Score</span>
+        </div>
+        <p class="profileName">${user.name}</p>
+        <p class="profileCollege">College of ${user.college}</p>
+      </div>
+    </div>
+  `;
+
+  modal.style.display = "flex";
+}
+
+function closeProfileModal() {
+  document.getElementById("viewProfileModal").style.display = "none";
 }
 
 
