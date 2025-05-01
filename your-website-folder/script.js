@@ -124,7 +124,7 @@ if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
     <h3>${title}</h3>
     <p class="short-desc">${desc.substring(0, 100)}...</p>
     <div class="post-actions">
-      <button onclick="openViewModal('${title}', \`${desc}\`, '${image}')">View More</button>
+      <button onclick="openViewModal('${title}', \`${desc}\`, '${image}', '${section}')">View More</button>
       ${user.name !== currentUser.name ? `<button onclick="openChat('${user.name}')">Contact</button>` : ""}
     </div>
   `;
@@ -637,19 +637,24 @@ function highlightSelectedUser(userName) {
     });
 }
 //View Modal 
-function openViewModal(title, desc, image) {
-  document.getElementById("modalTitle").innerText = title;
-  document.getElementById("modalDesc").innerText = desc;
+function openViewModal(title, desc, image, section) {
+  const modal = document.getElementById("viewModal");
+  const body = document.getElementById("viewModalBody");
 
-  const modalImage = document.getElementById("modalImage");
-  if (image && image.trim() !== "") {
-      modalImage.src = image;
-      modalImage.style.display = "block";
+  if (section === 'find-job') {
+    body.innerHTML = `
+      <img src="${image}" alt="Preview" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+      <h3>${title}</h3>
+      <p>${desc}</p>
+    `;
   } else {
-      modalImage.style.display = "none";
+    body.innerHTML = `
+      <h3>${title}</h3>
+      <p>${desc}</p>
+    `;
   }
 
-  document.getElementById("viewModal").style.display = "flex";
+  modal.style.display = "flex";
 }
 
 function closeViewModal() {
