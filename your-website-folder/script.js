@@ -41,12 +41,12 @@ function openAddPostModal(section) {
     if (section === 'find-job') {
         dynamicFields.innerHTML = `
             <input type="text" id="jobTitle" placeholder="Job Title" required><br>
+             <input type="file" id="jobImage"><br>
             <textarea id="jobDesc" placeholder="Description" required></textarea>
         `;
     } else if (section === 'look-client') {
         dynamicFields.innerHTML = `
             <input type="text" id="jobTitle" placeholder="Job Title" required><br>
-            <input type="file" id="jobImage"><br>
             <textarea id="jobDesc" placeholder="Description" required></textarea>
         `;
     }
@@ -78,7 +78,8 @@ function addPost(section, user, sampleData = {}) {
   const image = sampleData.image || "images/edit.jpg";
   const timestamp = "Posted just now";
 
-  newPost.innerHTML = `
+  // Build post content based on section
+  let postContent = `
     <div class="post-header">
       <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic">
       <div>
@@ -87,7 +88,14 @@ function addPost(section, user, sampleData = {}) {
         <small class="timestamp">${timestamp}</small>
       </div>
     </div>
-    <img src="${image}" class="post-preview" alt="Preview Image">
+  `;
+
+  // Only include image if section is "find-job"
+  if (section === "find-job") {
+    postContent += `<img src="${image}" class="post-preview" alt="Preview Image">`;
+  }
+
+  postContent += `
     <h3>${title}</h3>
     <p class="short-desc">${desc.substring(0, 100)}...</p>
     <div class="post-actions">
@@ -96,8 +104,10 @@ function addPost(section, user, sampleData = {}) {
     </div>
   `;
 
+  newPost.innerHTML = postContent;
   postsContainer.appendChild(newPost);
 }
+
 
 function openChat(userName) {
     showSection('chat');
@@ -152,7 +162,7 @@ function createChatUser(name) {
 
     userDiv.innerHTML = `
       <img src="${user?.profilePic || 'default-avatar.jpg'}" alt="${name}">
-      <span>${name} ${newMessages[name] ? '<span class="new-message">(new)</span>' : ''}</span>
+      <span>${name} ${newMessages[name] ? '<span class="new-message" style="color: #7D0A0A;"><strong>(new)</strong></span>' : ''}</span>
     `;
 
     chatList.appendChild(userDiv);
@@ -189,41 +199,166 @@ function logout() {
 }
 
 function loadDefaultPosts() {
+  //For job offer
   const samplePosts = [
     {
-      user: {
-        name: "Alice Johnson",
-        profilePic: "images/pro.png",
-        college: "Computing Studies"
-      },
+      user: { name: "Brian Tan", profilePic: "images/pro.png", college: "Computing Studies" },
       sampleData: {
-        title: "Web Developer Needed",
-        desc: "Looking for a skilled web developer to build a responsive student portal for course registration and announcements.",
-        image: "images/webdev.jpg"
+        title: "Hiring: Mobile App Developer",
+        desc: "We are offering a project-based position for someone to build a mobile-friendly e-learning platform tailored for CS students.",
+        image: "images/works/work1.jpg"
       }
     },
     {
-      user: {
-        name: "Bob Smith",
-        profilePic: "images/pro.png",
-        college: "Liberal Arts"
-      },
+      user: { name: "Lara Reyes", profilePic: "images/pro.png", college: "Liberal Arts" },
       sampleData: {
-        title: "Content Writer Wanted",
-        desc: "We need a writer to create engaging blog articles about campus life, events, and student tips.",
-        image: "images/edit.jpg"
+        title: "Looking for Content Writers",
+        desc: "We're offering writing positions for a blog focused on arts, culture, and liberal studies. Writers will contribute weekly articles.",
+        image: "images/works/work2.jpg"
       }
     },
     {
-      user: {
-        name: "Charlie Brown",
-        profilePic: "images/pro.png",
-        college: "Engineering"
-      },
+      user: { name: "James Velasco", profilePic: "images/pro.png", college: "Engineering" },
       sampleData: {
-        title: "CAD Design Assistance",
-        desc: "Hiring someone proficient in AutoCAD to help design a model for an academic infrastructure project.",
-        image: "images/math.jpg"
+        title: "Job Offer: CAD Designer",
+        desc: "We are hiring a CAD designer for a sustainable engineering capstone involving 3D bridge design models.",
+        image: "images/works/work3.jpg"
+      }
+    },
+    {
+      user: { name: "Maricel Dela Cruz", profilePic: "images/pro.png", college: "Architecture" },
+      sampleData: {
+        title: "Now Hiring: Architecture Intern",
+        desc: "We’re offering a role for students to assist in drafting layouts and conceptual designs for a modern eco-building.",
+        image: "images/works/work4.jpg"
+      }
+    },
+    {
+      user: { name: "Carlo Medina", profilePic: "images/pro.png", college: "Public Administration" },
+      sampleData: {
+        title: "Policy Analyst Internship Offered",
+        desc: "We're offering an internship to analyze governance models and help draft policy proposals for LGUs.",
+        image: "images/works/work5.jpg"
+      }
+    },
+    {
+      user: { name: "Angeline Bautista", profilePic: "images/pro.png", college: "Teacher Education" },
+      sampleData: {
+        title: "Teaching Assistant Position",
+        desc: "We are offering a teaching assistant opportunity to develop engaging lesson plans and activities for young learners.",
+        image: "images/works/work6.jpg"
+      }
+    },
+    {
+      user: { name: "Jason Lee", profilePic: "images/pro.png", college: "Home Economics" },
+      sampleData: {
+        title: "Job Opening: Meal Planner",
+        desc: "We’re offering a part-time role for someone with knowledge in nutrition to create healthy meal plans for families.",
+        image: "images/works/work7.jpg"
+      }
+    },
+    {
+      user: { name: "Karen Mendoza", profilePic: "images/pro.png", college: "Nursing" },
+      sampleData: {
+        title: "First Aid Instructor Wanted",
+        desc: "We are hiring a nursing student to conduct first aid workshops for high school students.",
+        image: "images/works/work8.jpg"
+      }
+    },
+    {
+      user: { name: "Samuel Torres", profilePic: "images/pro.png", college: "Law" },
+      sampleData: {
+        title: "Offering Legal Research Position",
+        desc: "This is an opportunity for law students to gain experience drafting legal briefs and summarizing case files.",
+        image: "images/works/work9.jpg"
+      }
+    },
+    {
+      user: { name: "Michelle Uy", profilePic: "images/pro.png", college: "College of Criminal Justice Education" },
+      sampleData: {
+        title: "Crime Data Assistant Needed",
+        desc: "We're offering a part-time research assistant role for crime data analysis and report generation.",
+        image: "images/works/work10.jpg"
+      }
+    },
+    {
+      user: { name: "Rafael Gomez", profilePic: "images/pro.png", college: "Medicine" },
+      sampleData: {
+        title: "Clinical Reviewer Role Offered",
+        desc: "A paid opportunity to help review patient records and summarize clinical cases for medical study groups.",
+        image: "images/works/work11.jpg"
+      }
+    },
+    {
+      user: { name: "Amira Sahid", profilePic: "images/pro.png", college: "Asian Islamic Studies" },
+      sampleData: {
+        title: "Researcher for Islamic Studies",
+        desc: "We’re hiring a researcher to contribute cultural insights and historical data for our digital archive.",
+        image: "images/works/work12.jpg"
+      }
+    },
+    {
+      user: { name: "Liam Santos", profilePic: "images/pro.png", college: "Social Work and Development" },
+      sampleData: {
+        title: "Community Program Facilitator Wanted",
+        desc: "We’re looking for someone to lead and implement outreach programs for underprivileged communities.",
+        image: "images/works/work13.jpg"
+      }
+    },
+    {
+      user: { name: "Monica Torres", profilePic: "images/pro.png", college: "Sports Science and Phisical Education" },
+      sampleData: {
+        title: "Offering Assistant Trainer Role",
+        desc: "This opportunity is for those interested in helping design and implement athletic training routines.",
+        image: "images/works/work14.jpg"
+      }
+    },
+    {
+      user: { name: "Nathaniel Cruz", profilePic: "images/pro.png", college: "Science and Mathematics" },
+      sampleData: {
+        title: "Lab Assistant Job Offered",
+        desc: "We’re offering a position to assist in laboratory setups and experiment documentation for physics and chemistry classes.",
+        image: "images/works/work15.jpg"
+      }
+    },
+    {
+      user: { name: "Eunice Lim", profilePic: "images/pro.png", college: "Teacher Education" },
+      sampleData: {
+        title: "Opening for Demo Teaching Coach",
+        desc: "We’re hiring a student mentor to assist education majors in preparing demo lessons and teaching strategies.",
+        image: "images/works/work16.jpg"
+      }
+    },
+    {
+      user: { name: "Zahid Al-Farouq", profilePic: "images/pro.png", college: "Asian Islamic Studies" },
+      sampleData: {
+        title: "Podcast Content Assistant Needed",
+        desc: "Join our Islamic heritage podcast team as a researcher and script editor. Stipend included.",
+        image: "images/works/work17.jpeg"
+      }
+    },
+    {
+      user: { name: "Frances Ramos", profilePic: "images/pro.png", college: "Social Work and Development" },
+      sampleData: {
+        title: "Offering Documentation Role",
+        desc: "We are offering a data entry and documentation role for fieldwork reports and case summaries.",
+        image: "images/works/work18.jpg"
+      }
+    },
+    {
+      user: { name: "Cyrus Bautista", profilePic: "images/pro.png", college: "Engineering" },
+      sampleData: {
+        title: "System Tester Position Open",
+        desc: "We’re looking for a systems engineering student to test and report on IoT-based automation modules.",
+        image: "images/works/work19.jpg"
+      }
+    },
+    {
+      user: { name: "Sophia Dizon", profilePic: "images/pro.png", college: "Home Economics" },
+      sampleData: {
+        title: "Interior Design Project Available",
+        desc: "We’re offering a creative opportunity to help design dorm room layouts with a functional and aesthetic approach.",
+        image: "images/works/work20.jpg"
       }
     }
   ];
@@ -232,14 +367,34 @@ function loadDefaultPosts() {
     addPost('find-job', entry.user, entry.sampleData);
   });
 
-  // Additional cards for look-client
+  //For hiring
   const clientPosts = [
     {
-      user: {
-        name: "Dana Cruz",
-        profilePic: "images/pro.png",
-        college: "Business"
-      },
+      user: { name: "Alice Johnson", profilePic: "images/pro.png", college: "Computing Studies" },
+      sampleData: {
+        title: "Web Developer Needed", 
+        desc: "Looking for a skilled web developer to build a responsive student portal for course registration and announcements.",
+        image: "images/webdev.jpg"
+      }
+    },
+    {
+      user: { name: "Bob Smith", profilePic: "images/pro.png", college: "Liberal Arts" },
+      sampleData: {
+        title: "Content Writer Wanted",
+        desc: "We need a writer to create engaging blog articles about campus life, events, and student tips.",
+        image: "images/edit.jpg"
+      }
+    },
+    {
+      user: { name: "Charlie Brown", profilePic: "images/pro.png", college: "Engineering" },
+      sampleData: {
+        title: "CAD Design Assistance",
+        desc: "Hiring someone proficient in AutoCAD to help design a model for an academic infrastructure project.",
+        image: "images/math.jpg"
+      }
+    },
+    {
+      user: { name: "Dana Cruz", profilePic: "images/pro.png", college: "Business" },
       sampleData: {
         title: "Need Logo Design",
         desc: "Looking for a graphic designer to create a modern logo for a startup café brand.",
@@ -247,11 +402,7 @@ function loadDefaultPosts() {
       }
     },
     {
-      user: {
-        name: "Edward Lim",
-        profilePic: "images/pro.png",
-        college: "Computing Studies"
-      },
+      user: { name: "Edward Lim", profilePic: "images/pro.png", college: "Computing Studies" },
       sampleData: {
         title: "App Developer for Capstone",
         desc: "Need assistance with building a mobile app prototype for a capstone project. Must know Flutter or React Native.",
@@ -259,23 +410,133 @@ function loadDefaultPosts() {
       }
     },
     {
-      user: {
-        name: "Fiona Reyes",
-        profilePic: "images/pro.png",
-        college: "Education"
-      },
+      user: { name: "Fiona Reyes", profilePic: "images/pro.png", college: "Education" },
       sampleData: {
         title: "Online Tutor Needed",
         desc: "Hiring a tutor to help with weekly review sessions in math for senior high school students.",
         image: "images/client3.jpg"
       }
+    },
+    {
+      user: { name: "George Villanueva", profilePic: "images/pro.png", college: "Law" },
+      sampleData: {
+        title: "Legal Document Proofreader",
+        desc: "Need a detail-oriented law student to review and edit legal documents and case summaries.",
+        image: "images/client4.jpg"
+      }
+    },
+    {
+      user: { name: "Hannah Mae", profilePic: "images/pro.png", college: "Nursing" },
+      sampleData: {
+        title: "Health Brochure Designer",
+        desc: "Looking for someone to help design educational brochures about hygiene and wellness.",
+        image: "images/client5.jpg"
+      }
+    },
+    {
+      user: { name: "Ivan Santos", profilePic: "images/pro.png", college: "Engineering" },
+      sampleData: {
+        title: "Arduino Project Helper",
+        desc: "Need help wiring and coding an Arduino-based motion sensor for a school demo.",
+        image: "images/client6.jpg"
+      }
+    },
+    {
+      user: { name: "Jasmine Cruz", profilePic: "images/pro.png", college: "Social Work" },
+      sampleData: {
+        title: "Survey Analyst Needed",
+        desc: "Seeking assistance in analyzing survey results for a community outreach study.",
+        image: "images/client7.jpg"
+      }
+    },
+    {
+      user: { name: "Karl Medina", profilePic: "images/pro.png", college: "Architecture" },
+      sampleData: {
+        title: "SketchUp Design Consultant",
+        desc: "Looking for a student to help develop a 3D residential model using SketchUp or AutoCAD.",
+        image: "images/client8.jpg"
+      }
+    },
+    {
+      user: { name: "Liza Mercado", profilePic: "images/pro.png", college: "Home Economics" },
+      sampleData: {
+        title: "Event Planner Assistant",
+        desc: "Need a creative student to assist in planning layouts, invites, and decor for a birthday event.",
+        image: "images/client9.jpg"
+      }
+    },
+    {
+      user: { name: "Marco Rivera", profilePic: "images/pro.png", college: "Sports Science" },
+      sampleData: {
+        title: "Fitness Plan Maker",
+        desc: "Looking for someone to make a beginner-friendly gym workout plan with illustrations.",
+        image: "images/client10.jpg"
+      }
+    },
+    {
+      user: { name: "Nicole Tan", profilePic: "images/pro.png", college: "Business" },
+      sampleData: {
+        title: "Marketing Poster Designer",
+        desc: "Seeking someone to design an eye-catching poster for a student-run clothing brand.",
+        image: "images/client11.jpg"
+      }
+    },
+    {
+      user: { name: "Oscar Jimenez", profilePic: "images/pro.png", college: "Science and Math" },
+      sampleData: {
+        title: "Chem Tutor Needed",
+        desc: "Need a chemistry tutor for a high school sibling struggling with basic formulas and reactions.",
+        image: "images/client12.jpg"
+      }
+    },
+    {
+      user: { name: "Patricia Yap", profilePic: "images/pro.png", college: "Education" },
+      sampleData: {
+        title: "Demo Class Reviewer",
+        desc: "Looking for feedback and guidance on a recorded practice demo teaching session.",
+        image: "images/client13.jpg"
+      }
+    },
+    {
+      user: { name: "Quincy Dela Torre", profilePic: "images/pro.png", college: "Medicine" },
+      sampleData: {
+        title: "Anatomy Quiz Maker",
+        desc: "Need someone to create digital flashcards for anatomy review. Paid per set.",
+        image: "images/client14.jpg"
+      }
+    },
+    {
+      user: { name: "Rhea Morales", profilePic: "images/pro.png", college: "Asian Islamic Studies" },
+      sampleData: {
+        title: "Arabic Translator Needed",
+        desc: "Looking for help translating Islamic texts from Arabic to English for a thesis project.",
+        image: "images/client15.jpg"
+      }
+    },
+    {
+      user: { name: "Samuel Ong", profilePic: "images/pro.png", college: "Public Administration" },
+      sampleData: {
+        title: "Policy Draft Reviewer",
+        desc: "Need assistance reviewing and editing a draft policy proposal for barangay planning.",
+        image: "images/client16.jpg"
+      }
+    },
+    {
+      user: { name: "Trixie Sy", profilePic: "images/pro.png", college: "Teacher Education" },
+      sampleData: {
+        title: "Lesson Plan Formatter",
+        desc: "Looking for someone to format and beautify MS Word lesson plans with diagrams and highlights.",
+        image: "images/client17.jpg"
+      }
     }
+    
   ];
 
   clientPosts.forEach(entry => {
     addPost('look-client', entry.user, entry.sampleData);
   });
 }
+
 
 function simulateIncomingMessage() {
     setTimeout(() => {
