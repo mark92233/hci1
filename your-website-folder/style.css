@@ -25,7 +25,7 @@ body {
 }
 
 /* Sidebar */
-.sidebar {                
+.sidebar {
   background-color: var(--dark-red);
   width: 240px;
   height: 100vh;
@@ -51,11 +51,12 @@ body {
 }
 
 .sidebar-header{
+  margin-top: -15%;
   margin-left: 5%;
 }
 
 .sidebar-header > img {
-      height: 45%;
+  height: 40%;
 }
 
 .sidebar ul {
@@ -330,7 +331,11 @@ button:hover {
   display: flex;
   flex-direction: column;
 }
-
+#imagePreview {
+  max-height: 180px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
 .modal-content form input[type="text"],
 .modal-content form textarea {
   padding: 12px;
