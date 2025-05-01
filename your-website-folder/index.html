@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HCI Modern Website</title>
+  <title>Trabahanap</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="sidebar" id="sidebar">
     <div class="sidebar-header">
-      <img src="logo.png" alt="Logo" class="logo-img"/>
+      <img src="images/trLogo.png" alt="Logo" class="logo-img"/>
     </div>
     
     <ul>
       <li onclick="showSection('find-job')">
-        <img src="images/job (1).png" alt="Find Job">
-        <span>Find Job</span>
+        <img src="images/job (2).png" alt="Find Job">
+        <span>Job</span>
       </li>
       <li onclick="showSection('look-client')">
-        <img src="images/find-client.png" alt="Look for Client">
-        <span>Look for Client</span>
+        <img src="images/find-client (1).png" alt="Look for Client">
+        <span>Workman</span>
       </li>
       <li onclick="showSection('chat')">
-        <img src="images/chating.png" alt="Chat">
+        <img src="images/chat.png" alt="Chat">
         <span>Chat</span>
       </li>
       <li onclick="showSection('profile')">
-        <img src="images/pro.png" alt="Profile">
+        <img src="images/account.png" alt="Profile">
         <span>Profile</span>
       </li>
     </ul>
@@ -48,10 +48,21 @@
           <option value="liberal arts">College of Liberal Arts</option>
           <option value="engineering">College of Engineering</option>
           <option value="architecture">College of Architecture</option>
+          <option value="public administration">College of Public Administration</option>
+          <option value="teacher education">College of Teacher Education</option>
+          <option value="home economics">College of Home Economics</option>
+          <option value="nursing">College of Nursing</option>
+          <option value="law">College of Law</option>
+          <option value="criminal justice">College of Criminal Justice Education</option>
+          <option value="medicine">College of Medicine</option>
+          <option value="asian islamic studies">College of Asian Islamic Studies</option>
+          <option value="social work">College of Social Work and Development</option>
+          <option value="sports science">College of Sports Science and Phisical Education</option>
+          <option value="science and mathematics">College of Science and Mathematics</option>
         </select>
       </div>
     </div>
-    <button onclick="openAddPostModal('find-job')">Add Post</button>
+    <button onclick="openAddPostModal('find-job')" class="addpost">Add Post</button>
     <div class="posts" id="find-job-posts"></div>
   </section>
 
@@ -68,32 +79,41 @@
           <option value="liberal arts">College of Liberal Arts</option>
           <option value="engineering">College of Engineering</option>
           <option value="architecture">College of Architecture</option>
+          <option value="public administration">College of Public Administration</option>
+          <option value="teacher education">College of Teacher Education</option>
+          <option value="home economics">College of Home Economics</option>
+          <option value="nursing">College of Nursing</option>
+          <option value="law">College of Law</option>
+          <option value="criminal justice">College of Criminal Justice Education</option>
+          <option value="medicine">College of Medicine</option>
+          <option value="asian islamic studies">College of Asian Islamic Studies</option>
+          <option value="social work">College of Social Work and Development</option>
+          <option value="sports science">College of Sports Science and Phisical Education</option>
+          <option value="science and mathematics">College of Science and Mathematics</option>
         </select>
       </div>
     </div>
-    <button onclick="openAddPostModal('look-client')">Add Post</button>
+    <button onclick="openAddPostModal('look-client')" class="addpost">Add Post</button>
     <div class="posts" id="look-client-posts"></div>
   </section>
 
-  <!-- Chat -->
-  <section id="chat" class="content-section" style="display: none;">
-    <h1>Chat System</h1>
-    <div class="controls">
-      <input type="text" class="search-bar" placeholder="Search Chats..." onkeyup="searchPosts(this)">
-    </div>
-    <div class="chat-container">
-      <div class="chat-list" id="chat-list"></div>
-      <div class="chat-box-wrapper">
-        <div class="chat-box" id="chat-box">
-          <p>Select a conversation</p>
+      <!-- Chat -->
+      <section id="chat" class="content-section" style="display: none;">
+        <h1>Chat System</h1>
+        <div class="chat-container">
+          <div class="chat-list" id="chat-list"></div>
+          <div class="chat-box-wrapper">
+            <div class="chat-box" id="chat-box"><p>Select a conversation</p></div>
+            <div class="chat-input" id="chat-input-area">
+              <input type="text" id="messageInput" placeholder="Type a message...">
+              <button onclick="sendMessage()">Send</button>
+              <div id="chat-disabled-msg" style="display: none; text-align: center; color: red; margin-top: 10px;">
+                🚫 This conversation has been marked as done. You can no longer send messages.
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="chat-input" id="chat-input-area">
-          <input type="text" id="messageInput" placeholder="Type a message...">
-          <button onclick="sendMessage()">Send</button>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
 
   <!-- Profile -->
   <section id="profile" class="content-section" style="display: none;">
@@ -145,8 +165,8 @@
       <button type="submit">Submit Post</button>
     </form>
   </div>
-</div>        
-<!-- Report User Modal -->
+</div>
+
 <div id="reportModal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="closeReportModal()">&times;</span>
@@ -168,6 +188,18 @@
   </div>
 </div>
 
+<!-- Chat Report Modal -->
+<div class="modal" id="chatReportModal" style="display: none;">
+  <div class="modal-content" style="width: 400px;">
+    <span class="close" onclick="closeChatReportModal()">&times;</span>
+    <h3>Report User</h3>
+    <form id="chatReportForm">
+      <label>Select an offense:</label><br>
+      <input type="radio" name="offense" value="Harassment" required> Harassment<br>
+      <input type="radio" name="offense" value="Spam" required> Spam<br>
+      <input type="radio" name="offense" value="Inappropriate Content" required> Inappropriate Content<br><br>
+      <button type="submit">Submit Report</button>
+    </form>
 </div>
 <!-- View Profile Modal -->
 <div id="viewProfileModal" class="modal">
@@ -176,28 +208,7 @@
     <div id="profileModalContent" class="profile-modern"></div>
   </div>
 </div>
-<div id="postReportModal" class="modal">
-  <div class="modal-content" style="max-width: 400px;">
-    <span class="close" onclick="closePostReportModal()">&times;</span>
-    <h3>Report Post</h3>
-    <form id="postReportForm">
-      <label><input type="radio" name="reason" value="Spam" required> Spam</label><br>
-      <label><input type="radio" name="reason" value="Inappropriate Content"> Inappropriate Content</label><br>
-      <label><input type="radio" name="reason" value="Misleading"> Misleading</label><br><br>
-      <button type="submit">Submit Report</button>
-    </form>
-  </div>
-</div>
 
-<div id="toastContainer" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999;"></div>
-<div id="deleteConfirmModal" class="modal">
-  <div class="modal-content" style="max-width: 400px;">
-    <span class="close" onclick="closeDeleteModal()">&times;</span>
-    <h3>Confirm Deletion</h3>
-    <p>Are you sure you want to delete this post?</p>
-    <button onclick="confirmDeletePost()">Yes, Delete</button>
-  </div>
-</div>
 
 <script src="script.js"></script>
 </body>
