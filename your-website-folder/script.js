@@ -157,17 +157,7 @@ function renderChat() {
     chatBox.innerHTML = `<h2>Chat with ${currentChatUser}</h2>`;
     if (chatsData[currentChatUser]) {
         chatsData[currentChatUser].forEach(msg => {
-          chatBox.innerHTML += `
-          <div class="message ${msg.from === currentUser.name ? 'sent' : 'received'}" style="position: relative;">
-            ${msg.text}
-            <span class="options-button" onclick="toggleOptionsMenu(this)">⋯</span>
-            <div class="options-menu">
-              <button onclick="openChatReportModal('${currentChatUser}')">Report</button>
-              <button onclick="markChatAsDone('${currentChatUser}')">Set as Done</button>
-              <button onclick="deleteMessage(${index})">Delete</button>
-            </div>
-          </div>`;
-        
+            chatBox.innerHTML += `<div class="message ${msg.from === currentUser.name ? 'sent' : 'received'}">${msg.text}</div>`;
         });
     }
 }
@@ -585,44 +575,6 @@ function simulateIncomingMessage() {
 
 function updateChatList() {
     loadChatDirectory();
-}
-
-let reportedUser = null;
-
-function toggleOptionsMenu(button) {
-  const menu = button.nextElementSibling;
-  const allMenus = document.querySelectorAll('.options-menu');
-  allMenus.forEach(m => m !== menu && (m.style.display = 'none'));
-  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-}
-
-function openChatReportModal(userName) {
-  reportedUser = userName;
-  document.getElementById("chatReportModal").style.display = "flex";
-}
-
-function closeChatReportModal() {
-  document.getElementById("chatReportModal").style.display = "none";
-}
-
-document.getElementById("chatReportForm").onsubmit = function (e) {
-  e.preventDefault();
-  chatDoneUsers.push(reportedUser);
-  closeChatReportModal();
-  openChat(reportedUser); // refresh to apply disabled input
-  alert("Report submitted. Chat has been closed.");
-};
-
-function markChatAsDone(user) {
-  chatDoneUsers.push(user);
-  openChat(user); // refresh chat UI
-}
-
-function deleteMessage(index) {
-  if (currentChatUser && chatsData[currentChatUser]) {
-    chatsData[currentChatUser].splice(index, 1);
-    renderChat();
-  }
 }
 
 window.onload = function() {
