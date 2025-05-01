@@ -613,15 +613,24 @@ function highlightSelectedUser(userName) {
 }
 
 function openViewModal(title, desc, image) {
-    document.getElementById("modalTitle").innerText = title;
-    document.getElementById("modalDesc").innerText = desc;
-    document.getElementById("modalImage").src = image;
-    document.getElementById("viewModal").style.display = "flex";
+  document.getElementById("modalTitle").innerText = title;
+  document.getElementById("modalDesc").innerText = desc;
+
+  const modalImage = document.getElementById("modalImage");
+  if (image && image.trim() !== "") {
+      modalImage.src = image;
+      modalImage.style.display = "block";
+  } else {
+      modalImage.style.display = "none";
+  }
+
+  document.getElementById("viewModal").style.display = "flex";
 }
 
 function closeViewModal() {
-    document.getElementById("viewModal").style.display = "none";
+  document.getElementById("viewModal").style.display = "none";
 }
+
 
 function loadAdminMockData() {
     const reportList = document.getElementById("report-list");
