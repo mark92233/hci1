@@ -970,32 +970,3 @@ button:hover {
 .main-content {
   margin-left: 240px;
 }
-
-.pending-report-msg {
-  background: #ffefc1;
-  color: #a46d00;
-  padding: 8px;
-  font-size: 13px;
-  margin-top: 10px;
-  border-left: 4px solid #f0b400;
-  border-radius: 6px;
-}
-
-.toast-notification {
-  background: var(--dark-red);
-  color: white;
-  padding: 12px 18px;
-  margin-top: 10px;
-  border-radius: 8px;
-  font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  position: relative;
-}
-
-.toast-notification .close-toast {
-  position: absolute;
-  top: 6px;
-  right: 10px;
-  cursor: pointer;
-  font-size: 16px;
-}
