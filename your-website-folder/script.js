@@ -674,7 +674,6 @@ function highlightSelectedUser(userName) {
       }
     });
 }
-//View Modal 
 function openViewModal(title, desc, image, section) {
   const modal = document.getElementById("viewModal");
   const body = document.getElementById("viewModalBody");
