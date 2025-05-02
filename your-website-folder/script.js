@@ -792,24 +792,3 @@ function loadAdminMockData() {
     
 }
 
-function openRateModal() {
-  document.getElementById('rate-modal').style.display = 'flex';
-}
-
-function openSuspendModal() {
-  document.getElementById('suspend-modal').style.display = 'flex';
-}
-
-function closeModal(id) {
-  document.getElementById(id).style.display = 'none';
-}
-
-function openChat(freelancerName) {
-  // Logic that opens existing chat system and selects the freelancer
-  console.log("Opening chat with", freelancerName);
-
-  document.getElementById('nav-chat').click();
-  setTimeout(() => {
-    selectChatWithUser(freelancerName); // this function should exist in your chat system
-  }, 300);
-}
