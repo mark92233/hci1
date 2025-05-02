@@ -96,25 +96,27 @@ function addPost(section, user, sampleData = {}) {
   const title = sampleData.title || document.getElementById('jobTitle')?.value || "Untitled Job";
   const desc = sampleData.desc || document.getElementById('jobDesc')?.value || "No description provided.";
   let image = sampleData.image || "images/edit.jpg";
-  const uploadedImage = document.getElementById("jobImage");
-  if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
-      image = URL.createObjectURL(uploadedImage.files[0]);
-  }
+const uploadedImage = document.getElementById("jobImage");
+if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
+    image = URL.createObjectURL(uploadedImage.files[0]);
+}
 
   const timestamp = "Posted just now";
 
-  // Build post content
+  // Build post content based on section
   let postContent = `
-    <div class="post-header">
-      <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>
-      <div>
-        <span class="username" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>${user.name}</span><br>
-        <span class="college">College: ${user.college}</span><br>
-        <small class="timestamp">${timestamp}</small>
-      </div>
+  <div class="post-header">
+    <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>
+    <div>
+      <span class="username" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>${user.name}</span><br>
+      <span class="college">College: ${user.college}</span><br>
+      <small class="timestamp">${timestamp}</small>
     </div>
-  `;
+  </div>
+`;
 
+
+  // Only include image if section is "find-job"
   if (section === "find-job") {
     postContent += `<img src="${image}" class="post-preview" alt="Preview Image">`;
   }
@@ -125,45 +127,15 @@ function addPost(section, user, sampleData = {}) {
     <div class="post-actions">
       <button onclick="openViewModal('${title}', \`${desc}\`, '${image}', '${section}')">View More</button>
       ${user.name !== currentUser.name ? `
-        <button class="report-btn">Report</button>
         <button onclick="openChat('${user.name}')">Contact</button>
-      ` : `
-        <button class="delete-btn">Delete</button>
-      `}
+        <button onclick="openPostReportModal('${title}')">Report</button>
+      ` : ""}
+      
     </div>
   `;
 
   newPost.innerHTML = postContent;
-
-  // Add to top of post list
-  postsContainer.prepend(newPost);
-
-  // REPORT HANDLER
-  const reportBtn = newPost.querySelector('.report-btn');
-  if (reportBtn) {
-    reportBtn.addEventListener('click', () => {
-      const overlay = document.createElement('div');
-      overlay.className = 'post-overlay';
-      overlay.innerText = 'Report is being processed by the admin. Thank you for reporting.';
-      newPost.appendChild(overlay);
-
-      setTimeout(() => {
-        overlay.innerText = 'The post has been reviewed by the admin. Report was successful.';
-        setTimeout(() => newPost.remove(), 1500);
-      }, 3000);
-    });
-  }
-
-  // DELETE HANDLER
-  const deleteBtn = newPost.querySelector('.delete-btn');
-  if (deleteBtn) {
-    deleteBtn.addEventListener('click', () => {
-      const confirmDelete = confirm("Are you sure you want to delete this post?");
-      if (confirmDelete) {
-        newPost.remove();
-      }
-    });
-  }
+  postsContainer.appendChild(newPost);
 }
 
 
