@@ -661,6 +661,7 @@ function openViewModal(title, desc, image, section) {
 function closeViewModal() {
   document.getElementById("viewModal").style.display = "none";
 }
+
 function openProfileModal(user) {
   const modal = document.getElementById("viewProfileModal");
   const content = document.getElementById("profileModalContent");
