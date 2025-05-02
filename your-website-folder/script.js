@@ -125,7 +125,11 @@ if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
     <p class="short-desc">${desc.substring(0, 100)}...</p>
     <div class="post-actions">
       <button onclick="openViewModal('${title}', \`${desc}\`, '${image}', '${section}')">View More</button>
-      ${user.name !== currentUser.name ? `<button onclick="openChat('${user.name}')">Contact</button>` : ""}
+      ${user.name !== currentUser.name ? `
+        <button onclick="openChat('${user.name}')">Contact</button>
+        <button onclick="openPostReportModal('${title}')">Report</button>
+      ` : ""}
+      
     </div>
   `;
 
@@ -153,9 +157,42 @@ function openChat(userName) {
       updateChatList();
     }
 }
+function openChatReportModal(userName) {
+  const modal = document.getElementById("chatReportModal");
+  const body = document.getElementById("chatReportBody");
+
+  body.innerHTML = `
+    <h3>Report Chat with ${userName}</h3>
+    <form id="chatReportForm">
+      <label><input type="radio" name="reason" value="Harassment" required> Harassment</label><br>
+      <label><input type="radio" name="reason" value="Spam" required> Spam</label><br>
+      <label><input type="radio" name="reason" value="Inappropriate Messages" required> Inappropriate Messages</label><br><br>
+      <button type="submit">Submit Report</button>
+    </form>
+  `;
+
+  modal.style.display = "flex";
+
+  document.getElementById("chatReportForm").onsubmit = function (e) {
+    e.preventDefault();
+    modal.style.display = "none";
+    alert(`Chat with ${userName} has been reported.`);
+  };
+}
+
+function closeChatReportModal() {
+  document.getElementById("chatReportModal").style.display = "none";
+}
+
 
 function renderChat() {
-    chatBox.innerHTML = `<h2>Chat with ${currentChatUser}</h2>`;
+  chatBox.innerHTML = `
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>Chat with ${currentChatUser}</h2>
+    <button onclick="openChatReportModal('${currentChatUser}')">Report</button>
+  </div>
+`;
+
     if (chatsData[currentChatUser]) {
         chatsData[currentChatUser].forEach(msg => {
             chatBox.innerHTML += `<div class="message ${msg.from === currentUser.name ? 'sent' : 'received'}">${msg.text}</div>`;
@@ -661,6 +698,31 @@ function openViewModal(title, desc, image, section) {
 function closeViewModal() {
   document.getElementById("viewModal").style.display = "none";
 }
+function openPostReportModal(postTitle) {
+  const modal = document.getElementById("postReportModal");
+  const body = document.getElementById("postReportBody");
+  body.innerHTML = `
+    <h3>Report Post: ${postTitle}</h3>
+    <form id="postReportForm">
+      <label><input type="radio" name="reason" value="Inappropriate Content" required> Inappropriate Content</label><br>
+      <label><input type="radio" name="reason" value="Spam or Misleading" required> Spam or Misleading</label><br>
+      <label><input type="radio" name="reason" value="Harassment or Hate Speech" required> Harassment or Hate Speech</label><br>
+      <label><input type="radio" name="reason" value="False Information" required> False Information</label><br><br>
+      <button type="submit">Submit Report</button>
+    </form>
+  `;
+  modal.style.display = "flex";
+
+  document.getElementById("postReportForm").onsubmit = function(e) {
+    e.preventDefault();
+    alert("Report submitted successfully.");
+    modal.style.display = "none";
+  };
+}
+
+function closePostReportModal() {
+  document.getElementById("postReportModal").style.display = "none";
+}
 
 function openProfileModal(user) {
   const modal = document.getElementById("viewProfileModal");
@@ -730,3 +792,32 @@ function loadAdminMockData() {
     
 }
  
+function loadProfileTabContent() {
+  const postsTab = document.getElementById("profile-posts");
+  const schedulesTab = document.getElementById("profile-schedules");
+
+  postsTab.innerHTML = "";
+  schedulesTab.innerHTML = "";
+
+  // Load first 3 from samplePosts
+  samplePosts.slice(0, 3).forEach(post => {
+    const div = document.createElement("div");
+    div.className = "post-card";
+    div.innerHTML = `
+      <h3>${post.sampleData.title}</h3>
+      <p>${post.sampleData.desc.substring(0, 100)}...</p>
+    `;
+    postsTab.appendChild(div);
+  });
+
+  // Load all from clientPosts
+  clientPosts.forEach(post => {
+    const div = document.createElement("div");
+    div.className = "post-card";
+    div.innerHTML = `
+      <h3>${post.sampleData.title}</h3>
+      <p>${post.sampleData.desc.substring(0, 100)}...</p>
+    `;
+    schedulesTab.appendChild(div);
+  });
+}
