@@ -176,6 +176,31 @@ function signinAdmin() {
           <input type="text" id="signup-student-id-suffix" placeholder="XXXXX" maxlength="5" required>
         </div>
         <p class="error-msg" id="signup-student-id-error"></p>
+         <div class="filter">
+        <label>College:</label>
+        <select onchange="filterByCollege(this)">
+          <option value="">All Colleges</option>
+          <option value="computing studies">College of Computing Studies</option>
+          <option value="liberal arts">College of Liberal Arts</option>
+          <option value="engineering">College of Engineering</option>
+          <option value="architecture">College of Architecture</option>
+          <option value="public administration">College of Public Administration</option>
+          <option value="teacher education">College of Teacher Education</option>
+          <option value="home economics">College of Home Economics</option>
+          <option value="nursing">College of Nursing</option>
+          <option value="law">College of Law</option>
+          <option value="criminal justice">College of Criminal Justice Education</option>
+          <option value="medicine">College of Medicine</option>
+          <option value="asian islamic studies">College of Asian Islamic Studies</option>
+          <option value="social work">College of Social Work and Development</option>
+          <option value="sports science">College of Sports Science and Phisical Education</option>
+          <option value="science and mathematics">College of Science and Mathematics</option>
+        </select>
+      </div>
+        <p>Insert Picture of your ID: </p>
+        <p style="margin-left: -80%; color: gray;">Front:</p>
+        <input type="file" id="signup-image" accept="image/*" required placeholder="front">
+        <p style="margin-left: -80%; color: gray;">Back:</p>
         <input type="file" id="signup-image" accept="image/*" required>
         <p class="error-msg" id="signup-image-error"></p>
         <button type="submit">Sign Up</button>

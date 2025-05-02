@@ -3,34 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard</title>
+  <title>Trabahanap</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="images/trLogo.png">
 </head>
 <body>
   <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <img src="images/trLogo.png" alt="Logo" class="logo-img"/>
+    </div>
     <ul>
       <li onclick="showSection('report-handling')">
-        <img src="icons/report.png" alt="Report Handling">
-        <span>Report Handling</span>
+        <img src="images/danger.png" alt="Report Handling">
+        <span>Reports</span>
       </li>
       <li onclick="showSection('accept-accounts')">
-        <img src="icons/accept.png" alt="Accept Accounts">
-        <span>Accept Accounts</span>
+        <img src="images/yes.png" alt="Accept Accounts">
+        <span>Requests</span>
       </li>
       <li onclick="showSection('find-job')">
-        <img src="images/job (1).png" alt="Find Job">
-        <span>Find Job</span>
+        <img src="images/job (2).png" alt="Find Job">
+        <span>Job</span>
       </li>
       <li onclick="showSection('look-client')">
-        <img src="images/find-client.png" alt="Look for Client">
-        <span>Look for Client</span>
+        <img src="images/find-client (1).png" alt="Look for Client">
+        <span>Workman</span>
       </li>
       <li onclick="showSection('chat')">
-        <img src="images/chating.png" alt="Chat">
+        <img src="images/chat.png" alt="Chat">
         <span>Chat</span>
       </li>
       <li onclick="showSection('profile')">
-        <img src="images/pro.png" alt="Profile">
+        <img src="images/account.png" alt="Profile">
         <span>Profile</span>
       </li>
     </ul>
@@ -39,19 +43,19 @@
   <div class="main-content">
     <!-- Report Handling -->
     <section id="report-handling" class="content-section">
-      <h1>Report Handling</h1>
+      <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Report Handling</h1>
       <div id="report-list"><p>Loading reports...</p></div>
     </section>
 
     <!-- Accept Accounts -->
     <section id="accept-accounts" class="content-section" style="display: none;">
-      <h1>Accept Accounts</h1>
+      <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Accept Accounts</h1>
       <div id="account-requests"><p>Loading account requests...</p></div>
     </section>
 
     <!-- Find Job -->
     <section id="find-job" class="content-section" style="display: none;">
-      <h1>Find Job</h1>
+      <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Find Job</h1>
       <div class="controls">
         <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
         <div class="filter">
@@ -71,7 +75,7 @@
 
     <!-- Look for Client -->
     <section id="look-client" class="content-section" style="display: none;">
-      <h1>Look for Client</h1>
+      <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Look for Client</h1>
       <div class="controls">
         <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
         <div class="filter">
@@ -91,7 +95,7 @@
 
       <!-- Chat -->
 <section id="chat" class="content-section" style="display: none;">
-  <h1>Chat System</h1>
+  <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Chats</h1>
   <div class="chat-container">
     <div class="chat-list" id="chat-list"></div>
     <div class="chat-box-wrapper">
@@ -106,6 +110,7 @@
     </div>
   </div>
 </section>
+
 
     <!-- Profile -->
     <section id="profile" class="content-section" style="display: none;">

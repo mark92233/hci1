@@ -134,6 +134,7 @@ if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
 }
 
 
+
 function openChat(userName) {
     showSection('chat');
     currentChatUser = userName;
@@ -220,7 +221,7 @@ function filterByCollege(select) {
 
 function logout() {
     alert("Logged out successfully!");
-    window.location.href = "index.html";
+    window.location.href = "landing.html";
 }
 
 function loadDefaultPosts() {
@@ -682,6 +683,12 @@ function openProfileModal(user) {
   modal.style.display = "flex";
 }
 
+const profilePics = newPost.querySelectorAll('.profile-pic, .username');
+profilePics.forEach(el => {
+  el.style.cursor = "pointer";
+  el.addEventListener('click', () => openProfileModal(user));
+});
+
 function closeProfileModal() {
   document.getElementById("viewProfileModal").style.display = "none";
 }
@@ -707,8 +714,10 @@ function loadAdminMockData() {
     const accountRequests = document.getElementById("account-requests");
     accountRequests.innerHTML = `
       <div class="post-card">
-        <h3>Request from Jane Doe</h3>
-        <p>Email: jane@example.com</p>
+        <h3>Account Request</h3>
+        <p>Email: ae202403655@wmsu.edu.ph</p>
+        <p>College: Computing Studies</p>
+        <p>ID picture: </p>
         <button onclick="alert('Account accepted')">Accept</button>
         <button onclick="alert('Account rejected')">Reject</button>
       </div>

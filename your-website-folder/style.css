@@ -131,13 +131,11 @@ body {
 
 /* Content Section */
 .content-section {
-  background: var(--white);
   padding: 30px;
-  border-radius: 12px;
   border-left: 6px solid var(--gold);
-  box-shadow: 0 8px 20px var(--shadow);
   animation: fadeIn 0.5s ease;
   margin-bottom: 30px;
+  
 }
 
 /* Controls */
