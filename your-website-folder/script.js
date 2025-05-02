@@ -24,7 +24,8 @@ const currentUser = {
 const sampleUsers = [
     { name: "Alice Johnson", profilePic: "images/pro.png", college: "computing studies" },
     { name: "Bob Smith", profilePic: "images/pro.png", college: "liberal arts" },
-    { name: "Charlie Brown", profilePic: "images/pro.png", college: "engineering" }
+    { name: "Charlie Brown", profilePic: "images/pro.png", college: "engineering" },
+    
 ];
 
 // Navigation
