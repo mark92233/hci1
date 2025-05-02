@@ -807,7 +807,7 @@ function closeModal(id) {
 function openChat(freelancerName) {
   // Logic that opens existing chat system and selects the freelancer
   console.log("Opening chat with", freelancerName);
-  // Example: navigate to chat and auto-select conversation
+
   document.getElementById('nav-chat').click();
   setTimeout(() => {
     selectChatWithUser(freelancerName); // this function should exist in your chat system
