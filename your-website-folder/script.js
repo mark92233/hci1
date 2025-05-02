@@ -788,36 +788,7 @@ function loadAdminMockData() {
         <button onclick="alert('Account accepted')">Accept</button>
         <button onclick="alert('Account rejected')">Reject</button>
       </div>
-    `;
+    `;  
     
 }
- 
-function loadProfileTabContent() {
-  const postsTab = document.getElementById("profile-posts");
-  const schedulesTab = document.getElementById("profile-schedules");
 
-  postsTab.innerHTML = "";
-  schedulesTab.innerHTML = "";
-
-  // Load first 3 from samplePosts
-  samplePosts.slice(0, 3).forEach(post => {
-    const div = document.createElement("div");
-    div.className = "post-card";
-    div.innerHTML = `
-      <h3>${post.sampleData.title}</h3>
-      <p>${post.sampleData.desc.substring(0, 100)}...</p>
-    `;
-    postsTab.appendChild(div);
-  });
-
-  // Load all from clientPosts
-  clientPosts.forEach(post => {
-    const div = document.createElement("div");
-    div.className = "post-card";
-    div.innerHTML = `
-      <h3>${post.sampleData.title}</h3>
-      <p>${post.sampleData.desc.substring(0, 100)}...</p>
-    `;
-    schedulesTab.appendChild(div);
-  });
-}
