@@ -131,9 +131,21 @@
         </div>
       </div>
 
-      <div class="tabBar">
-        <button class="tabModern active" onclick="switchModernTab('posts')">Job</button>
-        <button class="tabModern" onclick="switchModernTab('schedules')">Freelancer</button>
+      <div id="transaction-listings" class="transaction-list">
+        <h2>Ongoing Transactions</h2>
+      
+        <div class="transaction-card">
+          <img src="freelancer.jpg" alt="Freelancer Profile" class="freelancer-photo">
+          <div class="transaction-details">
+            <h3>John Doe</h3>
+            <p>Web Developer</p>
+            <div class="transaction-actions">
+              <button onclick="openRateModal()">Set as Done</button>
+              <button onclick="openSuspendModal()">Suspend</button>
+              <button onclick="openChat('John Doe')">Chat</button>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="tabContent" id="profile-posts">
@@ -234,6 +246,40 @@
   <div class="modal-content" style="background: white; padding: 20px; border-radius: 12px; max-width: 400px; width: 90%; position: relative;">
     <span class="close" onclick="closeProfileModal()" style="position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer;">&times;</span>
     <div id="profileModalContent"></div>
+  </div>
+</div>
+
+<!-- Rate Modal -->
+<div id="rate-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('rate-modal')">&times;</span>
+    <h3>Rate Freelancer</h3>
+    <label>Stars:</label>
+    <select>
+      <option>5 - Excellent</option>
+      <option>4 - Good</option>
+      <option>3 - Fair</option>
+      <option>2 - Poor</option>
+      <option>1 - Bad</option>
+    </select>
+    <textarea placeholder="Write your feedback here..."></textarea>
+    <button>Submit Rating</button>
+  </div>
+</div>
+
+<!-- Suspend Modal -->
+<div id="suspend-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('suspend-modal')">&times;</span>
+    <h3>Suspend Transaction</h3>
+    <label>Reason:</label>
+    <select>
+      <option>Inappropriate behavior</option>
+      <option>Work not delivered</option>
+      <option>Other</option>
+    </select>
+    <textarea placeholder="Optional additional comments..."></textarea>
+    <button>Submit Suspension</button>
   </div>
 </div>
 
