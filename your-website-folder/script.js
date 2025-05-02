@@ -178,8 +178,21 @@ function openChatReportModal(userName) {
     e.preventDefault();
     modal.style.display = "none";
     alert(`Chat with ${userName} has been reported.`);
+
+    // ⬇️ This disables the chat input after reporting
+    const inputField = document.getElementById(`input-${userName}`);
+    const inputContainer = inputField?.parentElement;
+
+    if (inputContainer) {
+      inputContainer.innerHTML = `
+        <div class="disabled-msg">
+          Thank you for reporting. This conversation is now under review by the admin.
+        </div>
+      `;
+    }
   };
 }
+
 
 function closeChatReportModal() {
   document.getElementById("chatReportModal").style.display = "none";
