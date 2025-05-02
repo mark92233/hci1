@@ -718,10 +718,15 @@ function loadAdminMockData() {
         <h3>Account Request</h3>
         <p>Email: ae202403655@wmsu.edu.ph</p>
         <p>College: Computing Studies</p>
-        <p>ID picture: </p>
+        <p>ID picture:</p>
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+          <img src="images/ID front.jpg" alt="ID Front" style="width: 100px; height: auto; border: 1px solid #ccc;">
+          <img src="images/ID back.jpg" alt="ID Back" style="width: 100px; height: auto; border: 1px solid #ccc;">
+        </div>
         <button onclick="alert('Account accepted')">Accept</button>
         <button onclick="alert('Account rejected')">Reject</button>
       </div>
     `;
+    
 }
  
