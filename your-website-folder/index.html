@@ -166,6 +166,16 @@
     </form>
   </div>
 </div>
+<!-- Modals for Posting and Viewing -->
+<div id="postModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form id="postForm">
+      <div id="dynamicFields"></div>
+      <button type="submit">Submit Post</button>
+    </form>
+  </div>
+</div>
 
 <div id="reportModal" class="modal">
   <div class="modal-content">
@@ -184,29 +194,39 @@
 <div id="viewModal" class="modal">
   <div class="modal-content" style="max-width: 500px;">
     <span class="close" onclick="closeViewModal()">&times;</span>
-    <div id="viewModalBody"></div>
+    <img id="modalImage" src="" alt="Preview" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
   </div>
 </div>
-
 <!-- Chat Report Modal -->
 <div class="modal" id="chatReportModal" style="display: none;">
-  <div class="modal-content" style="width: 400px;">
-    <span class="close" onclick="closeChatReportModal()">&times;</span>
-    <h3>Report User</h3>
-    <form id="chatReportForm">
-      <label>Select an offense:</label><br>
-      <input type="radio" name="offense" value="Harassment" required> Harassment<br>
-      <input type="radio" name="offense" value="Spam" required> Spam<br>
-      <input type="radio" name="offense" value="Inappropriate Content" required> Inappropriate Content<br><br>
-      <button type="submit">Submit Report</button>
-    </form>
+<div class="modal-content" style="width: 400px;">
+  <span class="close" onclick="closeChatReportModal()">&times;</span>
+  <h3>Report User</h3>
+  <form id="chatReportForm">
+    <label>Select an offense:</label><br>
+    <input type="radio" name="offense" value="Harassment" required> Harassment<br>
+    <input type="radio" name="offense" value="Spam" required> Spam<br>
+    <input type="radio" name="offense" value="Inappropriate Content" required> Inappropriate Content<br><br>
+    <button type="submit">Submit Report</button>
+  </form>
 </div>
-<!-- View Profile Modal -->
-<div id="viewProfileModal" class="modal">
-  <div class="modal-content" style="max-width: 600px;">
-    <span class="close" onclick="closeProfileModal()">&times;</span>
-    <div id="profileModalContent" class="profile-modern"></div>
-  </div>
+</div>
+
+<!-- Report Post Modal -->
+<div id="postReportModal" class="modal">
+<div class="modal-content" style="max-width: 500px;">
+  <span class="close" onclick="closePostReportModal()">&times;</span>
+  <div id="postReportBody"></div>
+</div>
+</div>
+
+<div id="chatReportModal" class="modal">
+<div class="modal-content" style="max-width: 500px;">
+  <span class="close" onclick="closeChatReportModal()">&times;</span>
+  <div id="chatReportBody"></div>
+</div>
 </div>
 
 
