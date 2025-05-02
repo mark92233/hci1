@@ -655,7 +655,7 @@ tabs.forEach(tab => {
       loadImages(savedPosts);
     } else if (tab.textContent === "Tagged") {
       loadImages(taggedPosts);
-    }
+}
   });
 });
 
@@ -679,6 +679,8 @@ function switchModernTab(tab) {
     document.querySelector(`[onclick*="${tab}"]`).classList.add("active");
     document.getElementById(`profile-${tab}`).style.display = "block";
 }
+
+
 
 function highlightSelectedUser(userName) {
     document.querySelectorAll(".chat-user").forEach(user => {
@@ -805,3 +807,59 @@ function loadAdminMockData() {
     
 }
 
+// Open modal by ID
+function openCustomModal(id) {
+  document.getElementById(id).style.display = 'block';
+  document.body.classList.add('custom-modal-open');
+}
+
+// Close modal by ID
+function closeCustomModal(id) {
+  document.getElementById(id).style.display = 'none';
+  document.body.classList.remove('custom-modal-open');
+}
+
+// Submit "Set as Done" Modal
+function submitDoneModal() {
+  const rating = document.getElementById('custom-rating').value;
+  const feedback = document.getElementById('custom-feedback').value;
+
+  if (!rating || rating < 1 || rating > 5) {
+    alert('Please provide a valid rating from 1 to 5.');
+    return;
+  }
+
+  // Optional: Send to server (simulate here)
+  console.log('Rating:', rating);
+  console.log('Feedback:', feedback);
+
+  alert('Thank you for rating the freelancer!');
+  closeCustomModal('doneModal');
+}
+
+// Submit "Suspend" Modal
+function submitSuspendModal() {
+  const reason = document.getElementById('custom-reason').value;
+  const explanation = document.getElementById('custom-explanation').value;
+
+  if (!reason) {
+    alert('Please select a reason to suspend.');
+    return;
+  }
+
+  // Optional: Send to server (simulate here)
+  console.log('Suspend Reason:', reason);
+  console.log('Explanation:', explanation);
+
+  alert('Transaction has been marked as suspended.');
+  closeCustomModal('suspendModal');
+}
+
+// Redirect to chat (pass freelancer ID as parameter)
+function redirectToChat(freelancerId) {
+  if (!freelancerId) {
+    alert("Invalid user ID");
+    return;
+  }
+  window.location.href = `/chat?user=${freelancerId}`;
+}

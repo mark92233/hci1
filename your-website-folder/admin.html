@@ -69,7 +69,7 @@
           </select>
         </div>
       </div>
-      <button onclick="openAddPostModal('find-job')">Add Post</button>
+      <button onclick="openAddPostModal('find-job')" class="addpost">Add Post</button>
       <div class="posts" id="find-job-posts"></div>
     </section>
 
@@ -89,7 +89,7 @@
           </select>
         </div>
       </div>
-      <button onclick="openAddPostModal('look-client')">Add Post</button>
+      <button onclick="openAddPostModal('look-client')" class="addpost">Add Post</button>
       <div class="posts" id="look-client-posts"></div>
     </section>
 
@@ -116,41 +116,113 @@
     <section id="profile" class="content-section" style="display: none;">
       <div class="profileContainer profile-modern">
         <div class="profileCard">
-          <img src="avatar.png" alt="Profile" class="profileAvatar">
+          <img src="images/pro.png" alt="Profile" class="profileAvatar">
           <div class="profileDetails">
             <p class="profileHandle">@ae202404556</p>
             <div class="profileStats">
-              <span><strong>3</strong> Posts</span>
-              <span><strong>85</strong> Credit Score</span>
+              <span><strong>4.5</strong> Average Rating</span>
+              <span><strong>85</strong> Done Deals</span>
             </div>
             <p class="profileName">User One Name</p>
             <p class="profileCollege">College Of Computing Studies</p>
           </div>
         </div>
-
-        <div class="tabBar">
-          <button class="tabModern active" onclick="switchModernTab('posts')">🖼️ POSTS</button>
-          <button class="tabModern" onclick="switchModernTab('schedules')">📅 Schedules</button>
-        </div>
-
-        <div class="tabContent" id="profile-posts">
-          <div class="gridPhotos">
-            <img src="img1.jpg" alt="">
-            <img src="img2.jpg" alt="">
-            <img src="img3.jpg" alt="">
+    
+        <!-- Transaction Listings Section -->
+        <div class="transactionListings">
+          <h3>Ongoing Deals</h3>
+          <div class="transactionCard" style="display: flex; gap: 50px; border-radius: 20px; border: 2px solid gray; padding: 10px;">
+            <img src="images/pro.png" alt="Freelancer Profile" class="transactionAvatar">
+            <div class="transactionInfo">
+              <p><strong>Name:</strong>Juan Dela Cruz</p>
+              <p><strong>Job Title:</strong> Graphic Designer</p>
+            </div>
+            <div class="transactionActions">
+              <button onclick="openCustomModal('doneModal')">Set as Done</button>
+              <button onclick="openCustomModal('suspendModal')">Suspend</button>
+              <button onclick="openChat('Juan Dela Cruz')">Contact</button>
+            </div>
+          </div>
+          <div class="transactionCard"  style="display: flex; gap: 50px; border-radius: 20px; border: 2px solid gray; padding: 10px;">
+            <img src="images/pro.png" alt="Freelancer Profile" class="transactionAvatar">
+            <div class="transactionInfo">
+              <p><strong>Name:</strong> Luzviminda Reyes</p>
+              <p><strong>Job Title:</strong> Graphic Designer</p>
+            </div>
+            <div class="transactionActions">
+              <button onclick="openCustomModal('doneModal')">Set as Done</button>
+              <button onclick="openCustomModal('suspendModal')">Suspend</button>
+              <button onclick="openChat('Luzviminda Reyes')">Contact</button>
+            </div>
+          </div>
+          <div class="transactionCard"  style="display: flex; gap: 50px; border-radius: 20px; border: 2px solid gray; padding: 10px;">
+            <img src="images/pro.png" alt="Freelancer Profile" class="transactionAvatar">
+            <div class="transactionInfo">
+              <p><strong>Name:</strong> Carmen Rosales</p>
+              <p><strong>Job Title:</strong> Graphic Designer</p>
+            </div>
+            <div class="transactionActions">
+              <button onclick="openCustomModal('doneModal')">Set as Done</button>
+              <button onclick="openCustomModal('suspendModal')">Suspend</button>
+              <button onclick="openChat('Carmen Rosales')">Contact</button>
+            </div>
+          </div>
+          <div class="transactionCard"  style="display: flex; gap: 50px; border-radius: 20px; border: 2px solid gray; padding: 10px;">
+            <img src="images/pro.png" alt="Freelancer Profile" class="transactionAvatar">
+            <div class="transactionInfo">
+              <p><strong>Name:</strong> Isabelo delos Reyes</p>
+              <p><strong>Job Title:</strong> Graphic Designer</p>
+            </div>
+            <div class="transactionActions">
+              <button onclick="openCustomModal('doneModal')">Set as Done</button>
+              <button onclick="openCustomModal('suspendModal')">Suspend</button>
+              <button onclick="openChat('Isabelo delos Reyes')">Contact</button>
+            </div>
           </div>
         </div>
-
-        <div class="tabContent" id="profile-schedules" style="display: none;">
-          <p style="text-align:center;">No schedules yet.</p>
+    
+        <!-- Done Modal -->
+        <div id="doneModal" class="custom-modal">
+          <span class="custom-close" onclick="closeCustomModal('doneModal')">&times;</span>
+          <div class="custom-modal-header">Rate the Freelancer</div>
+        
+          <label class="custom-label" for="custom-rating">Rating (1–5):</label>
+          <input type="number" id="custom-rating" min="1" max="5" class="custom-input" />
+        
+          <label class="custom-label" for="custom-feedback">Feedback:</label>
+          <textarea id="custom-feedback" rows="4" placeholder="Write your feedback..." class="custom-input"></textarea>
+        
+          <button class="custom-button" onclick="submitDoneModal()">Submit</button>
         </div>
-
+        
+    
+        <!-- Suspend Modal -->
+        <div id="suspendModal" class="custom-modal">
+          <span class="custom-close" onclick="closeCustomModal('suspendModal')">&times;</span>
+          <div class="custom-modal-header">Suspend Transaction</div>
+        
+          <label class="custom-label" for="custom-reason">Reason for Suspension:</label>
+          <select id="custom-reason" class="custom-input">
+            <option value="">-- Select Reason --</option>
+            <option value="delayed">Delayed Submission</option>
+            <option value="no-response">No Response</option>
+            <option value="unsatisfactory">Unsatisfactory Work</option>
+          </select>
+        
+          <label class="custom-label" for="custom-explanation">Additional Explanation:</label>
+          <textarea id="custom-explanation" rows="3" placeholder="Provide details..." class="custom-input"></textarea>
+        
+          <button class="custom-button" onclick="submitSuspendModal()">Submit</button>
+        </div>
+        
+    
         <div class="logoutButtonContainer">
           <button onclick="logout()">Logout</button>
         </div>
       </div>
     </section>
-  </div>
+    
+    </div>
 
   <!-- Modals for Posting and Viewing -->
   <div id="postModal" class="modal">
