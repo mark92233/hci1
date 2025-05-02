@@ -22,11 +22,11 @@ const currentUser = {
 };
 
 const sampleUsers = [
-    { name: "Alice Johnson", profilePic: "images/pro.png", college: "computing studies" },
-    { name: "Bob Smith", profilePic: "images/pro.png", college: "liberal arts" },
-    { name: "Charlie Brown", profilePic: "images/pro.png", college: "engineering" },
-    
+  { name: 'Anna', status: 'active' },
+  { name: 'Ben', status: 'done' },
+  { name: 'Cara', status: 'reported' },
 ];
+
 
 // Navigation
 function showSection(id) {
@@ -158,6 +158,7 @@ function openChat(userName) {
       updateChatList();
     }
 }
+
 function openChatReportModal(userName) {
   const modal = document.getElementById("chatReportModal");
   const body = document.getElementById("chatReportBody");
@@ -178,8 +179,21 @@ function openChatReportModal(userName) {
     e.preventDefault();
     modal.style.display = "none";
     alert(`Chat with ${userName} has been reported.`);
+
+    // Disable input field and buttons
+    const inputField = document.getElementById(`input-${userName}`);
+    const inputContainer = inputField?.parentElement;
+
+    if (inputContainer) {
+      inputContainer.innerHTML = `
+        <div class="disabled-msg">
+          Thank you for reporting. This conversation is now under review by the admin.
+        </div>
+      `;
+    }
   };
 }
+
 
 function closeChatReportModal() {
   document.getElementById("chatReportModal").style.display = "none";
@@ -212,25 +226,58 @@ function sendMessage() {
 }
 
 function loadChatDirectory() {
-    chatList.innerHTML = '';
-    sampleUsers.forEach(user => {
-        createChatUser(user.name);
-    });
+  chatList.innerHTML = '';
+  sampleUsers.forEach(user => {
+    createChatUser(user.name, user.status);
+  });
 }
 
-function createChatUser(name) {
-    const user = sampleUsers.find(u => u.name === name);
-    const userDiv = document.createElement('div');
-    userDiv.className = 'chat-user';
-    userDiv.onclick = () => openChat(name);
 
-    userDiv.innerHTML = `
-      <img src="${user?.profilePic || 'default-avatar.jpg'}" alt="${name}">
-      <span>${name} ${newMessages[name] ? '<span class="new-message" style="color: #7D0A0A;"><strong>(new)</strong></span>' : ''}</span>
-    `;
+function createChatUser(name, status = 'active') {
+  const chatContainer = document.createElement('div');
+  chatContainer.classList.add('chat-container');
 
-    chatList.appendChild(userDiv);
+  // Header with Set Deal and Report buttons
+  const header = document.createElement('div');
+  header.classList.add('chat-header');
+  header.innerHTML = `
+    <span class="chat-user">${name}</span>
+    <button class="report-btn" onclick="openReportModal('${name}')">Report</button>
+    <button class="deal-btn" onclick="openDealModal('${name}')">Set Deal</button>
+  `;
+
+  // Chat messages area
+  const messages = document.createElement('div');
+  messages.classList.add('chat-messages');
+  messages.id = `messages-${name}`;
+
+  // Input area
+  const inputContainer = document.createElement('div');
+  inputContainer.classList.add('chat-input-container');
+
+  let inputHTML = `
+    <input type="text" placeholder="Type a message..." class="chat-input" id="input-${name}" />
+    <input type="file" accept="image/*" id="image-${name}" style="display:none" onchange="handleImageAttach(event, '${name}')">
+    <button onclick="document.getElementById('image-${name}').click()">📷</button>
+    <button onclick="sendMessage('${name}')">Send</button>
+  `;
+
+  // Disabled input for status
+  if (status === 'done') {
+    inputHTML = `<div class="disabled-msg">This chat has been disabled. Transaction completed.</div>`;
+  } else if (status === 'reported') {
+    inputHTML = `<div class="disabled-msg">Thank you for reporting. This conversation is now under review by the admin.</div>`;
+  }
+
+  inputContainer.innerHTML = inputHTML;
+
+  chatContainer.appendChild(header);
+  chatContainer.appendChild(messages);
+  chatContainer.appendChild(inputContainer);
+
+  chatList.appendChild(chatContainer);
 }
+
 
 function searchPosts(input) {
     const keyword = input.value.toLowerCase();
