@@ -188,7 +188,7 @@ function signinAdmin() {
           <option value="teacher education">College of Teacher Education</option>
           <option value="home economics">College of Home Economics</option>
           <option value="nursing">College of Nursing</option>
-          <option value="law">College of Law</option>
+          <option value ="law">College of Law</option>
           <option value="criminal justice">College of Criminal Justice Education</option>
           <option value="medicine">College of Medicine</option>
           <option value="asian islamic studies">College of Asian Islamic Studies</option>
