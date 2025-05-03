@@ -203,6 +203,7 @@ function renderChat() {
   chatBox.innerHTML = `
   <div style="display: flex; justify-content: space-between; align-items: center;">
     <h2>Chat with ${currentChatUser}</h2>
+       <button id="dealButton" onclick="openDealConfirmationModal('${currentChatUser}')" style="margin-left: 30%;">Set a Deal</button>
     <button onclick="openChatReportModal('${currentChatUser}')">Report</button>
   </div>
 `;
@@ -270,9 +271,38 @@ function filterByCollege(select) {
     }
 }
 
+function openDealConfirmationModal(username) {
+  document.getElementById('dealUser').innerText = username;
+  document.getElementById('dealModal').style.display = 'flex';
+}
+
+function closeDealModal() {
+  document.getElementById('dealModal').style.display = 'none';
+}
+
+function confirmDeal() {
+  const dealButton = document.getElementById('dealButton');
+  const username = document.getElementById('dealUser').innerText;
+
+  // Handle the deal confirmation logic here
+  alert("Deal confirmed with " + username);
+
+  // Disable the button and change its text
+  dealButton.innerText = "Deal Set";
+  dealButton.disabled = true;
+  dealButton.style.opacity = 0.6;
+  dealButton.style.cursor = "not-allowed";
+
+  closeDealModal();
+}
+
 function logout() {
-    alert("Logged out successfully!");
-    window.location.href = "landing.html";
+  openCustomModal('logoutModal');
+}
+
+function confirmLogout() {
+  alert("Logged out successfully!");
+  window.location.href = "landing.html";
 }
 
 function loadDefaultPosts() {
@@ -772,6 +802,20 @@ function closeProfileModal() {
 }
 
 
+function openReportModal(title, desc, image, section) {
+  const modal = document.getElementById("viewModal");
+  const body = document.getElementById("viewModalBody");
+
+    body.innerHTML = `
+      <img src="images/image.png" alt="Preview" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
+      <h3>Fitness Plan Maker</h3>
+      <p style="display: flex; justify-self:center;">we need fit body for a plan maker.</p>
+      <button style="display: flex; justify-self:center;">Delete Post</button>
+    `;
+
+  modal.style.display = "flex";
+}
+
 function loadAdminMockData() {
     const reportList = document.getElementById("report-list");
     reportList.innerHTML = `
@@ -779,13 +823,13 @@ function loadAdminMockData() {
         <h3>Report #1</h3>
         <p><strong>Offense:</strong> Harassment</p>
         <p><strong>Reported User:</strong> Bob Smith</p>
-        <button onclick="alert('Report marked as reviewed')">Mark as Reviewed</button>
+        <button  onclick="openReportModal()">Inspect</button>
       </div>
       <div class="post-card">
         <h3>Report #2</h3>
         <p><strong>Offense:</strong> Spam</p>
         <p><strong>Reported User:</strong> Charlie Brown</p>
-        <button onclick="alert('Report marked as reviewed')">Mark as Reviewed</button>
+        <button  onclick="openReportModal()">Inspect</button>
       </div>
     `;
 

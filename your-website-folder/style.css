@@ -1052,3 +1052,57 @@ body.custom-modal-open::before {
 .transactionCard {
   margin-top: 20px;
 }
+#logoutModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  z-index: 9999;
+}
+
+#logoutModal .custom-modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  max-width: 400px;
+  margin: 15% auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: center;
+}
+
+#logoutModal .custom-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #888;
+}
+
+#logoutModal .custom-modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#logoutModal .custom-button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#logoutModal .custom-button.cancel {
+  background-color: #ccc;
+  color: #333;
+}
+
+#logoutModal .custom-button.confirm {
+  background-color: #f44336;
+  color: white;
+}
