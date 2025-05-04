@@ -1106,3 +1106,72 @@ body.custom-modal-open::before {
   background-color: #f44336;
   color: white;
 }
+.report-listContainer {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-self: center;
+  width: 90%;
+  max-width: 900px;
+  height: 80vh;
+  background-color: var(--white);
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px var(--shadow);
+  border: 1px solid var(--gold);
+  overflow-y: scroll;
+}
+
+.report-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.report-list li {
+  background-color: var(--light-bg);
+  color: black;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 6px var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.report-list li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px var(--shadow);
+}
+
+.report-info {
+  flex: 1;
+}
+
+.report-info h3 {
+  margin: 0 0 10px;
+  color: var(--dark-red);
+}
+
+.report-info p {
+  margin: 5px 0;
+}
+
+.report-list button {
+  background-color: var(--light-red);
+  color:  var(--white);
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.report-list button:hover {
+  background-color: var(--dark-red);
+  transform: scale(1.05);
+}
+

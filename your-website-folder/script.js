@@ -93,30 +93,29 @@ function addPost(section, user, sampleData = {}) {
   newPost.className = 'post-card';
   newPost.setAttribute('data-college', user.college.toLowerCase());
 
+  const fromInput = !sampleData.title && !sampleData.desc;
+
   const title = sampleData.title || document.getElementById('jobTitle')?.value || "Untitled Job";
   const desc = sampleData.desc || document.getElementById('jobDesc')?.value || "No description provided.";
   let image = sampleData.image || "images/edit.jpg";
-const uploadedImage = document.getElementById("jobImage");
-if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
+  const uploadedImage = document.getElementById("jobImage");
+  if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
     image = URL.createObjectURL(uploadedImage.files[0]);
-}
+  }
 
   const timestamp = "Posted just now";
 
-  // Build post content based on section
   let postContent = `
-  <div class="post-header">
-    <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>
-    <div>
-      <span class="username" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>${user.name}</span><br>
-      <span class="college">College: ${user.college}</span><br>
-      <small class="timestamp">${timestamp}</small>
+    <div class="post-header">
+      <img src="${user.profilePic}" alt="Profile Picture" class="profile-pic" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>
+      <div>
+        <span class="username" style="cursor:pointer;" onclick='openProfileModal(${JSON.stringify(user)})'>${user.name}</span><br>
+        <span class="college">College: ${user.college}</span><br>
+        <small class="timestamp">${timestamp}</small>
+      </div>
     </div>
-  </div>
-`;
+  `;
 
-
-  // Only include image if section is "find-job"
   if (section === "find-job") {
     postContent += `<img src="${image}" class="post-preview" alt="Preview Image">`;
   }
@@ -130,12 +129,32 @@ if (uploadedImage && uploadedImage.files && uploadedImage.files[0]) {
         <button onclick="openChat('${user.name}')">Contact</button>
         <button onclick="openPostReportModal('${title}')">Report</button>
       ` : ""}
-      
+      ${fromInput ? `<button onclick="confirmDelete(this)">Delete</button>` : ""}
     </div>
   `;
 
   newPost.innerHTML = postContent;
-  postsContainer.appendChild(newPost);
+  postsContainer.insertBefore(newPost, postsContainer.firstChild);
+}
+
+
+let postToDelete = null;
+
+function confirmDelete(button) {
+  postToDelete = button.closest('.post-card');
+  document.getElementById('deleteModal').style.display = 'flex';
+}
+
+function closeDeleteModal() {
+  document.getElementById('deleteModal').style.display = 'none';
+  postToDelete = null;
+}
+
+function deletePost() {
+  if (postToDelete) {
+    postToDelete.remove();
+    closeDeleteModal();
+  }
 }
 
 
@@ -158,6 +177,8 @@ function openChat(userName) {
       updateChatList();
     }
 }
+
+
 function openChatReportModal(userName) {
   const modal = document.getElementById("chatReportModal");
   const body = document.getElementById("chatReportBody");
@@ -779,8 +800,8 @@ function openProfileModal(user) {
       <div class="profileDetails">
         <p class="profileHandle">@${user.name.toLowerCase().replace(/\s+/g, '')}</p>
         <div class="profileStats">
-          <span><strong>??</strong> Posts</span>
-          <span><strong>85</strong> Credit Score</span>
+          <span><strong>3.5</strong>Average Rating</span>
+          <span><strong>10</strong>Work Done</span>
         </div>
         <p class="profileName">${user.name}</p>
         <p class="profileCollege">College of ${user.college}</p>
@@ -817,20 +838,52 @@ function openReportModal(title, desc, image, section) {
 }
 
 function loadAdminMockData() {
-    const reportList = document.getElementById("report-list");
+    const reportList = document.getElementById("report-listContainer");
     reportList.innerHTML = `
-      <div class="post-card">
-        <h3>Report #1</h3>
-        <p><strong>Offense:</strong> Harassment</p>
-        <p><strong>Reported User:</strong> Bob Smith</p>
-        <button  onclick="openReportModal()">Inspect</button>
-      </div>
-      <div class="post-card">
-        <h3>Report #2</h3>
-        <p><strong>Offense:</strong> Spam</p>
-        <p><strong>Reported User:</strong> Charlie Brown</p>
-        <button  onclick="openReportModal()">Inspect</button>
-      </div>
+    <ul class="report-list">
+   <ul class="report-list">
+  <li>
+    <div class="report-info">
+      <h3>Report #1</h3>
+      <p><strong>Offense:</strong> Harassment</p>
+      <p><strong>Reported User:</strong> Bob Smith</p>
+    </div>
+    <button onclick="openReportModal()">Inspect</button>
+  </li>
+  <li>
+    <div class="report-info">
+      <h3>Report #2</h3>
+      <p><strong>Offense:</strong> Spam</p>
+      <p><strong>Reported User:</strong> Charlie Brown</p>
+    </div>
+    <button onclick="openReportModal()">Inspect</button>
+  </li>
+  <li>
+    <div class="report-info">
+      <h3>Report #3</h3>
+      <p><strong>Offense:</strong> Inappropriate Language</p>
+      <p><strong>Reported User:</strong> Alice Johnson</p>
+    </div>
+    <button onclick="openReportModal()">Inspect</button>
+  </li>
+  <li>
+    <div class="report-info">
+      <h3>Report #4</h3>
+      <p><strong>Offense:</strong> Cheating</p>
+      <p><strong>Reported User:</strong> David Lee</p>
+    </div>
+    <button onclick="openReportModal()">Inspect</button>
+  </li>
+  <li>
+    <div class="report-info">
+      <h3>Report #5</h3>
+      <p><strong>Offense:</strong> Threats</p>
+      <p><strong>Reported User:</strong> Emily Davis</p>
+    </div>
+    <button onclick="openReportModal()">Inspect</button>
+  </li>
+</ul>
+  </ul> 
     `;
 
     const accountRequests = document.getElementById("account-requests");
