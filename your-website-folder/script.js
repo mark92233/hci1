@@ -124,7 +124,7 @@ function addPost(section, user, sampleData = {}) {
     <h3>${title}</h3>
     <p class="short-desc">${desc.substring(0, 100)}...</p>
     <div class="post-actions">
-      <button onclick="openViewModal('${title}', \`${desc}\`, '${image}', '${section}')">View More</button>
+      <button onclick="openViewModal('${title}', \`${desc}\`, '${image}', '${section}')">View</button>
       ${user.name !== currentUser.name ? `
         <button onclick="openChat('${user.name}')">Contact</button>
         <button onclick="openPostReportModal('${title}')">Report</button>
@@ -888,7 +888,7 @@ function loadAdminMockData() {
 
     const accountRequests = document.getElementById("account-requests");
     accountRequests.innerHTML = `
-      <div class="post-card">
+      <div class="post-card" onclick="openAccountOverlayModal()" style="cursor: pointer;">
         <h3>Account Request</h3>
         <p>Email: ae202403655@wmsu.edu.ph</p>
         <p>College: Computing Studies</p>
@@ -897,11 +897,56 @@ function loadAdminMockData() {
           <img src="images/ID front.jpg" alt="ID Front" style="width: 100px; height: auto; border: 1px solid #ccc;">
           <img src="images/ID back.jpg" alt="ID Back" style="width: 100px; height: auto; border: 1px solid #ccc;">
         </div>
-        <button onclick="alert('Account accepted')">Accept</button>
-        <button onclick="alert('Account rejected')">Reject</button>
+        <div class="accountButtons">
+            <button onclick="openAccountAcceptModal()">Accept</button>
+            <button onclick="openAccountRejectModal()">Reject</button>
+          </div>
       </div>
+      <div class="post-card" onclick="openAccountOverlayModal()" style="cursor: pointer;">
+        <h3>Account Request</h3>
+        <p>Email: ae202403655@wmsu.edu.ph</p>
+        <p>College: Computing Studies</p>
+        <p>ID picture:</p>
+        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+          <img src="images/ID front.jpg" alt="ID Front" style="width: 100px; height: auto; border: 1px solid #ccc;">
+          <img src="images/ID back.jpg" alt="ID Back" style="width: 100px; height: auto; border: 1px solid #ccc;">
+        </div>
+        <div class="accountButtons">
+            <button onclick="openAccountAcceptModal()">Accept</button>
+            <button onclick="openAccountRejectModal()">Reject</button>
+          </div>
+      </div>
+      
     `;  
     
+}
+function openAccountOverlayModal() {
+  document.getElementById('accountOverlayModal').style.display = 'flex';
+}
+
+function closeAccountOverlayModal() {
+  document.getElementById('accountOverlayModal').style.display = 'none';
+}
+function openAccountAcceptModal() {
+  document.getElementById('accountAcceptModal').style.display = 'flex';
+}
+
+function closeAccountAcceptModal() {
+  document.getElementById('accountAcceptModal').style.display = 'none';
+}
+
+function sendEmailVerification() {
+  alert('Email verification has been sent.');
+}
+
+function openAccountRejectModal() {
+  document.getElementById('accountRejectModal').style.display = 'flex';
+  document.getElementById('accountREjectModal').style.justifyContent =  'center';
+  document.getElementById('accountRejectModal').style.alignItems = 'center';
+}
+
+function closeAccountRejectModal() {
+  document.getElementById('accountRejectModal').style.display = 'none';
 }
 
 // Open modal by ID

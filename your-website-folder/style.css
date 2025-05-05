@@ -1175,3 +1175,11 @@ body.custom-modal-open::before {
   transform: scale(1.05);
 }
 
+.accountButtons{
+  width: 100%;
+  margin-left: 20%;
+}
+#account-requests{
+  display: flex;
+  gap: 3%;
+}

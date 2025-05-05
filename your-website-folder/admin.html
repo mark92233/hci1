@@ -320,6 +320,43 @@
   </div>
 </div>
 
+<div class="modal" id="accountRejectModal" style="display: none;">
+  <div class="modal-content" style="width: 400px;">
+    <span class="close" onclick="closeAccountRejectModal()">&times;</span>
+    <h3>Reject Account</h3>
+    <form id="chatReportForm">
+      <label>Select a Reason:</label><br>
+      <input type="radio" name="offense" value="Harassment" required>Invalid ID (expired)<br>
+      <input type="radio" name="offense" value="Spam" required> ID picture not clear<br>
+      <input type="radio" name="offense" value="Inappropriate Content" required> Invalid User ID number<br><br>
+      <button type="submit">Email to applicant</butotton>
+    </form>
+  </div>
+</div>
+
+<div class="modal" id="accountAcceptModal" style="display: none;">
+  <div class="modal-content" style="width: 400px;">
+    <span class="close" onclick="closeAccountAcceptModal()">&times;</span>
+    <h3>Account Accepted</h3>
+    <p>The account applicant has been accepted and marked as valid.</p>
+    <button onclick="sendEmailVerification()" style="margin-left: 20%;">Send Email Verification</button>
+  </div>
+</div>
+
+<div class="modal" id="accountOverlayModal" style="display: none;">
+  <div class="modal-content" style="width: 700px; max-width: 90%; font-size: 1.2rem;">
+    <span class="close" onclick="closeAccountOverlayModal()">&times;</span>
+    <h3>Account Request</h3>
+    <p>Email: ae202403655@wmsu.edu.ph</p>
+    <p>College: Computing Studies</p>
+    <p>ID picture:</p>
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+      <img src="images/ID front.jpg" alt="ID Front" style="width: 300px; height: auto; border: 1px solid #ccc;">
+      <img src="images/ID back.jpg" alt="ID Back" style="width: 300px; height: auto; border: 1px solid #ccc;">
+    </div>
+  </div>
+</div>
+
   <script src="script.js"></script>
 </body>
 </html>
