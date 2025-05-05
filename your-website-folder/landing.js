@@ -176,10 +176,9 @@ function signinAdmin() {
           <input type="text" id="signup-student-id-suffix" placeholder="XXXXX" maxlength="5" required>
         </div>
         <p class="error-msg" id="signup-student-id-error"></p>
-         <div class="filter">
-        <label>College:</label>
+         <div class="filter"> 
         <select onchange="filterByCollege(this)">
-          <option value="">All Colleges</option>
+          <option value="">Select College</option>
           <option value="computing studies">College of Computing Studies</option>
           <option value="liberal arts">College of Liberal Arts</option>
           <option value="engineering">College of Engineering</option>
@@ -188,7 +187,7 @@ function signinAdmin() {
           <option value="teacher education">College of Teacher Education</option>
           <option value="home economics">College of Home Economics</option>
           <option value="nursing">College of Nursing</option>
-          <option value ="law">College of Law</option>
+          <option value="law">College of Law</option>
           <option value="criminal justice">College of Criminal Justice Education</option>
           <option value="medicine">College of Medicine</option>
           <option value="asian islamic studies">College of Asian Islamic Studies</option>
@@ -228,7 +227,7 @@ function signinAdmin() {
         isValid = false;
       }
   
-      if (password.length !== 8) {
+      if (password.length < 8 ) {
         document.getElementById('signup-password-error').textContent = 'Password must be exactly 8 characters';
         isValid = false;
       }
@@ -249,7 +248,12 @@ function signinAdmin() {
       }
   
       if (isValid) {
-        signupCloseModal();
+        document.getElementById('signup-box').innerHTML = `
+        <button class="signup-close" onclick="signupCloseModal()">×</button>
+        <h2>Registration Successful</h2>
+        <p style="text-align: center;">An email will be sent shortly to verify your account.</p>
+        <button onclick="signupCloseModal()" class="closebtn">Close</button>
+      `;
       }
     }
   });
@@ -257,4 +261,3 @@ function signinAdmin() {
   function signupCloseModal() {
     document.getElementById('signup-overlay').style.display = 'none';
   }
-  

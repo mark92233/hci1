@@ -41,22 +41,21 @@
   </div>  
 
   <div class="main-content">
-    <!-- Report Handling -->
-    <section id="report-handling" class="content-section">
-      <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Report Handling</h1>
-      <div id="report-listContainer" class="report-listContainer"></div>
-
-    </section>
 
     <!-- Accept Accounts -->
     <section id="accept-accounts" class="content-section" style="display: none;">
       <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Accept Accounts</h1>
       <div id="account-requests"><p>Loading account requests...</p></div>
     </section>
-<div></div>
+
+       <!-- Report Handling -->
+       <section id="report-handling" class="content-section">
+        <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Report Handling</h1>
+        <div id="report-listContainer" class="report-listContainer"></div>
+      </section>
     <!-- Find Job -->
     <section id="find-job" class="content-section" style="display: none;">
-      <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Find Job</h1>
+      <h1 style="justify-self: center; font-size: 40px; margin-top: -3%; margin-bottom: 2%; color: #7D0A0A; letter-spacing: 2px;">Look for Freelancer</h1>
       <div class="controls">
         <input type="text" class="search-bar" placeholder="Search..." onkeyup="searchPosts(this)">
         <div class="filter">
@@ -326,10 +325,10 @@
     <h3>Reject Account</h3>
     <form id="chatReportForm">
       <label>Select a Reason:</label><br>
-      <input type="radio" name="offense" value="Harassment" required>Invalid ID (expired)<br>
+      <input type="radio" name="offense" value="Harassment" required>Invalid ID<br>
       <input type="radio" name="offense" value="Spam" required> ID picture not clear<br>
       <input type="radio" name="offense" value="Inappropriate Content" required> Invalid User ID number<br><br>
-      <button type="submit">Email to applicant</butotton>
+      <button type="submit" onclick="closeAccountRejectModal()">Email to applicant</butotton>
     </form>
   </div>
 </div>
@@ -357,6 +356,19 @@
   </div>
 </div>
 
+<div class="modal" id="accountOverlayModal1" style="display: none;">
+  <div class="modal-content" style="width: 700px; max-width: 90%; font-size: 1.2rem;">
+    <span class="close" onclick="closeAccountOverlayModal()">&times;</span>
+    <h3>Account Request</h3>
+    <p>Email: ae202403655@wmsu.edu.ph</p>
+    <p>College: Computing Studies</p>
+    <p>ID picture:</p>
+    <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+      <img src="images/front1.jpg" alt="ID Front" style="width: 300px; height: auto; border: 1px solid #ccc;">
+      <img src="images/back2.jpg" alt="ID Back" style="width: 300px; height: auto; border: 1px solid #ccc;">
+    </div>
+  </div>
+</div>
   <script src="script.js"></script>
 </body>
 </html>

@@ -798,7 +798,7 @@ function openProfileModal(user) {
     <div class="profileCard">
       <img src="${user.profilePic}" alt="${user.name}" class="profileAvatar">
       <div class="profileDetails">
-        <p class="profileHandle">@${user.name.toLowerCase().replace(/\s+/g, '')}</p>
+        <p class="profileHandle">@202406843</p>
         <div class="profileStats">
           <span><strong>3.5</strong>Average Rating</span>
           <span><strong>10</strong>Work Done</span>
@@ -827,17 +827,104 @@ function openReportModal(title, desc, image, section) {
   const modal = document.getElementById("viewModal");
   const body = document.getElementById("viewModalBody");
 
+  const showInitialOptions = () => {
     body.innerHTML = `
       <img src="images/image.png" alt="Preview" style="width: 100%; border-radius: 8px; margin-bottom: 15px;">
       <h3>Fitness Plan Maker</h3>
-      <p style="display: flex; justify-self:center;">we need fit body for a plan maker.</p>
-      <button style="display: flex; justify-self:center;">Delete Post</button>
+      <p>we need fit body for a plan maker.</p>
+      <p style="margin-top:2%; color:#7D0A0A;">Select action to take:</p>
+      <div style="display: flex; gap: 10px; justify-self:center; margin-top:2%;" >
+        <button id="deleteBtn">Delete Post</button>
+        <button id="suspendBtn">Suspend User</button>
+      </div>
     `;
 
+    document.getElementById("deleteBtn").onclick = showDeleteConfirmation;
+    document.getElementById("suspendBtn").onclick = showSuspendForm;
+  };
+
+  const showDeleteConfirmation = () => {
+    body.innerHTML = `
+      <p style="display:flex; justify-self:center;">Are you sure you want to delete this post?</p>
+      <div style="display: flex; gap: 10px;justify-self:center; margin-top:5%;">
+        <button id="confirmDelete">Yes, Delete</button>
+        <button id="cancelDelete">Cancel</button>
+      </div>
+    `;
+
+    document.getElementById("confirmDelete").onclick = () => {
+      body.innerHTML = `<p>Post deleted successfully.</p>`;
+    };
+
+    document.getElementById("cancelDelete").onclick = () => {
+      body.innerHTML = `<p>Deletion canceled.</p>`;
+    };
+  };
+
+  const showSuspendForm = () => {
+    body.innerHTML = `
+      <p style="display:flex; justify-self:center;">Select suspension duration:</p>
+      <select id="suspendDays" style="display:flex; justify-self:center;">
+        <option value="1">1 day</option>
+        <option value="3">3 days</option>
+        <option value="7">7 days</option>
+        <option value="30">30 days</option>
+        <option value="permanent">permanent</option>
+      </select>
+      <div style="margin-top: 10px; display:flex; justify-self:center; gap:2%;">
+        <button id="submitSuspend">Submit</button>
+        <button id="cancelSuspend">Cancel</button>
+      </div>
+    `;
+
+    document.getElementById("submitSuspend").onclick = () => {
+      const days = document.getElementById("suspendDays").value;
+      body.innerHTML = `<p>User suspended for ${days} day(s).</p>`;
+    };
+
+    document.getElementById("cancelSuspend").onclick = () => {
+      body.innerHTML = `<p>Suspension canceled.</p>`;
+    };
+  };
+
   modal.style.display = "flex";
+  showInitialOptions();
 }
 
 function loadAdminMockData() {
+  const accountRequests = document.getElementById("account-requests");
+  accountRequests.innerHTML = `
+    <div class="post-card" style="cursor: pointer;">
+      <h3>Account Request</h3>
+      <p>Email: ae202403655@wmsu.edu.ph</p>
+      <p>College: Computing Studies</p>
+      <p>ID picture:</p>
+      <div style="display: flex; gap: 10px; margin-bottom: 10px;" onclick="openAccountOverlayModal()">
+        <img src="images/ID front.jpg" alt="ID Front" style="width: 100px; height: auto; border: 1px solid #ccc;">
+        <img src="images/ID back.jpg" alt="ID Back" style="width: 100px; height: auto; border: 1px solid #ccc;">
+      </div>
+      <div class="accountButtons">
+          <button onclick="openAccountAcceptModal()">Accept</button>
+          <button onclick="openAccountRejectModal()">Reject</button>
+        </div>
+    </div>  
+    <div class="post-card" style="cursor: pointer;">
+      <h3>Account Request</h3>
+      <p>Email: ae202403655@wmsu.edu.ph</p>
+      <p>College: Computing Studies</p>
+      <p>ID picture:</p>
+      <div style="display: flex; gap: 10px; margin-bottom: 10px;" onclick="openAccountOverlayModal1()">
+        <img src="images/front1.jpg" alt="ID Front" style="width: 100px; height: auto; border: 1px solid #ccc;">
+        <img src="images/back2.jpg" alt="ID Back" style="width: 100px; height: auto; border: 1px solid #ccc;">
+      </div>
+      <div class="accountButtons">
+          <button onclick="openAccountAcceptModal()">Accept</button>
+          <button onclick="openAccountRejectModal()">Reject</button>
+        </div>
+    </div>
+    
+  `;  
+
     const reportList = document.getElementById("report-listContainer");
     reportList.innerHTML = `
     <ul class="report-list">
@@ -885,48 +972,20 @@ function loadAdminMockData() {
 </ul>
   </ul> 
     `;
-
-    const accountRequests = document.getElementById("account-requests");
-    accountRequests.innerHTML = `
-      <div class="post-card" onclick="openAccountOverlayModal()" style="cursor: pointer;">
-        <h3>Account Request</h3>
-        <p>Email: ae202403655@wmsu.edu.ph</p>
-        <p>College: Computing Studies</p>
-        <p>ID picture:</p>
-        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-          <img src="images/ID front.jpg" alt="ID Front" style="width: 100px; height: auto; border: 1px solid #ccc;">
-          <img src="images/ID back.jpg" alt="ID Back" style="width: 100px; height: auto; border: 1px solid #ccc;">
-        </div>
-        <div class="accountButtons">
-            <button onclick="openAccountAcceptModal()">Accept</button>
-            <button onclick="openAccountRejectModal()">Reject</button>
-          </div>
-      </div>
-      <div class="post-card" onclick="openAccountOverlayModal()" style="cursor: pointer;">
-        <h3>Account Request</h3>
-        <p>Email: ae202403655@wmsu.edu.ph</p>
-        <p>College: Computing Studies</p>
-        <p>ID picture:</p>
-        <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-          <img src="images/ID front.jpg" alt="ID Front" style="width: 100px; height: auto; border: 1px solid #ccc;">
-          <img src="images/ID back.jpg" alt="ID Back" style="width: 100px; height: auto; border: 1px solid #ccc;">
-        </div>
-        <div class="accountButtons">
-            <button onclick="openAccountAcceptModal()">Accept</button>
-            <button onclick="openAccountRejectModal()">Reject</button>
-          </div>
-      </div>
-      
-    `;  
     
 }
 function openAccountOverlayModal() {
   document.getElementById('accountOverlayModal').style.display = 'flex';
 }
+function openAccountOverlayModal1() {
+  document.getElementById('accountOverlayModal1').style.display = 'flex';
+}
 
 function closeAccountOverlayModal() {
   document.getElementById('accountOverlayModal').style.display = 'none';
+  document.getElementById('accountOverlayModal1').style.display = 'none';
 }
+
 function openAccountAcceptModal() {
   document.getElementById('accountAcceptModal').style.display = 'flex';
 }
@@ -941,11 +1000,10 @@ function sendEmailVerification() {
 
 function openAccountRejectModal() {
   document.getElementById('accountRejectModal').style.display = 'flex';
-  document.getElementById('accountREjectModal').style.justifyContent =  'center';
-  document.getElementById('accountRejectModal').style.alignItems = 'center';
 }
 
 function closeAccountRejectModal() {
+  sendEmailVerification();
   document.getElementById('accountRejectModal').style.display = 'none';
 }
 
