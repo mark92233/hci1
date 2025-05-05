@@ -22,7 +22,7 @@ const currentUser = {
 };
 
 const sampleUsers = [
-    { name: "Alice Johnson", profilePic: "images/pro.png", college: "computing studies" },
+    { name: "Juan Dela Cruz", profilePic: "images/pro.png", college: "computing studies" },
     { name: "Bob Smith", profilePic: "images/pro.png", college: "liberal arts" },
     { name: "Charlie Brown", profilePic: "images/pro.png", college: "engineering" },
     
@@ -498,7 +498,7 @@ function loadDefaultPosts() {
   //For hiring
   const clientPosts = [
     {
-      user: { name: "Alice Johnson", profilePic: "images/pro.png", college: "Computing Studies" },
+      user: { name: "Juan Dela Cruz", profilePic: "images/pro.png", college: "Computing Studies" },
       sampleData: {
         title: "Web Developer Needed", 
         desc: "Looking for a skilled web developer to build a responsive student portal for course registration and announcements.",
@@ -949,7 +949,7 @@ function loadAdminMockData() {
     <div class="report-info">
       <h3>Report #3</h3>
       <p><strong>Offense:</strong> Inappropriate Language</p>
-      <p><strong>Reported User:</strong> Alice Johnson</p>
+      <p><strong>Reported User:</strong> Juan Dela Cruz</p>
     </div>
     <button onclick="openReportModal()">Inspect</button>
   </li>
