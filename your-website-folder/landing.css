@@ -628,7 +628,9 @@ nav ul li a {
     width: 450px;
     text-align: center;
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+    max-height: 90vh;
     position: relative;
+    overflow-y: scroll;
   }
   
   .signup-close {
@@ -690,9 +692,6 @@ nav ul li a {
     justify-content: center;
   }
   
-  .student-id-container input {
-    width: 80px;
-  }
   
   #signup-form button,
   .signup-action, .closebtn {

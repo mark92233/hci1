@@ -163,10 +163,18 @@ function signinAdmin() {
       <button class="signup-close" onclick="signupCloseModal()">×</button>
       <h2>Sign Up</h2>
       <form id="signup-form">
+      <p style="margin-left:-75%;">Enter name: </p>
+       <div class="student-id-container">
+          <input type="text" id="signup-student-id-prefix" placeholder="First Name" required>
+          <input type="text" id="signup-student-id-suffix" placeholder="Last Name" required>
+        </div>
+        <p style="margin-left:-75%;">Enter email: </p>
         <input type="email" id="signup-email" placeholder="Email (@wmsu.edu.ph)" required>
         <p class="error-msg" id="signup-email-error"></p>
+        <p style="margin-left:-65%;">Enter password: </p>
         <input type="password" id="signup-password" placeholder="Password (8 characters)" required>
         <p class="error-msg" id="signup-password-error"></p>
+        <p style="margin-left:-65%;">Confirm password: </p>
         <input type="password" id="signup-confirm-password" placeholder="Confirm Password" required>
         <p class="error-msg" id="signup-confirm-password-error"></p>
         <p style="margin-left: -50%">Student ID number: </p>
@@ -176,6 +184,7 @@ function signinAdmin() {
           <input type="text" id="signup-student-id-suffix" placeholder="XXXXX" maxlength="5" required>
         </div>
         <p class="error-msg" id="signup-student-id-error"></p>
+        <p style="margin-left:-75%;">Select College: </p>
          <div class="filter"> 
         <select onchange="filterByCollege(this)">
           <option value="">Select College</option>

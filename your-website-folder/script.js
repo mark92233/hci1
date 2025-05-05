@@ -846,7 +846,7 @@ function openReportModal(title, desc, image, section) {
   const showDeleteConfirmation = () => {
     body.innerHTML = `
       <p style="display:flex; justify-self:center;">Are you sure you want to delete this post?</p>
-      <div style="display: flex; gap: 10px;justify-self:center; margin-top:5%;">
+      <div style="display: flex; gap: 10px;justify-self:center; margin-top:5%x  ;">
         <button id="confirmDelete">Yes, Delete</button>
         <button id="cancelDelete">Cancel</button>
       </div>
@@ -898,6 +898,7 @@ function loadAdminMockData() {
       <h3>Account Request</h3>
       <p>Email: ae202403655@wmsu.edu.ph</p>
       <p>College: Computing Studies</p>
+      <p>Name: Mark John S. Ando</p>
       <p>ID picture:</p>
       <div style="display: flex; gap: 10px; margin-bottom: 10px;" onclick="openAccountOverlayModal()">
         <img src="images/ID front.jpg" alt="ID Front" style="width: 100px; height: auto; border: 1px solid #ccc;">
@@ -912,6 +913,7 @@ function loadAdminMockData() {
       <h3>Account Request</h3>
       <p>Email: ae202403655@wmsu.edu.ph</p>
       <p>College: Computing Studies</p>
+      <p>Name: Mark John S. Ando</p>
       <p>ID picture:</p>
       <div style="display: flex; gap: 10px; margin-bottom: 10px;" onclick="openAccountOverlayModal1()">
         <img src="images/front1.jpg" alt="ID Front" style="width: 100px; height: auto; border: 1px solid #ccc;">
