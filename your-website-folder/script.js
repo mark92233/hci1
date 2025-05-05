@@ -482,7 +482,7 @@ function loadDefaultPosts() {
       }
     },
     {
-      user: { name: "Alice Johnson", profilePic: "images/pro.png", college: "Home Economics" },
+      user: { name: "Juan Dela Cruz", profilePic: "images/pro.png", college: "Home Economics" },
       sampleData: {
         title: "Interior Design Project Available",
         desc: "We’re offering a creative opportunity to help design dorm room layouts with a functional and aesthetic approach.",
