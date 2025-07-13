@@ -48,7 +48,7 @@ function signinAdmin() {
         if (email === 'admin@wmsu.edu.ph' && password === 'admin12345') {
           window.location.href = 'admin.html';
         } else if (email === 'user@wmsu.edu.ph' && password === 'user12345') {
-          window.location.href = 'index.html';
+          window.location.href = 'Home.html';
         } else {
           document.getElementById('signin-password-error').textContent = 'Invalid email or password';
         }
@@ -179,9 +179,9 @@ function signinAdmin() {
         <p class="error-msg" id="signup-confirm-password-error"></p>
         <p style="margin-left: -50%">Student ID number: </p>
         <div class="student-id-container">
-          <input type="text" id="signup-student-id-prefix" placeholder="XXXX" maxlength="4" required>
+          <input type="text" id="signup-student-id-prefix" placeholder="XXXX" >
           <span>-</span>
-          <input type="text" id="signup-student-id-suffix" placeholder="XXXXX" maxlength="5" required>
+          <input type="text" id="signup-student-id-suffix" placeholder="XXXXX">
         </div>
         <p class="error-msg" id="signup-student-id-error"></p>
         <p style="margin-left:-75%;">Select College: </p>
